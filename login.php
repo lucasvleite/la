@@ -106,7 +106,7 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="./assets/js/bootstrap.min.js"></script>            
 <!-- Sweet Alert 2 -->
-<script src="./assets/js/sweetalert2.all.min.js"></script>
+<script src="./assets/js/sweetalert2.min.js"></script>
 <script src="./assets/js/login.js"></script>
 </body>
 </html>

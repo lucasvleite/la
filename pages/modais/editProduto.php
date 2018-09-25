@@ -104,6 +104,7 @@
             <div class="col-sm-9">
               <label for="descricaoProduto">Descrição do Produto</label>
               <span id="spanDescricaoD" class="form-control" disabled></span>
+              <input type="hidden" name="descricao" id="descricaoD">
             </div>
           </div>
         </div>
@@ -138,7 +139,7 @@
       <div class="modal-footer bg-success">
         <div class="text-center">
           <button type="button" class="btn btn-primary mr-md" data-dismiss="modal"><i class="fa fa-ban mr-xs"></i> Cancelar</button>
-          <button type="submit" class="btn btn-danger"><i class="fa fa-plus mr-xs"></i> Retirar do Estoque</button>
+          <button type="submit" class="btn btn-danger"><i class="fa fa-arrow-circle-down mr-xs"></i> Retirar do Estoque</button>
           <input type="hidden" name="idProduto" id="idProdutoD">
         </div>
       </div>
