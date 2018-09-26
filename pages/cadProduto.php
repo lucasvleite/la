@@ -15,7 +15,7 @@
   <div class="box box-solid">
     <div class="box-header with-border">
       <h2 class="box-title">Relação dos Produtos</h2>
-      <button class="btn bg-purple pull-right" data-toggle="modal" data-target="#modal-produto"><i class="fa fa-plus mr-xs"></i> Adicionar Produto</button>
+      <button class="btn bg-purple pull-right" data-toggle="modal" data-target="#modal-produto"><i class="fa fa-plus mr-xs"></i> Cadastrar um novo Produto</button>
     </div>
     <!-- /.box-header -->
     <div class="box-body">

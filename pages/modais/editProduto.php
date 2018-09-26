@@ -126,7 +126,7 @@
           <div class="row">
             <div class="col-xs-6">
               <label for="quantidade">Quantidade Descarte*</label>
-              <input type="number" name="quantidade" id="quantidadeD" class="form-control" min=0 step="1" placeholder="Quantidade" required>
+              <input type="number" name="quantidade" id="quantidadeD" class="form-control" min=0 max=0 step="1" placeholder="Quantidade" required>
             </div>
             <div class="col-xs-6">
               <label for="dataDescarte">Data descarte</label>

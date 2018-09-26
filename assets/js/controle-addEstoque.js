@@ -1,7 +1,7 @@
 function gerarDataTable() {
   $("#tabela-produtos").DataTable().destroy()
   $.ajax({
-    url: "pages/api/getProdutosTable.php",
+    url: "pages/api/getEstoque.php",
     dataType: 'html',
     success: function (data) {
       $("#body-produtos").html(data)
@@ -110,6 +110,86 @@ function preencherCategorias(selected) {
 
 }
 
+
+// Preencher modal Edit Produto
+$('#modal-editProduto').on('shown.bs.modal', function (e) {
+  var idProduto = $(e.relatedTarget).data('id')
+  $("#idProduto").val(idProduto)
+
+  $.ajax({
+    type: 'post',
+    url: 'pages/api/getProduto.php',
+    data: 'id=' + idProduto,
+    dataType: 'json',
+    success: function (data) {
+      $("#EcodigoProduto").val(data["codigo"])
+      $("#EdescricaoProduto").val(data["descricao"])
+      $("#Eestoque").val(data["estoque"])
+      $("#EprecoVenda").val(data["precoVenda"])
+      $("#Efornecedor").val(data["fornecedor"])
+      $("#EestoqueMinimo").val(data["estoqueM"])
+      $("#EcategoriaProduto").val(data["categoria"])
+    },
+    error: function (err) {
+      $("#formEditProduto").find('input').val('')
+    }
+  })
+})
+
+// Preencher modal Estoque
+$('#modal-addEstoque').on('shown.bs.modal', function (e) {
+  var idProduto = $(e.relatedTarget).data('id')
+  $("#idProdutoE").val(idProduto)
+
+  $.ajax({
+    type: 'post',
+    url: 'pages/api/getProduto.php',
+    data: 'id=' + idProduto,
+    dataType: 'json',
+    success: function (data) {
+      $("#codigoProdutoE").val(data["codigo"])
+      $("#spanCodigo").html(data["codigo"])
+
+      $("#descricaoProdutoE").val(data["descricao"])
+      $("#spanDescricao").html(data["descricao"])
+
+      // $("#estoqueE").val(data["estoque"])
+      // $("#precoUnitarioE").val(data["precoCompra"])
+      $("#precoVendaE").val(data["precoVenda"])
+      // $("#dataCompraE").val(data["dataCompra"])
+      $("#fornecedorE").val(data["fornecedor"])
+      $("#categoriaProdutoE").val(data["categoria"])
+    },
+    error: function (err) {
+      $("#formEstoque").find('input').val('');
+    }
+  })
+})
+
+// Preencher modal Historico
+$('#modal-historico').on('shown.bs.modal', function (e) {
+  var idProduto = $(e.relatedTarget).data('id')
+  $.ajax({
+    type: 'post',
+    url: 'pages/api/getHistProduto.php',
+    data: 'id=' + idProduto,
+    dataType: 'html',
+    success: function (data) {
+      $("#body-historico").html(data)
+    },
+    error: function (err) {
+      console.log(err)
+      $("#body-historico").html("")
+    }
+  })
+})
+//Fechar modal Historico
+$('#modal-historico').on('hide.bs.modal', function () {
+  $("#body-historico").html("")
+})
+
+
+
 $(document).ready(function () {
 
   gerarDataTable()
@@ -121,23 +201,6 @@ $(document).ready(function () {
     language: "pt-BR",
     format: "dd/mm/yyyy",
     endDate: "1d"
-  })
-
-
-  // $('#modal-produto').on('close.bs.modal', function () {
-  //   $("#formNovoProduto").find('input').val('');
-  // })
-
-  // $('#modal-fornecedor').on('close.bs.modal', function () {
-  //   preencherFornecedores()
-  // })
-
-  // $('#modal-categoria').on('close.bs.modal', function () {
-  //   preencherCategorias()
-  // })
-
-  $('#modal-historico').on('hide.bs.modal', function () {
-    $("#body-historico").html("")
   })
 
 
@@ -162,80 +225,6 @@ $(document).ready(function () {
   })
 
 
-  // Preencher modal Edit Produto
-  $('#modal-editProduto').on('shown.bs.modal', function (e) {
-    var idProduto = $(e.relatedTarget).data('id')
-    $("#idProduto").val(idProduto)
-
-    $.ajax({
-      type: 'post',
-      url: 'pages/api/getProduto.php',
-      data: 'id=' + idProduto,
-      dataType: 'json',
-      success: function (data) {
-        $("#EcodigoProduto").val(data["codigo"])
-        $("#EdescricaoProduto").val(data["descricao"])
-        $("#Eestoque").val(data["estoque"])
-        $("#EprecoVenda").val(data["precoVenda"])
-        $("#Efornecedor").val(data["fornecedor"])
-        $("#EestoqueMinimo").val(data["estoqueM"])
-        $("#EcategoriaProduto").val(data["categoria"])
-      },
-      error: function (err) {
-        $("#formEditProduto").find('input').val('')
-      }
-    })
-  })
-
-  // Preencher modal Estoque
-  $('#modal-addEstoque').on('shown.bs.modal', function (e) {
-    var idProduto = $(e.relatedTarget).data('id')
-    $("#idProdutoE").val(idProduto)
-
-    $.ajax({
-      type: 'post',
-      url: 'pages/api/getProduto.php',
-      data: 'id=' + idProduto,
-      dataType: 'json',
-      success: function (data) {
-        $("#codigoProdutoE").val(data["codigo"])
-        $("#spanCodigo").html(data["codigo"])
-
-        $("#descricaoProdutoE").val(data["descricao"])
-        $("#spanDescricao").html(data["descricao"])
-
-        // $("#estoqueE").val(data["estoque"])
-        // $("#precoUnitarioE").val(data["precoCompra"])
-        $("#precoVendaE").val(data["precoVenda"])
-        // $("#dataCompraE").val(data["dataCompra"])
-        $("#fornecedorE").val(data["fornecedor"])
-        $("#categoriaProdutoE").val(data["categoria"])
-      },
-      error: function (err) {
-        $("#formEstoque").find('input').val('');
-      }
-    })
-  })
-
-  // Preencher modal Historico
-  $('#modal-historico').on('shown.bs.modal', function (e) {
-    var idProduto = $(e.relatedTarget).data('id')
-    $.ajax({
-      type: 'post',
-      url: 'pages/api/getHistProduto.php',
-      data: 'id=' + idProduto,
-      dataType: 'html',
-      success: function (data) {
-        $("#body-historico").html(data)
-      },
-      error: function (err) {
-        console.log(err)
-      }
-    })
-  })
-
-
-
   // Submit do Form Fornecedor
   $("#formNovoFornecedor").submit(function (e) {
     e.preventDefault()
@@ -258,9 +247,9 @@ $(document).ready(function () {
             title: 'Yes...',
             text: data[1]
           }).then(function () {
-            $("#fornecedorE").val('')
-            $("#modal-fornecedor").modal("hide")
             preencherFornecedores(data[2])
+            $("#formNovoFornecedor").find('input').val('')
+            $("#modal-fornecedor").modal("hide")
           })
         }
 
@@ -298,8 +287,9 @@ $(document).ready(function () {
             title: 'Yes...',
             text: data[1]
           }).then(function () {
+            gerarDataTable()
+            $("#formNovoProduto").find('input').val('')
             $("#modal-produto").modal("hide")
-            gerarTabelaProdutos()
           })
         }
 
@@ -337,8 +327,9 @@ $(document).ready(function () {
             title: 'Yes...',
             text: data[1]
           }).then(function () {
+            gerarDataTable()
+            $("#formNovoProduto").find('input').val('')
             $("#modal-editProduto").modal("hide")
-            gerarTabelaProdutos()
           })
         }
 
@@ -376,9 +367,9 @@ $(document).ready(function () {
             title: 'Yes...',
             text: data[1]
           }).then(function (e) {
+            preencherCategorias(data[2])
             $("#descricaoCategoria").val('')
             $("#modal-categoria").modal("hide")
-            preencherCategorias(data[2])
           })
         }
 
@@ -398,9 +389,9 @@ $(document).ready(function () {
     e.preventDefault()
 
     $.ajax({
-      url: "pages/api/setProduto.php",
+      url: "pages/api/setAddEstoque.php",
       type: "POST",
-      data: $("#formNovoProduto").serialize(),
+      data: $("#formEstoque").serialize(),
       dataType: 'json',
       success: function (data) {
         if (data[0] == 'error') {
@@ -415,8 +406,8 @@ $(document).ready(function () {
             title: 'Yes...',
             text: data[1]
           }).then(function (result) {
-            $("#tabela-produtos").DataTable().destroy()
-            gerarTabelaProdutos()
+            gerarDataTable()
+            $("#formEstoque").find('input').val('')
             $("#modal-addEstoque").modal("hide")
           })
         }

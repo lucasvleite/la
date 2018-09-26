@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 23/09/2018 às 22:43
+-- Tempo de geração: 26/09/2018 às 00:28
 -- Versão do servidor: 5.7.23-0ubuntu0.18.04.1
 -- Versão do PHP: 7.2.10-0ubuntu0.18.04.1
 
@@ -66,7 +66,7 @@ CREATE TABLE `clientes` (
 CREATE TABLE `entradaprodutos` (
   `idEntradaProduto` int(11) NOT NULL,
   `idProduto` int(11) NOT NULL,
-  `codigoProduto` int(11) NOT NULL,
+  `codigoProduto` int(11) DEFAULT NULL,
   `quantidade` int(11) NOT NULL,
   `precoUnitario` decimal(10,2) NOT NULL,
   `fornecedor` int(11) DEFAULT NULL,
@@ -110,10 +110,10 @@ CREATE TABLE `fornecedores` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `itensdesconsiderar`
+-- Estrutura para tabela `itensDesconsiderar`
 --
 
-CREATE TABLE `itensdesconsiderar` (
+CREATE TABLE `itensDesconsiderar` (
   `id` int(11) NOT NULL,
   `idProduto` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL,
@@ -122,13 +122,25 @@ CREATE TABLE `itensdesconsiderar` (
   `DATE_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Gatilhos `itensDesconsiderar`
+--
+DELIMITER $$
+CREATE TRIGGER `CE_descarte_delet` AFTER DELETE ON `itensDesconsiderar` FOR EACH ROW UPDATE produtos P SET P.estoque = P.estoque + OLD.quantidade WHERE OLD.idProduto = P.idProduto
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `CE_descarte_insert` AFTER INSERT ON `itensDesconsiderar` FOR EACH ROW UPDATE produtos P SET P.estoque = P.estoque - NEW.quantidade WHERE P.idProduto = NEW.idProduto
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `itensvenda`
+-- Estrutura para tabela `itensVenda`
 --
 
-CREATE TABLE `itensvenda` (
+CREATE TABLE `itensVenda` (
   `idItem` int(11) NOT NULL,
   `idVenda` int(11) NOT NULL,
   `idProduto` int(11) NOT NULL,
@@ -137,6 +149,18 @@ CREATE TABLE `itensvenda` (
   `DATE_CREATED` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `DATE_MODIFIED` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gatilhos `itensVenda`
+--
+DELIMITER $$
+CREATE TRIGGER `CE_venda_delete` AFTER DELETE ON `itensVenda` FOR EACH ROW UPDATE produtos P SET P.estoque = P.estoque + OLD.quantidade WHERE OLD.idProduto = P.idProduto
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `CE_venda_insert` AFTER INSERT ON `itensVenda` FOR EACH ROW UPDATE produtos P SET P.estoque = P.estoque - NEW.quantidade WHERE NEW.idProduto = P.idProduto
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -169,14 +193,6 @@ CREATE TABLE `status` (
   `classe` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Fazendo dump de dados para tabela `status`
---
-
-INSERT INTO `status` (`idstatus`, `descricao`, `classe`) VALUES
-(1, 'Ativo', 'success'),
-(2, 'Inativo', 'danger');
-
 -- --------------------------------------------------------
 
 --
@@ -189,13 +205,6 @@ CREATE TABLE `users` (
   `DATE_CREATED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `DATE_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Fazendo dump de dados para tabela `users`
---
-
-INSERT INTO `users` (`login`, `senha`, `DATE_CREATED`, `DATE_MODIFIED`) VALUES
-('admin', 'Priscila', '2018-09-24 00:16:26', '2018-09-24 00:16:26');
 
 -- --------------------------------------------------------
 
@@ -249,15 +258,15 @@ ALTER TABLE `fornecedores`
   ADD PRIMARY KEY (`idFornecedor`);
 
 --
--- Índices de tabela `itensdesconsiderar`
+-- Índices de tabela `itensDesconsiderar`
 --
-ALTER TABLE `itensdesconsiderar`
+ALTER TABLE `itensDesconsiderar`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `itensvenda`
+-- Índices de tabela `itensVenda`
 --
-ALTER TABLE `itensvenda`
+ALTER TABLE `itensVenda`
   ADD PRIMARY KEY (`idItem`);
 
 --
@@ -286,17 +295,17 @@ ALTER TABLE `vendas`
 -- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `entradaprodutos`
 --
 ALTER TABLE `entradaprodutos`
-  MODIFY `idEntradaProduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idEntradaProduto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `formapagamento`
 --
@@ -306,27 +315,27 @@ ALTER TABLE `formapagamento`
 -- AUTO_INCREMENT de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  MODIFY `idFornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idFornecedor` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de tabela `itensdesconsiderar`
+-- AUTO_INCREMENT de tabela `itensDesconsiderar`
 --
-ALTER TABLE `itensdesconsiderar`
+ALTER TABLE `itensDesconsiderar`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de tabela `itensvenda`
+-- AUTO_INCREMENT de tabela `itensVenda`
 --
-ALTER TABLE `itensvenda`
+ALTER TABLE `itensVenda`
   MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `idProduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idProduto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `status`
 --
 ALTER TABLE `status`
-  MODIFY `idstatus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idstatus` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `vendas`
 --
@@ -335,13 +344,20 @@ ALTER TABLE `vendas`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-TRUNCATE `categorias`;
-TRUNCATE `clientes`;
-TRUNCATE `entradaprodutos`;
-TRUNCATE `formapagamento`;
-TRUNCATE `fornecedores`;
-TRUNCATE `itensdesconsiderar`;
-TRUNCATE `itensvenda`;
-TRUNCATE `produtos`;
-TRUNCATE `users`;
-TRUNCATE `vendas`;
+
+
+--
+-- Fazendo dump de dados para tabela `status`
+--
+
+INSERT INTO `status` (`descricao`, `classe`) VALUES
+('Ativo', 'success'),
+('Inativo', 'danger');
+
+
+--
+-- Fazendo dump de dados para tabela `users`
+--
+
+INSERT INTO `users` (`login`, `senha`, `DATE_CREATED`, `DATE_MODIFIED`) VALUES
+('admin', 'admin', '2018-09-26 03:25:31', '2018-09-26 03:25:31');

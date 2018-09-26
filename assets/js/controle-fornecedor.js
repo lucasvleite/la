@@ -123,10 +123,7 @@ $(document).ready(function () {
         if (data[0] == 'error') {
           swal('Oops...', data[1], 'error')
         } else {
-          swal('Yes...', data[1], 'success').then((result) => {
-            $("#formNovoFornecedor").find('input').val('')
-            location.href = "./home.php?id=cadFornecedor"
-          })
+          swal('Yes...', data[1], 'success').then((result) => { location.href = "./home.php?id=cadFornecedor" })
         }
 
       },

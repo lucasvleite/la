@@ -54,7 +54,6 @@ function gerarDataTable(idTable) {
 
 
 function preencherClientes(selected) {
-  // Preencher select Fornecedor
   $.ajax({
     type: "POST",
     url: "pages/api/getClientes.php",

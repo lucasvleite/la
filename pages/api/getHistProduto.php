@@ -19,13 +19,13 @@ $query =
   WHERE E.idProduto = $idProduto
   UNION
   SELECT I.DATE_CREATED, I.quantidade, I.precoUnitario as preco, C.nome as nome, V.dataVenda as 'data', 2 as tipo
-  FROM itensvenda I
+  FROM itensVenda I
   INNER JOIN vendas V ON V.idVenda = I.idVenda
   LEFT JOIN clientes C ON C.idCliente = V.idCliente
   WHERE I.idProduto = $idProduto
   UNION
   SELECT D.DATE_CREATED, D.quantidade, 'preco' = NULL, 'nome'=NULL, D.dataDescarte as 'data', 3 as tipo
-  FROM itensdesconsiderar D
+  FROM itensDesconsiderar D
   WHERE D.idProduto = $idProduto
   ORDER BY DATE_CREATED DESC
 ";

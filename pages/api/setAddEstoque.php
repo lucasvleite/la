@@ -17,12 +17,12 @@ $idProduto = (isset($_POST["idProduto"])) ? $_POST["idProduto"] : 0;
  * Verifica se é UPDATE ou INSERT - Se for 0 é INSERT, senão UPDATE
  **********************************************************************************/
 if( $idProduto == 0 ){
-  echo json_encode(array("error","Erro de insrção!<br>Atualize a página e tente novamente"));
+  echo json_encode(array("error","Erro de inserção!<br>Atualize a página e tente novamente"));
 } else{
 
-  $queryProduto = "precoVenda = '" . (float)str_replace(",",".",$precoVenda) . "', estoque = estoque + '$quantidade'";
+  $queryProduto = "precoVenda = '" . (float)str_replace(",",".",$precoVenda) . "', estoque = estoque + $quantidade";
 
-  $insertEntradaP = "idProduto = '$idProduto', codigoProduto = '$codigo', quantidade = '$quantidade', precoUnitario = '$precoCompra'";
+  $insertEntradaP = "idProduto = '$idProduto', quantidade = '$quantidade', precoUnitario = '$precoCompra'";
 
   /**********************************************************************************
    * Verificar variáveis, retirar caracteres especiais e convertendo as datas
@@ -34,7 +34,7 @@ if( $idProduto == 0 ){
   /**********************************************************************************
    * Alterando e Inserindo os dados
    **********************************************************************************/
-  $query = "UPDATE produtos SET $queryProduto WHERE idProduto = $idProduto";
+  $query = "UPDATE produtos P SET $queryProduto WHERE idProduto = $idProduto";
   $resultado1 = $database->runQuery($query);
 
   $query = "INSERT INTO entradaprodutos SET $insertEntradaP";

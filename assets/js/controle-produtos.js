@@ -111,6 +111,56 @@ function preencherCategorias(selected) {
 }
 
 
+// Preencher modal Edit Produto
+$('#modal-editProduto').on('shown.bs.modal', function (e) {
+  var idProduto = $(e.relatedTarget).data('id')
+  $("#idProduto").val(idProduto)
+
+  $.ajax({
+    type: 'post',
+    url: 'pages/api/getProduto.php',
+    data: 'id=' + idProduto,
+    dataType: 'json',
+    success: function (data) {
+      $("#EcodigoProduto").val(data["codigo"])
+      $("#EdescricaoProduto").val(data["descricao"])
+      $("#Eestoque").val(data["estoque"])
+      $("#EprecoVenda").val(data["precoVenda"])
+      $("#Efornecedor").val(data["fornecedor"])
+      $("#EestoqueMinimo").val(data["estoqueM"])
+      $("#EcategoriaProduto").val(data["categoria"])
+    },
+    error: function (err) {
+      $("#formEditProduto").find('input').val('')
+    }
+  })
+})
+
+// Preencher modal Descarte de Produtos
+$('#modal-descarte').on('shown.bs.modal', function (e) {
+  var idProduto = $(e.relatedTarget).data('id')
+  $("#idProdutoD").val(idProduto)
+
+  $.ajax({
+    type: 'post',
+    url: 'pages/api/getProduto.php',
+    data: 'id=' + idProduto,
+    dataType: 'json',
+    success: function (data) {
+      $("#spanCodigoD").html(data["codigo"])
+      $("#spanDescricaoD").html(data["descricao"])
+      $("#descricaoD").val(data["descricao"])
+      $("#spanEstoqueD").html(data["estoque"])
+      $("#spanCategoriaD").html(data["descCategoria"])
+      $("#quantidadeD").attr("max", data["estoque"])
+    },
+    error: function (err) {
+      $("#formDescarte").find('input').val('')
+    }
+  })
+})
+
+
 $(document).ready(function () {
   preencherCategorias("")
   preencherFornecedores("")
@@ -144,57 +194,6 @@ $(document).ready(function () {
     format: "dd/mm/yyyy",
     endDate: "1d"
   })
-
-
-  // Preencher modal Edit Produto
-  $('#modal-editProduto').on('shown.bs.modal', function (e) {
-    var idProduto = $(e.relatedTarget).data('id')
-    $("#idProduto").val(idProduto)
-
-    $.ajax({
-      type: 'post',
-      url: 'pages/api/getProduto.php',
-      data: 'id=' + idProduto,
-      dataType: 'json',
-      success: function (data) {
-        $("#EcodigoProduto").val(data["codigo"])
-        $("#EdescricaoProduto").val(data["descricao"])
-        $("#Eestoque").val(data["estoque"])
-        $("#EprecoVenda").val(data["precoVenda"])
-        $("#Efornecedor").val(data["fornecedor"])
-        $("#EestoqueMinimo").val(data["estoqueM"])
-        $("#EcategoriaProduto").val(data["categoria"])
-      },
-      error: function (err) {
-        $("#formEditProduto").find('input').val('')
-      }
-    })
-  })
-
-  // Preencher modal Descarte de Produtos
-  $('#modal-descarte').on('shown.bs.modal', function (e) {
-    var idProduto = $(e.relatedTarget).data('id')
-    $("#idProdutoD").val(idProduto)
-
-    $.ajax({
-      type: 'post',
-      url: 'pages/api/getProduto.php',
-      data: 'id=' + idProduto,
-      dataType: 'json',
-      success: function (data) {
-        $("#spanCodigoD").html(data["codigo"])
-        $("#spanDescricaoD").html(data["descricao"])
-        $("#spanDescricaoD").html(data["descricao"])
-        $("#descricaoD").val(data["descricao"])
-        $("#spanEstoqueD").html(data["estoque"])
-        $("#spanCategoriaD").html(data["descCategoria"])
-      },
-      error: function (err) {
-        $("#formDescarte").find('input').val('')
-      }
-    })
-  })
-
 
   // Submit Form Fornecedor
   $("#formNovoFornecedor").submit(function (e) {

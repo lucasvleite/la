@@ -35,7 +35,7 @@ if( $quantidade > 0 ){
     } else {
       echo json_encode(array("error","Não foi possível desconsiderar $quantidade unidades no estoque de $descricao neste momento! Erro: ".$resultado));
     }
-  
+
   }
   else
   {
