@@ -36,7 +36,7 @@
       </li>
       <li>
         <a href="./home.php?id=addEstoque">
-          <i class="fa fa-th"></i> <span> Controle Estoque</span>
+          <i class="fa fa-cubes"></i> <span> Controle Estoque</span>
         </a>
       </li>
       <li>
@@ -58,7 +58,7 @@
         <ul class="treeview-menu"> -->
           <li><a href="./home.php?id=cadCliente"><i class="fa fa-user-plus"></i><span> Gerenciar Clientes </span></a></li>
           <li><a href="./home.php?id=cadFornecedor"><i class="fa fa-truck"></i><span> Gerenciar Fornecedores </span></a></li>
-          <li><a href="./home.php?id=cadProduto"><i class="fa fa-cubes"></i><span> Gerenciar Produtos </span></a></li>
+          <!-- <li><a href="./home.php?id=cadCategorias"><i class="fa fa-th"></i><span> Gerenciar Categorias </span></a></li> -->
         <!-- </ul>
       </li> -->
     </ul>

@@ -40,7 +40,7 @@ foreach( $resultado as $linha ){
 
   $tipo       = $linha[tipo];
   $quantidade = $linha[quantidade];
-  $preco      = number_format((float)str_replace(".",",",$linha[preco]),2,',','.');
+  $preco      = str_replace(".",",",$linha[preco]);
   $pessoa     = $linha[nome];
 
   $aux        = explode(" ",$linha[data]);

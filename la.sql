@@ -47,7 +47,7 @@ CREATE TABLE `clientes` (
   `tel1` varchar(15) DEFAULT NULL,
   `tel2` varchar(15) DEFAULT NULL,
   `logradouro` varchar(50) DEFAULT NULL,
-  `numero` int(11) DEFAULT NULL,
+  `numero` varchar(10) DEFAULT NULL,
   `bairro` varchar(50) DEFAULT NULL,
   `cidade` varchar(50) DEFAULT NULL,
   `estado` varchar(2) DEFAULT NULL,

@@ -23,6 +23,9 @@ $query =
 $resultado = $database->getQuery($query);
 
 foreach( $resultado as $linha ){
+  $aux        = explode(" ",$linha["dataCompra"]);
+  $data       = implode("/",array_reverse(explode("-",$aux[0])));
+
   $retorno = array(
     "id"            => $idProduto,
     "codigo"        => $linha['codigoProduto'],
@@ -35,7 +38,7 @@ foreach( $resultado as $linha ){
     "estoqueM"      => $linha['estoqueMinimo'],
     "estoque"       => $linha['estoque'],
     "precoUltCompra"=> $linha['precoCompra'],
-    "dataUltCompra" => $linha['dataCompra']
+    "dataUltCompra" => $data
   );
 }
 

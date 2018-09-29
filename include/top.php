@@ -62,11 +62,12 @@
         <span class="sr-only">Toggle navigation</span>
       </a>
 
-      <!-- <div class="navbar-custom-menu">
+      <div class="navbar-custom-menu">
         <div class="pull-right">
-          <a href="#"> <span class="btn btn-lg bg-purple" style="border-color:transparent;">Sair</span> </a>
+          <!-- <a href="include/logout.php"> <span class="btn btn-lg bg-purple" style="border-color:transparent;">Sair</span> </a> -->
+          <a href="./include/logout.php"> <span class="btn btn-lg bg-purple" style="border-color:transparent;">Sair</span> </a>
         </div>
-      </div> -->
+      </div>
     </nav>
   </header>
 

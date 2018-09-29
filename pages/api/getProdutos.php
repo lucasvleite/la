@@ -3,12 +3,10 @@
 include ("../../config/config.php");
 
 $query =
-" SELECT P.idProduto, P.codigoProduto, descricaoProduto, categoria, descricaoCategoria, fornecedor, nomeFornecedor, precoVenda, precoUnitario as precoCompra, estoque, estoqueMinimo, dataCompra
+" SELECT P.idProduto, P.codigoProduto, descricaoProduto, categoria, descricaoCategoria, precoVenda, estoque, estoqueMinimo
   FROM produtos P
-  INNER JOIN entradaprodutos E ON E.idProduto = P.idProduto
   LEFT JOIN categorias C ON P.categoria = C.idCategoria
-  LEFT JOIN fornecedores F ON E.fornecedor = F.idFornecedor
-  ORDER BY E.DATE_CREATED DESC
+  ORDER BY P.DATE_CREATED DESC
   LIMIT 1000
 ";
 
@@ -25,23 +23,19 @@ foreach( $resultado as $linha ){
     [
       "id"            => $linha['idProduto'],
       "codigo"        => $linha['codigoProduto'],
-      "descricao"     => $linha['descricaoProduto'],
+      "descricao"     => "<button class=\"btn-link\" data-id='$linha[idProduto]' data-target=\"#modal-editProduto\" data-toggle=\"modal\">$linha[descricaoProduto]</button></td>",
       "categoria"     => $linha['categoria'],
       "descCategoria" => $linha['descricaoCategoria'],
-      "fornecedor"    => $linha['fornecedor'],
-      "descFornecedor"=> $linha['nomeFornecedor'],
       "precoVenda"    => $linha['precoVenda'],
       "estoqueM"      => $linha['estoqueMinimo'],
       "estoque"       => $linha['estoque'],
-      "precoUltCompra"=> $linha['precoCompra'],
-      "dataUltCompra" => $linha['dataCompra'],
+      "historico"     => "<td class=\"text-center\"><button class=\"btn btn-xs btn-primary pl-sm pr-sm\" data-id='$linha[idProduto]' data-target=\"#modal-historico\" data-toggle=\"modal\"><i class=\"fa fa-history\"> Histórico</i></button></td>",
       "acao"          => "<button class=\"btn btn-xs btn-danger mr-md\" data-id='$linha[idProduto]' data-target=\"#modal-descarte\" data-toggle=\"modal\"><i class=\"fa fa-arrow-circle-down mr-xs\"></i>Descartar</button>".
-                         "<button class=\"btn btn-xs btn-primary\" data-id='$linha[idProduto]' data-target=\"#modal-editProduto\" data-toggle=\"modal\"><i class=\"fa fa-edit mr-xs\"></i>Editar</button>",
+                         "<button class=\"btn btn-xs btn-success pl-sm pr-sm\" data-id='$linha[idProduto]' data-target=\"#modal-addEstoque\" data-toggle=\"modal\"\"><i class=\"fa fa-plus\"> Adicionar</i></button>",
       "contador"      => $contador
     ]
   );
 }
-
 echo json_encode($retorno);
 
 ?>

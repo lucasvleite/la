@@ -9,6 +9,7 @@ $precoCompra  = $_POST["precoUnitario"];
 $precoVenda   = $_POST["precoVenda"];
 $dataCompra   = $_POST["dataCompra"];
 $fornecedor   = $_POST["fornecedor"];
+$categoria    = $_POST["categoria"];
 
 $idProduto = (isset($_POST["idProduto"])) ? $_POST["idProduto"] : 0;
 
@@ -28,6 +29,7 @@ if( $idProduto == 0 ){
    * Verificar variáveis, retirar caracteres especiais e convertendo as datas
    **********************************************************************************/
   $insertEntradaP .= ($fornecedor == "") ? "" : ", fornecedor = $fornecedor";
+  $insertEntradaP .= ($categoria  == "") ? "" : ", categoria = $categoria";
   $insertEntradaP .= ($dataCompra == "") ? "" : ", dataCompra = '" . implode("-",array_reverse(explode("/",$dataCompra))) . "'";
 
 

@@ -76,7 +76,7 @@ $('#modal-cliente').on('shown.bs.modal', function (e) {
         $("#cidade").val(data["cidade"])
         $("#estado").val(data["estado"])
         $("#cep").val(data["cep"])
-        $("#inf_adicionais").val(data["inf_adicionais"])
+        $("#inf_adicionais").val(data["info_adicionais"])
       },
       error: function (err) {
         $("#formNovoCliente").find('input').val('')

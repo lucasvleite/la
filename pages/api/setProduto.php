@@ -123,6 +123,7 @@ else
   $query = "descricaoProduto = '$descricao', precoVenda = '" . (float)str_replace(",",".",$precoVenda) . "'";
 
   $query .= ($estoqueM  == "") ? "" : ", estoqueMinimo = " . (int)$estoqueM;
+  $query .= ($categoria == "") ? "" : ", categoria = '$categoria'";
 
 
   /**********************************************************************************

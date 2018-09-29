@@ -9,6 +9,7 @@ $tel1        = $_POST["tel1"];
 $tel2        = $_POST["tel2"];
 $logradouro  = $_POST["logradouro"];
 $numero      = $_POST["numero"];
+$bairro      = $_POST["bairro"];
 $cidade      = $_POST["cidade"];
 $estado      = $_POST["estado"];
 $cep         = $_POST["cep"];
@@ -34,6 +35,7 @@ $query .= ( $cep == "" )         ? "" : ", cep = '" . str_replace('-',"",$cep) .
 $query .= ( $email == "" )       ? "" : ", email = '$email'";
 $query .= ( $logradouro == "")   ? "" : ", logradouro = '$logradouro'";
 $query .= ( $numero == "" )      ? "" : ", numero = '$numero'";
+$query .= ( $bairro == "" )      ? "" : ", bairro = '$bairro'";
 $query .= ( $cidade == "" )      ? "" : ", cidade = '$cidade'";
 $query .= ( $estado == "" )      ? "" : ", estado = '$estado'";
 $query .= ( $inf_adicionais=="") ? "" : ", inf_adicionais = '$inf_adicionais'";

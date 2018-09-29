@@ -7,12 +7,13 @@ function gerarDataTable(idTable) {
       { "data": "descricao" },
       { "data": "precoVenda" },
       { "data": "estoque" },
-      { "data": "descCategoria" },
+      // { "data": "descCategoria" },
       { "data": "estoqueM" },
+      { "data": "historico" },
       { "data": "acao" }
     ],
     "columnDefs": [
-      { "className": "text-center", "targets": [0, 2, 3, 5, 6] }
+      { "className": "text-center", "targets": [0, 2, 3, 4, 5, 6] }
     ],
 
     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -63,17 +64,21 @@ function preencherFornecedores(selected) {
       if (obj != null) {
         var data = obj.data
         $('#fornecedor').find('option').remove()
+        $('#fornecedorE').find('option').remove()
         $('#Efornecedor').find('option').remove()
 
         $('<option>').val("").text("Selecione um Fornecedor").appendTo($('#fornecedor'))
+        $('<option>').val("").text("Selecione um Fornecedor").appendTo($('#fornecedorE'))
         $('<option>').val("").text("Selecione um Fornecedor").appendTo($('#Efornecedor'))
 
         $.each(data, function (i, d) {
           $('<option>').val(d.id).text(d.nome).appendTo($('#fornecedor'))
+          $('<option>').val(d.id).text(d.nome).appendTo($('#fornecedorE'))
           $('<option>').val(d.id).text(d.nome).appendTo($('#Efornecedor'))
         })
       }
       $('#fornecedor').val(selected)
+      $('#fornecedorE').val(selected)
       $('#Efornecedor').val(selected)
     }
   })
@@ -93,17 +98,21 @@ function preencherCategorias(selected) {
       if (obj != null) {
         var data = obj.data
         $('#categoriaProduto').find('option').remove()
-        $('EcategoriaProduto').find('option').remove()
+        $('#categoriaProdutoE').find('option').remove()
+        $('#EcategoriaProduto').find('option').remove()
 
         $('<option>').val("").text("Selecione uma categoria").appendTo($('#categoriaProduto'))
+        $('<option>').val("").text("Selecione uma categoria").appendTo($('#categoriaProdutoE'))
         $('<option>').val("").text("Selecione uma categoria").appendTo($('#EcategoriaProduto'))
 
         $.each(data, function (i, d) {
           $('<option>').val(d.id).text(d.descricao).appendTo($('#categoriaProduto'))
+          $('<option>').val(d.id).text(d.descricao).appendTo($('#categoriaProdutoE'))
           $('<option>').val(d.id).text(d.descricao).appendTo($('#EcategoriaProduto'))
         })
       }
       $('#categoriaProduto').val(selected)
+      $('#categoriaProdutoE').val(selected)
       $('#EcategoriaProduto').val(selected)
     }
   })
@@ -122,9 +131,10 @@ $('#modal-editProduto').on('shown.bs.modal', function (e) {
     data: 'id=' + idProduto,
     dataType: 'json',
     success: function (data) {
-      $("#EcodigoProduto").val(data["codigo"])
+      $("#EcodigoProduto").html(data["codigo"])
       $("#EdescricaoProduto").val(data["descricao"])
       $("#Eestoque").val(data["estoque"])
+      $("#EspanEstoque").html(data["estoque"])
       $("#EprecoVenda").val(data["precoVenda"])
       $("#Efornecedor").val(data["fornecedor"])
       $("#EestoqueMinimo").val(data["estoqueM"])
@@ -134,6 +144,58 @@ $('#modal-editProduto').on('shown.bs.modal', function (e) {
       $("#formEditProduto").find('input').val('')
     }
   })
+})
+
+// Preencher modal Estoque
+$('#modal-addEstoque').on('shown.bs.modal', function (e) {
+  var idProduto = $(e.relatedTarget).data('id')
+  $("#idProdutoE").val(idProduto)
+
+  $.ajax({
+    type: 'post',
+    url: 'pages/api/getProduto.php',
+    data: 'id=' + idProduto,
+    dataType: 'json',
+    success: function (data) {
+      $("#codigoProdutoE").val(data["codigo"])
+      $("#spanCodigo").html(data["codigo"])
+
+      $("#descricaoProdutoE").val(data["descricao"])
+      $("#spanDescricao").html(data["descricao"])
+
+      // $("#estoqueE").val(data["estoque"])
+      // $("#precoUnitarioE").val(data["precoUltCompra"])
+      $("#precoVendaE").val(data["precoVenda"])
+      // $("#dataCompraE").val(data["dataUltCompra"])
+      $("#fornecedorE").val(data["fornecedor"])
+      $("#categoriaProdutoE").val(data["categoria"])
+    },
+    error: function (err) {
+      $("#formEstoque").find('input').val('');
+    }
+  })
+})
+
+// Preencher modal Historico
+$('#modal-historico').on('shown.bs.modal', function (e) {
+  var idProduto = $(e.relatedTarget).data('id')
+  $.ajax({
+    type: 'post',
+    url: 'pages/api/getHistProduto.php',
+    data: 'id=' + idProduto,
+    dataType: 'html',
+    success: function (data) {
+      $("#body-historico").html(data)
+    },
+    error: function (err) {
+      console.log(err)
+      $("#body-historico").html("")
+    }
+  })
+})
+//Fechar modal Historico
+$('#modal-historico').on('hide.bs.modal', function () {
+  $("#body-historico").html("")
 })
 
 // Preencher modal Descarte de Produtos
@@ -188,7 +250,7 @@ $(document).ready(function () {
     }
   })
 
-  $('#dataCompra, #dataDescarte').datepicker({
+  $('#dataCompra, #dataDescarte, #dataCompraE').datepicker({
     autoclose: true,
     language: "pt-BR",
     format: "dd/mm/yyyy",
@@ -276,7 +338,86 @@ $(document).ready(function () {
     })
   })
 
-  // Submit do Form Produto
+  // Submit do Form EditProduto
+  $("#formEditProduto").submit(function (e) {
+    e.preventDefault()
+
+    $.ajax({
+      url: "pages/api/setProduto.php",
+      type: "POST",
+      data: $("#formEditProduto").serialize(),
+      dataType: 'json',
+      success: function (data) {
+        console.log(data)
+        if (data[0] == 'error') {
+          swal({
+            type: 'error',
+            title: 'Oops...',
+            text: data[1]
+          })
+        } else {
+          swal({
+            type: 'success',
+            title: 'Yes...',
+            text: data[1]
+          }).then(function () {
+            gerarDataTable("tabela-produtos")
+            $("#formNovoProduto").find('input').val('')
+            $("#modal-editProduto").modal("hide")
+          })
+        }
+
+      },
+      error: function (erro, er) {
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: "Houve um erro de conexão. Por favor, tente novamente!"
+        })
+      }
+    })
+  })
+
+  // Submit do Form Estoque
+  $("#formEstoque").submit(function (e) {
+    e.preventDefault()
+
+    $.ajax({
+      url: "pages/api/setAddEstoque.php",
+      type: "POST",
+      data: $("#formEstoque").serialize(),
+      dataType: 'json',
+      success: function (data) {
+        if (data[0] == 'error') {
+          swal({
+            type: 'error',
+            title: 'Oops...',
+            text: data[1]
+          })
+        } else {
+          swal({
+            type: 'success',
+            title: 'Yes...',
+            text: data[1]
+          }).then(function (result) {
+            gerarDataTable("tabela-produtos")
+            $("#formEstoque").find('input').val('')
+            $("#modal-addEstoque").modal("hide")
+          })
+        }
+
+      },
+      error: function (erro, er) {
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: "Houve um erro de conexão. Por favor, tente novamente!"
+        })
+      }
+    })
+  })
+
+  // Submit do Form Novo Produto
   $("#formNovoProduto").submit(function (e) {
     e.preventDefault()
 
@@ -291,7 +432,7 @@ $(document).ready(function () {
         } else {
           swal('Yes...', data[1], 'success').then((result) => {
             $("#formNovoProduto").find('input').val('')
-            location.href = "./home.php?id=cadProduto"
+            location.href = "./home.php?id=addEstoque"
           })
         }
 

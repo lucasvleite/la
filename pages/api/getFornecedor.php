@@ -21,7 +21,7 @@ foreach( $resultado as $linha ){
     "contato1"        => $linha['contato1'],
     "contato2"        => $linha['contato2'],
     "email"           => $linha['email'],
-    "info_adicionais" => $linha['inf_adicionais']
+    "inf_adicionais"  => $linha['inf_adicionais']
   );
 }
 
