@@ -157,7 +157,7 @@ $(document).ready(function () {
       data: $("#formNovoCliente").serialize(),
       dataType: 'json',
       success: function (data) {
-        console.log(data)
+
         if (data[0] == 'error') {
           swal('Oops...', data[1], 'error')
         } else {
@@ -178,4 +178,6 @@ $(document).ready(function () {
       }
     })
   })
+
+
 })

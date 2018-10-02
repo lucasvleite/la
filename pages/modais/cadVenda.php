@@ -26,6 +26,11 @@
         </div>
       </div>
 
+
+
+
+      <br><br><br><br><br>
+
       <?php include"cadVenda2.php"; ?>
 
       <div class="modal-footer bg-success">

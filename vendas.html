@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Fidelize Sempre</title>
+  <link rel="shortcut icon" href="https://www.fidelizesempre.com.br/sistema/assets/img/favicon.ico">
+
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/bootstrap.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/skins/skin-blue.min.css">
+
+  <!-- iCheck -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/iCheck/flat/blue.css">
+
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/morris/morris.css">
+
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/datepicker/datepicker3.css">
+
+  <!-- select2 -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/select2/select2.css">
+  <!-- select2 bootstrap -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/select2-bootstrap.css">
+
+  <!-- icheck -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/iCheck/minimal/blue.css">
+
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
+
+  <!-- DataTables -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/datatables/dataTables.bootstrap.css">
+
+  <!-- iziToast Plugin -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets//plugins/iziToast-master/iziToast.min.css">
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/AdminLTE.min.css">
+
+  <!-- Animate -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/animate.css">
+
+  <link rel="stylesheet" href="https://www.agrobold.com.br/cdn/css/agrobold.css">
+
+  <!-- Default - Criado Manualmente -->
+  <link rel="stylesheet" href="https://www.fidelizesempre.com.br/sistema/assets/css/default.css?ver=1.0.12">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+  <!-- jQuery 2.2.3 -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+  <!-- script para o loading das paginas -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      $("#preload").fadeOut("slow");
+      $(".wrapper").css({ 'opacity': '1' });
+    });
+
+    $SISTEMA = "https://www.fidelizesempre.com.br/sistema/";
+  </script>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini fixed">
+  <div id="preload">
+    <i class="fa fa-refresh fa-spin fa-fw"></i>
+  </div>
+  <div class="wrapper">
+    <header class="main-header">
+      <!-- Logo -->
+
+      <a href="https://www.fidelizesempre.com.br/sistema/home/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">FS</span>
+        <!-- logo for regular state and mobile devices -->
+        <!-- <span class="logo-lg">Fidelize <b>Sempre</b></span> -->
+        <div class="logo-lg"></div>
+        <!-- <img src="../assets/img/logo_final.png" width="150" height="80" alt=""> -->
+      </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" id="menu-mobile">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-user-circle-o mr-sm"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="https://www.fidelizesempre.com.br/sistema/upload/perfil_91365.png" class="img-circle" alt="User Image">
+
+                  <p style="text-transform: capitalize">
+                    LUCAS VICENTE - Cliente </p>
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer" style="border: 1px solid #d2d2d2">
+                  <div class="pull-left">
+                    <a href="https://www.fidelizesempre.com.br/sistema/perfil" class="btn btn-default btn-flat">
+                      <i class="fa fa-user mr-sm"></i> Perfil
+                    </a>
+                    <!-- <a href="javascript:void(0)" class="btn btn-default btn-flat">
+												<i class="fa fa-user mr-sm"></i> Perfil
+											</a> -->
+                  </div>
+                  <div class="pull-right">
+                    <a href="#" class="btn btn-default btn-flat" onclick="logout();" data-toggle="modal" data-target="#modal-logout">
+                      <i class="fa fa-sign-out mr-sm"></i>Sair
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <!-- <div class="pull-left image">
+      <img src="https://www.fidelizesempre.com.br/sistema/upload/perfil_91365.png" class="img-circle" alt="User Image">
+
+  </div>
+  <div class="pull-left info">
+    <p style="text-transform: capitalize">
+      lucas    </p>
+
+    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+    <a href="#" onclick="logout();" class="pull-right" data-toggle="modal" data-target="#modal-logout">
+      <i class="fa fa-sign-out mr-sm"></i>Sair
+    </a>
+  </div>
+</div>
+<!-- search form -->
+
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li><a href="https://www.fidelizesempre.com.br/sistema/area-cliente/"><i class="fa fa-home"></i> Home</a></li>
+            <li id="meu-perfil"><a href="https://www.fidelizesempre.com.br/sistema/area-cliente/meu-perfil/?id=Vm0xMFUxRXhTbkpQVm1SU1lrVndVbFpyVWtKUFVUMDk="><i
+                  class="fa fa-users"></i><span> Meu Perfil</span></a></li>
+            <li id="alterar-senha"><a href="https://www.fidelizesempre.com.br/sistema/area-cliente/alterar-senha/"><i
+                  class="fa fa-unlock-alt"></i><span>Alterar minha senha </span></a></li>
+            <li id="minhas-compras"><a href="https://www.fidelizesempre.com.br/sistema/area-cliente/minhas-compras/"><i
+                  class="fa fa-handshake-o"></i><span> Minhas compras</span></a></li>
+            <li id="contato"><a href="https://www.fidelizesempre.com.br/sistema/area-cliente/contato/"><i class="fa fa-envelope"></i><span>
+                  Contato</span></a></li>
+          </ul>
+      </section> <!-- /.sidebar -->
+    </aside>
+
+    <div class="content-wrapper">
+      <section class="content-header">
+        <h1>
+          <i class="fa fa-handshake-o"></i> Cadastro de Vendas
+          <small>Cadastro de Venda</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="https://www.fidelizesempre.com.br/sistema/home/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+          <li><a href="../">Vendas</a></li>
+          <li class="active">Cadastro de Venda</li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+              <!-- <div class="box-header with-border">
+						<i class="fa fa-handshake-o"></i><h3 class="box-title">Cadastro de Vendas</h3>
+					</div> -->
+
+              <!-- div responsavel pela mensagem de erro no Cadastro -->
+              <div class="alert alert-danger alert-dismissible" id="falhaForm" name="falhaForm" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Falha no formulário!</h4>
+                Por favor, todos os campos devem ser preenchidos.
+              </div>
+
+              <!-- div responsavel pela mensagem de sucesso no Cadastro -->
+              <div class="alert alert-success alert-dismissible" id="sucessoForm" name="sucessoForm" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Cadastrado!</h4>
+                Venda Cadastrada com sucesso.
+              </div>
+
+              <!-- div utiizada para exibir os campos não preenchidos do formulário -->
+              <div id="errorContainer" class="alert alert-danger alert-dismissible" style="display: none">
+                <p>Por Favor, digite os seguintes Campos:</p>
+                <!-- <ul/> -->
+              </div>
+
+              <!-- form start -->
+              <form role="form" id="formCadVenda" name="formCadVenda">
+
+                <!-- EU -->
+                <input type="hidden" name="pontosCliente" id="pontosCliente" value="" />
+                <input type="hidden" id="contador" name="contador" value="0" />
+                <input type="hidden" id="cpfCliente" name="cpfCliente" value="" />
+                <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+                <div class="box-body">
+                  <div class="row pt-lg pl-lg pr-lg" id="step1">
+
+                    <div class="col col-sm-12">
+                      <h4 class="text-muted nmt">
+                        1 - Selecione o Cliente
+                      </h4>
+                    </div>
+
+                    <div class="col col-sm-6">
+                      <div class="form-group mb-md">
+                        <!-- <label>Selecione um Cliente (*)</label> -->
+                        <select id="selCliente" name="selCliente" class="form-control select2" data-placeholder="Escolha um Cliente">
+                          <option value=""></option>
+                          <option value="012.660.716-87">
+                            1 - PRAZO | 012.660.716-87 - 0 pontos</option>
+                          <option value="046.683.876-06">
+                            2 - TIAGO VICENTE | 046.683.876-06 - 0 pontos</option>
+                          <option value="080.418.576-04">
+                            3 - NOVO TESTE SINCRONIZA | 080.418.576-04 - 0 pontos</option>
+                          <option value="083.083.546-61">
+                            4 - LUCAS VICENTE | 083.083.546-61 - 0 pontos</option>
+                          <option value="088.682.436-28">
+                            5 - LUIZ PAULO BATISTA | 088.682.436-28 - 0 pontos</option>
+                          <option value="108.426.580-09">
+                            6 - ROCHELE | 108.426.580-09 - 0 pontos</option>
+                          <option value="191.883.578-05">
+                            7 - TONIA FILHA LINDA | 191.883.578-05 - 0 pontos</option>
+                          <option value="31.991.865/0001">
+                            8 - TESTE | 31.991.865/0001 - 0 pontos</option>
+                          <option value="337.934.515-69">
+                            9 - MAIS TESTE MENSAGEM | 337.934.515-69 - 0 pontos</option>
+                          <option value="386.944.592-05">
+                            10 - LUIZ PAULO | 386.944.592-05 - 0 pontos</option>
+                          <option value="396.609.746-04">
+                            11 - EVALDO | 396.609.746-04 - 0 pontos</option>
+                          <option value="407.528.583-94">
+                            12 - LUCAS | 407.528.583-94 - 0 pontos</option>
+                          <option value="472.576.446-91">
+                            13 - CASO SERIO | 472.576.446-91 - 0 pontos</option>
+                          <option value="655.827.486-87">
+                            14 - MAIS NOVO CLIENTE CRIARE | 655.827.486-87 - 0 pontos</option>
+                          <option value="695.411.086-87">
+                            15 - NEW SINCRONIZA | 695.411.086-87 - 0 pontos</option>
+                          <option value="770.582.635-66">
+                            16 - NOVO CLIENTE | 770.582.635-66 - 0 pontos</option>
+                          <option value="776.832.372-64">
+                            17 - LUCAS MENSAGEM | 776.832.372-64 - 0 pontos</option>
+                          <option value="931.658.600-33">
+                            18 - TESTE | 931.658.600-33 - 0 pontos</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col col-sm-12 col-xs-12 npl" id="cliente_selecionado">
+                      <div class="col-sm-8">
+                        <blockquote class="blockquote" id="dados_cliente_selecionado">
+                        </blockquote>
+                      </div>
+
+                      <div class="col col-sm-4 mt-sm bloco_pontos">
+                        <h5 class="text-center nmb"><b>Pontos do Cliente</b></h5>
+                        <h1 class="text-center text-primary ponto_do_cliente"></h1>
+                        <input type="hidden" name="saldoPontosCliente" id="saldoPontosCliente" value="0">
+                      </div>
+                    </div>
+
+                  </div>
+                  <hr class="color nm">
+                  <div class="row disable pl-lg pr-lg" id="step2">
+                    <div class="col-sm-8 pt-lg">
+                      <h4 class="text-muted">2 - Selecione os Produtos</h4>
+                    </div>
+                    <div class="col-sm-4 pt-md pr-lg">
+                      <button class="btn btn-primary btn-block mt-sm pull-right" type="button" data-toggle="modal"
+                        data-target="#modal-produto">
+                        <i class="fa fa-plus mr-md"></i>ADICIONAR PRODUTO
+                      </button>
+                    </div>
+                    <div class="col-sm-12 mt-lg disable npl npr" id="itens-vendas">
+                      <hr class="nm">
+                      <div class="col-sm-12">
+                        <h5 class="text-muted"><i class="fa fa-tag mr-md"></i> Produtos Selecionados</h5>
+                      </div>
+                      <div class="col-sm-12 table-responsive">
+                        <table id="produtosSelecionados" class="table table-bordered table-striped table-hover ">
+                          <thead>
+                            <tr>
+                              <th class="text-center"><b>#</b></th>
+                              <th class="text-center">Código</th>
+                              <th class="text-left">Nome Produto</th>
+                              <th class="text-center">Quantidade</th>
+                              <th class="text-center">Preço Unitário</th>
+                              <th class="text-center">Subtotal</th>
+                              <th class="text-center">Desconto</th>
+                              <th class="text-center">Preço Final</th>
+                              <th class="text-center">Excluir</th>
+                            </tr>
+                          </thead>
+                          <tbody id="tabela_produtos"></tbody>
+                        </table>
+                      </div>
+
+                      <!-- Subtotal -->
+                      <!-- <div class="col-sm-12"> -->
+                      <div class="col-sm-8">
+                        <h4 class="text-right pull-right nmt"> Subtotal:</h4>
+                      </div>
+                      <div class="col-sm-4">
+                        <h3 class="text-center font-weight-bold nmt" id="subtotal"></h3>
+                        <input type="hidden" value="" id="inputSubtotal" name="inputSubtotal" />
+                      </div>
+                      <!-- </div> -->
+
+                    </div>
+                  </div>
+
+                </div>
+                <!-- end -> Step 2 -->
+
+                <hr class="color nm">
+                <!-- MODAL PRODUTO  -->
+                <div class="modal fade" id="modal-produto">
+
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span></button>
+                        <h4>
+                          <i class="fa fa-archive mr-md"></i> Produtos
+                          <small> Selecionar Produto</small>
+                        </h4>
+                      </div>
+
+                      <div class="modal-body pt-xs npb">
+
+                        <div class="row">
+                          <div class="col-sm-9">
+                            <div class="form-group select2-wrapper">
+                              <label for="selModalProduto"> Selecione um Produto / Serviço: </label>
+                              <select id="selModalProduto" name="selModalProduto" class="input-block-level wpmse_select2" data-placeholder="Escolha um Produto">
+                                <option value="" data-icon="">Selecione um produto!</option>
+                                <option value="1">RAPADURA FIDELIZE | R$ 10,00 | (Permite desconto)</option>
+                                <option value="2">LEITE CONDENSADO | R$ 4,00 | (Permite desconto)</option>
+                                <option value="3">RAPADURA FIDELIZE | R$ 10,00 | </option>
+                                <option value="4">LEITE CONDENSADO | R$ 4,25 | (Permite desconto)</option>
+                                <option value="12">ROÃ�ADEIRA ELETRICA | R$ 300,00 | </option>
+                                <option value="13">PAPEL HIGIENICO | R$ 92,00 | </option>
+                              </select>
+                              <small id="rProduto" class="disable text-danger">Campo Obrigatório!</small>
+                            </div>
+                          </div>
+                          <div class="col-sm-3" id="viewquantidadeModalProduto">
+                            <div class="form-group">
+                              <label for="quantidadeModalProduto">Quantidade: *</label>
+                              <input class="form-control" type="number" id="quantidadeModalProduto" name="quantidadeModalProduto"
+                                ) value="1" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" id="areaValoresProduto" style="display: none; margin-bottom: 10px;">
+                          <div class="form-group">
+                            <div class="col-sm-4">
+                              <label for="pontosModalProduto">Pontos do cliente:</label>
+                              <div class="input-group">
+                                <input class="form-control pontosCliente" type="number" id="pontosModalProduto" name="pontosModalProduto"
+                                  disabled />
+                                <span class="input-group-addon" style="background-color:#eee">Pontos</span>
+                              </div>
+                            </div>
+                            <div class="col-sm-4">
+                              <label for="valorUnitarioModalProduto">Valor Unitário:</label>
+                              <div class="input-group">
+                                <span class="input-group-addon" style="background-color:#eee">R$ </span>
+                                <input class="form-control" type="number" id="valorUnitarioModalProduto" name="valorUnitarioModalProduto"
+                                  disabled />
+                              </div>
+                            </div>
+                            <div class="col-sm-4">
+                              <label for="valorTotalModalProduto">Valor Total:</label>
+                              <div class="input-group">
+                                <span class="input-group-addon" style="background-color:#eee">R$ </span>
+                                <input class="form-control" type="number" id="valorTotalModalProduto" name="valorTotalModalProduto"
+                                  disabled />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" id="areaResgatarProduto" style="display: none;">
+                          <div class="col-sm-7 mt-lg">
+                            <p>
+                              Cada ponto equivale a R$ 0,10.
+                              <br>
+                              Os pontos serão convertidos automaticamente!
+                              <br>
+                              Ao aplicar o resgate, será descontado os pontos da conta do cliente e aplicado o desconto
+                              na compra.
+                            </p>
+                          </div>
+                          <div class="col-sm-5 mt-lg">
+                            <div class="row mt-lg">
+                              <h5 class="col-sm-6 text-left">
+                                <label for="msgPontosResgatar">Resgatar: </label>
+                                <div class="input-group">
+                                  <input type="number" class="form-control disable" id="msgPontosResgatar" name="msgPontosResgatar"
+                                    min="" max="" value="">
+                                  <span class="input-group-addon" style="background-color:#eee"> pontos</span>
+                                </div>
+                              </h5>
+                              <h5 class="col-sm-6 text-left" id="msgDescontoResgate"></h5>
+                            </div>
+                            <div class="row">
+                              <span class="col-sm-12">
+                                <button type="button" id="aplicaResgate" class="btn btn-primary btn-block" onclick="aplicarPontos()">
+                                  Aplicar Desconto</button>
+                                <button type="button" id="retornaResgate" class="btn btn-danger disable btn-block"
+                                  onclick="retornarPontos()">Retornar Pontos</button>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- PontosResgate ficou como um campo que armazena o calculo dos pontos de resgate a cada quantidade e/ou produto -->
+                      <input type="hidden" name="pontosResgate" id="pontosResgate" value="0">
+
+                      <!-- PontosTemp ficou como um campo que armazena os pontos quando cliente clica em aplicar resgate. É este campo que devo pegar  -->
+                      <input type="hidden" name="pontosTemp" id="pontosTemp" value="0">
+
+                      <div class="modal-footer mt-md">
+                        <div class="pull-right">
+                          <button class="btn btn-primary mr-md" onclick="limparModalProduto()" class="close"
+                            data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times mr-md"></i>Cancelar
+                          </button>
+                          <button type="button" class="btn btn-success" onclick="addProduto()" id="btn_add_produto">
+                            <i class="fa fa-floppy-o mr-md"></i>Adicionar Produto
+                          </button>
+                        </div>
+                      </div>
+
+                    </div> <!-- /.modal-content -->
+                  </div> <!-- /.modal-dialog -->
+                </div> <!-- /.modal -->
+
+                <!-- Barra de progresso upload -->
+                <div class="widget-toolbar ml-lg mt-md" role="menu" id="progress" style="display:none">
+                  <div class="progress progress-striped active" rel="tooltip" data-original-title="100%" data-placement="bottom"
+                    style="width: 97%;">
+                    <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 100%"><strong>Finalizando
+                        venda, aguarde...</strong></div>
+                  </div>
+                </div>
+                <div class="row pa-lg disable" id="step3">
+                  <div class="col-sm-12">
+                    <h4 class="text-muted"><i class="fa fa-tag mr-md" aria-hidden="true"></i> 3º Passo - Finalizar
+                      Compra</h4>
+                  </div>
+
+                  <!-- <div class="col-sm-12 np">
+    <div class="col col-sm-6">
+      <div class="form-group">
+        <label class="control-label col-sm-12 npl npr" for="inputOperador">Operador <small class="pull-right pt-sm text-muted">Não obrigatório!</small></label>
+        <input type="text" class="form-control" id="inputOperador" name="inputOperador" >
+      </div>
+    </div>
+  </div> -->
+
+                  <div class="col-sm-12 np">
+
+                    <div class="col col-sm-2">
+                      <div class="form-group">
+                        <label class="control-label">Desconto da Loja (%) :</label>
+
+                        <div class="input-group">
+
+                          <input type="number" class="col-sm-6 form-control bra-xs" step="0.10" id="inputDesconto" name="inputDesconto"
+                            placeholder="Desconto da Loja" max="100" min="0" value="0" maxlength="3" size="3">
+                          <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="button" disabled>%</button>
+                          </span>
+
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="col col-sm-3">
+                      <div class="form-group">
+                        <label class="control-label" for="inputPagamento">Forma de Pagamento (*)</label>
+                        <select id="inputPagamento" name="inputPagamento" class="form-control" required>
+                          <option disabled selected>Selecione forma de pagamento</option>
+                          <option value="1">
+                            <i class="fa fa-money mr-md"></i>
+                            Dinheiro </option>
+                          <option value="2">
+                            <i class="fa fa-credit-card-alt mr-md"></i>
+                            Cartão de Crédito </option>
+                          <option value="3">
+                            <i class="fa fa-credit-card mr-md"></i>
+                            Cartão de Débito </option>
+                          <option value="4">
+                            <i class="fa fa-barcode mr-md"></i>
+                            Boleto Bancário </option>
+                          <option value="5">
+                            <i class="fa fa-cc mr-md"></i>
+                            Cheque </option>
+                          <option value="6">
+                            <i class="fa fa-money mr-md"></i>
+                            Outro </option>
+                        </select>
+                        <small id="rPagamento" class="disable text-danger">Campo Obrigatório!</small>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <hr>
+
+                  <div class="col-sm-12 pa-lg">
+                    <div class="col-sm-12 well">
+
+                      <div class="col-sm-8 npl">
+                        <h4 class="col-sm-12 text-muted nmt">
+                          <i class="fa fa-tag mr-md"></i>Resumo da Venda
+                        </h4>
+                        <span class="col-sm-12 np">Data: 01/10/2018</span>
+                        <span class="col-sm-12 np">Forma de Pagamento: <span id="Pagamento"> </span></span>
+                        <!-- <span class="col-sm-12 np">Operador: <span id="Operador"></span></span> -->
+                      </div>
+
+                      <div class="col-sm-4 bl-xs npr">
+                        <div class="col-sm-12">
+                        </div>
+
+                        <div class="col-sm-12">
+                          <div class="col-sm-5 text-right">
+                            <h5 class="text-right">Desconto:</h5>
+                          </div>
+                          <div class="col-sm-7">
+                            <h4 class="text-center font-weight-bold" id="desconto"></h4>
+                          </div>
+                        </div>
+
+                        <!-- <div class="col-sm-12 disable descontoPontos">
+          <div class="col-sm-5 text-right">
+            <h5 class="text-right">Desconto c/ Pontos:</h5>
+          </div>
+          <div class="col-sm-7">
+            <h4 class="text-center font-weight-bold" id="descontoPontos"></h4>
+          </div>
+        </div> -->
+
+                        <div class="col-sm-12 bt-xs">
+                          <div class="col-sm-5 text-right pt-lg">
+                            <h4 class="text-right"> Total:</h4>
+                          </div>
+                          <div class="col-sm-7">
+                            <h3 class="text-center" id="total"></h3>
+                            <input type="hidden" value="" id="inputTotal" name="inputTotal" />
+                          </div>
+                        </div>
+                      </div>
+
+                    </div><!-- end well -->
+
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                      <div class="row">
+                        <div class="col col-md-12 col-xs-12 pr-xs">
+
+                          <button type="button" class="btn btn-danger" onclick="location.reload()">
+                            <i class="fa fa-times mr-md"></i>Cancelar Venda
+                          </button>
+
+                          <div class="pull-right">
+                            <button type="button" class="btn btn-success" onclick="finalizarVenda()" id="finaliza_venda"><i
+                                class="fa fa-floppy-o mr-md"></i>
+                              Finalizar Venda
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div><!-- end step3 -->
+            </div>
+
+            </form>
+          </div><!-- /.box -->
+        </div>
+        <!--/.col (left) -->
+    </div><!-- /.row -->
+    </section><!-- /.content -->
+  </div><!-- /.content-wrapper -->
+
+  <!-- MODAL ADICIONAR NOVO CLIENTE -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Versão</b> 1.0
+    </div>
+
+    <strong>
+      Copyright &copy; 2017 - 2018 <a href="https://www.fidelizesempre.com.br/" target="_blank">Fidelize Sempre</a></strong>.
+    Todos os Direitos Reservados.
+  </footer>
+
+  <!-- modal de logout -->
+  <div class="modal modal-info fade" id="modal-logout">
+    <div class="modal-dialog" style="width: 30%">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Deslogar do Sistema...</h4>
+        </div>
+        <div class="modal-body">
+          <p>LUCAS VICENTE, tem centeza que deseja sair do sistema Fidelize? </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-outline" id="confirmar_sim">Confirmar</button>
+        </div>
+      </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+  </div> <!-- /.modal -->
+
+  <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery UI 1.11.4 -->
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+  <script>
+    $.widget.bridge('uibutton', $.ui.button);
+  </script>
+
+  <!-- Bootstrap 3.3.6 -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/js/bootstrap.js"></script>
+  <!-- Morris.js charts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/morris/morris.min.js"></script>
+  <!-- Sparkline -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/sparkline/jquery.sparkline.min.js"></script>
+  <!-- jvectormap -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/knob/jquery.knob.js"></script>
+  <!-- daterangepicker -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- datepicker -->
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <!-- Bootstrap WYSIHTML5 -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+  <!-- DataTables -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/datatables/dataTables.bootstrap.min.js"></script>
+  <!-- Slimscroll -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/fastclick/fastclick.js"></script>
+  <!-- Icheck -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/iCheck/icheck.js"></script>
+  <!-- AdminLTE App -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/js/app.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/js/app.js"></script>
+
+  <!-- iziToast PLUGIN -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets//plugins/iziToast-master/iziToast.min.js"></script>
+  <script src="https://www.fidelizesempre.com.br/sistema/assets//plugins/iziToast-master/personal-iziToast.js"></script>
+
+  <!-- Funções Gerais do Sistema -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/js/fidelize.js?ver=1.0.3"></script>
+
+  <!-- jquery validate -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/js/jquery-validation-1.15.0/dist/jquery.validate.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/js/bootstrap-filestyle-1.2.1/src/bootstrap-filestyle.min.js"></script>
+
+  <!-- select2 -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/select2/select2.js"></script>
+
+  <!-- InputMask -->
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/input-mask/jquery.inputmask.js"></script>
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/css/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/js/mask_cpf_cnpj.js"></script>
+  <script src="https://www.fidelizesempre.com.br/sistema/assets/js/valida_cpf_cnpj.js"></script>
+
+  <!-- Insere mascara de acordo com o plugin do tema -->
+  <script>	$('[data-mask]').inputmask(); </script>
+
+  <!-- inicializando select2 -->
+  <script>
+    $.fn.select2.defaults.set("theme", "bootstrap");
+    //Initialize Select2 Elements
+    $('.select2').select2();
+    $(".select2").select2({
+      tags: "true",
+      placeholder: "Escolha sua opção",
+      allowClear: true
+    });
+  </script>
+  <!-- estilizando o checbox -->
+  <script>
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass: 'iradio_minimal-blue'
+    })
+  </script>
+
+  <!-- adicionando a clase "sidebar-open" para o menu abrir no mobile -->
+  <script>
+    $("#menu-mobile").on("click", function () {
+      var open = $("body").hasClass("sidebar-collapse");
+      if (!open) {
+        $("body").addClass("sidebar-collapse");
+        $(".sidebar-menu li a i span:first-child").css("display", "none");
+      } else {
+        $("body").removeClass("sidebar-collapse");
+        $(".sidebar-menu li a i span:first-child").css("display", "block");
+      }
+    });
+  </script>
+
+</body>
+
+</html>
+<script>
+
+  $(".select2").css("width: 100%");
+
+  /*************************************************
+   :: GET_Dados Pontos Clientes
+  *************************************************/
+  $('#selCliente').on('change', function (e) {
+
+    var cpf = $("#selCliente option:selected").val();
+    $('#formCadVenda').reset;
+
+    // Seleciona o último elemento pré-adicionado
+    $("#selCliente").val(cpf);
+    $("#cpfCliente").val(cpf);
+
+    if (cpf != '') {
+
+      $.ajax({
+
+        url: "https://www.fidelizesempre.com.br/sistema/cadastros/vendas/cadastro/put/getCliente.php",
+        type: "POST",
+        data: { 'cpf_cliente': cpf },
+        success: function (response) {
+
+          var JSONArray = $.parseJSON(response);
+
+          if (JSONArray['result'] == "success") {
+            //Limpar os campos do Modal do Produto
+            limparModalProduto();
+
+            $("#dados_cliente_selecionado").html('<h4><b>' + JSONArray['data'].nome_pessoa + '</b></h4><h5>CPF: <b class="ml-md">' + JSONArray['data'].cpf_cnpj_pessoa + '</b></br>Celular: <b class="ml-md">' + JSONArray['data'].celular_pessoa + '</b></h5>');
+            $(".ponto_do_cliente").html('<b>' + JSONArray['data'].pontos_acumulados_pessoa + '</b>');
+
+            $("#pontosCliente").val(JSONArray['data'].pontos_acumulados_pessoa);
+            $("#saldoPontosCliente").val(JSONArray['data'].pontos_acumulados_pessoa);
+            $("#pontosModalProduto").val(JSONArray['data'].pontos_acumulados_pessoa);
+            $("#inputSubTotal").val(JSONArray['data'].pontos_acumulados_pessoa);
+
+            $("#tabela_produtos").empty();
+            $("#itens-vendas").removeClass("enable");
+            $("#itens-vendas").addClass("disable");
+
+            $("#cliente_selecionado").css('display', 'block');
+            $("#cliente_selecionado").css('opacity', '1');
+            $("#cliente_selecionado").css('height', 'auto');
+
+            if (JSONArray['data'].pontos_acumulados_pessoa == 0) {
+              $('.pontos_acumulados').removeClass("enable");
+              $('.pontos_acumulados').addClass("disable");
+            }
+            else if (JSONArray['data'].pontos_acumulados_pessoa > 0) {
+              $('.pontos_acumulados').removeClass("disable");
+              $('.pontos_acumulados').addClass("enable");
+            }
+
+            setTimeout(function () {
+              $('#step2').removeClass("disable");
+              $("#step2").addClass("enable");
+
+              $('#step3').removeClass("enable");
+              $("#step3").addClass("disable");
+            }, 500);
+          }
+          else if (JSONArray['result'] == "error") {
+            mensagens_erro(JSONArray['message']);
+          }
+
+        },
+        error: function () {
+          mensagens_erro("Não foi possível enviar o seu cadastro neste momento!");
+        }
+      });// AJAX
+    }
+    else {
+      mensagens_erro("Não encontramos este cliente.<br>Verifique e tente Novamente!");
+    }
+  });
+
+  // Ao selecionar um produto preencher as informações no modal
+  $("#selModalProduto").change(function (e) {
+
+    let id_produto = $("#selModalProduto option:selected").val();
+    let cpf = $("#selCliente option:selected").val();
+    let pontos = $("#saldoPontosCliente").val();
+
+    $("#pontosResgate").val(0);
+
+    $('#btn_add_produto').prop('disabled', true);
+    if (parseInt(id_produto) > 0) {
+
+      $.ajax({
+        url: "https://www.fidelizesempre.com.br/sistema/cadastros/vendas/cadastro/put/getProduto.php",
+        type: "POST",
+        data: { 'id_produto': id_produto, 'cpf_cliente': cpf },
+
+        success: function (response) {
+          // Trata o Retorno recebido em JSON
+          let JSONArray = $.parseJSON(response);
+
+          if (JSONArray['result'] == "success") {
+            $("#valorUnitarioModalProduto").val(JSONArray['data'].valor_unitario_produto);
+
+            $("#areaValoresProduto").css("display", "block");
+            $("#selCliente").attr("disabled", "disabled");
+
+            var total = (JSONArray['data'].valor_unitario_produto * $("#quantidadeModalProduto").val()).toFixed(2);
+            $("#valorTotalModalProduto").val(total);
+            $("#pontosModalProduto").val(pontos);
+            $('#btn_add_produto').prop('disabled', false);
+
+            verificaResgate(total);
+
+            // console.log("total: "+total);
+
+          }
+        },
+        error: function () {
+          mensagens_erro("Não foi possível enviar o seu cadastro neste momento!");
+          $('#formCadVenda').reset;
+        }
+
+      }); // AJAX
+    } // IF PRODUTO
+  });
+
+  function verificaResgate(valor_total) {
+
+    var pontosCliente = $("#saldoPontosCliente").val();
+    var produto = $("#selModalProduto option:selected").val();
+    var cpf = $("#selCliente option:selected").val();
+
+    $.ajax({
+
+      url: "https://www.fidelizesempre.com.br/sistema/cadastros/vendas/cadastro/put/getPontuacao.php",
+      type: "POST",
+      data: { 'id_produto': produto, 'cpf_cliente': cpf, 'pontos': pontosCliente },
+
+      success: function (response) {
+        console.log(response);
+
+        // Recebe o Array com dados do ajax
+        var JSONArray = $.parseJSON(response);
+        if (JSONArray['result'] == 'success') {
+
+          var resgatar = parseInt(JSONArray['data'][0]);
+          var minimo = parseInt(JSONArray['data'][1]);
+
+          // Imprimi a mensage dos pontos que serão consumidos
+          $("#msgPontosResgatar").removeClass("disable");
+          $("#msgPontosResgatar").addClass("enable");
+
+          var valorDesconto = (minimo * 0.1).toFixed(2);
+          $("#msgPontosResgatar").val(minimo);
+
+          document.getElementById("msgPontosResgatar").min = minimo;
+          document.getElementById("msgPontosResgatar").max = pontosCliente;
+
+          if (valor_total >= (minimo * 0.1)) {
+            $("#areaResgatarProduto").css("display", "block");
+            $("#msgDescontoResgate").html('Você terá Desconto de: <h4><b>R$ ' + valorDesconto.replace(".", ",") + '</b></h4>');
+            $("#pontosResgate").val(minimo);
+          }
+          else {
+            $("#areaResgatarProduto").css("display", "none");
+            mensagens_erro("O produto selecionado e a quantidade possuem valor inferior ao valor mínimo de resgate");
+            $("#pontosResgate").val(0);
+          }
+
+        }
+        else {
+          $("#pontosResgate").val(0);
+          $("#areaResgatarProduto").css("display", "none");
+        }
+        return true;
+      }
+    });
+    return false;
+  } //////////
+
+  // Calcula Valor total da compra do produto
+  $("#msgPontosResgatar").on('change mouseup mousedown mouseout keyup', function (e) {
+
+    var valorDesconto = ($("#msgPontosResgatar").val() * 0.1).toFixed(2);
+    $("#msgDescontoResgate").html('Você terá Desconto de: <h4><b>R$ ' + valorDesconto.replace(".", ",") + '</b> </h4>');
+    $("#pontosResgate").val($("#msgPontosResgatar").val());
+
+  });
+
+  // Calcula Valor total da compra do produto
+  $("#quantidadeModalProduto").on('change mouseup mouseout keyup', function (e) {
+    setTimeout(() => {
+
+      if (parseFloat($("#quantidadeModalProduto").val()) <= 0) {
+        $("#quantidadeModalProduto").val(1);
+      }
+      var total = ($("#valorUnitarioModalProduto").val() * $("#quantidadeModalProduto").val()).toFixed(2);
+      $("#valorTotalModalProduto").val(total);
+      verificaResgate(total);
+
+    }, 2500);
+  });
+
+  function format(icon) {
+    var originalOption = icon.element;
+    return "";
+  }
+  $('#selModalProduto, .wpmse_select2').select2({
+    width: "100%",
+    formatResult: format
+  });
+
+  $('#selCliente').select2({
+    allowClear: false,
+    "language": "pt-BR"
+  });
+
+  function limparModalProduto() {
+    $('#selModalProduto').val(null).trigger('change');
+
+    $("#quantidadeModalProduto").val(1);
+    $("#valorUnitarioModalProduto").val("");
+    $("#pontosResgate").val(0);
+    $("#pontosTemp").val(0);
+
+    $("#msgPontosResgatar").html(" ");
+    $("#msgDescontoResgate").html(" ");
+
+    $("#areaValoresProduto").css("display", "none");
+    $("#areaResgatarProduto").css("display", "none");
+
+    // Faz a troca dos botões
+    $("#retornaResgate").removeClass('enable');
+    $("#aplicaResgate").removeClass('disable');
+    $("#aplicaResgate").addClass('enable');
+    $("#retornaResgate").addClass('disable');
+
+    // Se clicar a tabela dos produtos estiver vazia, ativar o botão de selecionar o cliente
+    if (document.getElementById("produtosSelecionados").rows.length == 1) {
+      $("#itens-vendas").removeClass("enable");
+      $("#itens-vendas").addClass("disable");
+
+      $("#step3").removeClass("enable");
+      $("#step3").addClass("disable");
+
+      $("#selCliente").removeAttr("disabled");
+    }
+
+  }
+
+  function aplicarPontos() {
+
+    var pontos_resgate = parseInt($("#pontosResgate").val());
+    var pontos_cliente = parseInt($("#saldoPontosCliente").val());
+    var pontos_minimo = parseInt(document.getElementById("msgPontosResgatar").min);
+
+    if (pontos_resgate <= pontos_cliente) {
+
+      if (pontos_resgate >= pontos_minimo) {
+
+        $("#pontosTemp").val(pontos_resgate);
+        var nova_pontuacao = pontos_cliente - pontos_resgate;
+        $("#pontosModalProduto").val(nova_pontuacao);
+
+        var precoTotal = ($("#valorUnitarioModalProduto").val() * $("#quantidadeModalProduto").val() - pontos_resgate * 0.1).toFixed(2);
+        $("#valorTotalModalProduto").val(precoTotal);
+
+        // Faz a troca dos botões
+        $("#retornaResgate").removeClass('disable');
+        $("#aplicaResgate").removeClass('enable');
+        $("#aplicaResgate").addClass('disable');
+        $("#retornaResgate").addClass('enable');
+
+      }
+      else {
+        mensagens_erro("A pontuação informada é menor que a quantidade mínima de " + pontos_minimo + " pontos, necessários para o resgate.<br> Por favor, verifique e tente novamente!");
+      }
+    }
+    else {
+      mensagens_erro("A pontuação informada é maior que a pontuação que o cliente possui.<br> Por favor, verifique e tente novamente!");
+    }
+
+  }
+
+  function retornarPontos() {
+    var precoTotal = ($("#valorUnitarioModalProduto").val() * $("#quantidadeModalProduto").val()).toFixed(2);
+    $("#valorTotalModalProduto").val(precoTotal);
+
+    $("#pontosModalProduto").val($("#saldoPontosCliente").val());
+    $("#pontosTemp").val(0);
+
+    // Faz a troca dos botões
+    $("#retornaResgate").removeClass('enable');
+    $("#aplicaResgate").removeClass('disable');
+    $("#aplicaResgate").addClass('enable');
+    $("#retornaResgate").addClass('disable');
+  }
+
+  //
+  function addProduto() {
+
+    var contador = parseInt($("#contador").val());
+    $("#contador").val(contador + 1);
+
+    $("#itens-vendas").removeClass("disable");
+    $("#itens-vendas").addClass("enable");
+    $("#step3").removeClass("disable");
+    $("#step3").addClass("enable");
+
+    id_produto = $("#selModalProduto").val();
+    descricao_produto = $("#selModalProduto option:selected").text();
+    quantidade_produto = $("#quantidadeModalProduto").val();
+    valor_unitario_produto = ($("#valorUnitarioModalProduto").val());
+    subTotalTabela = (parseFloat(quantidade_produto) * parseFloat(valor_unitario_produto)).toFixed(2);
+    pontos_resgate = $("#pontosTemp").val();
+    preco_final_produto = ($("#valorTotalModalProduto").val());
+    preco_final = parseFloat($("#valorTotalModalProduto").val());
+    desconto = (parseFloat(subTotalTabela) - preco_final).toFixed(2);
+
+    var linha = '<tr id="linha' + contador + '" class="animated bounceIn">'
+      + ' <td class="text-center"><b>' + ($("#produtosSelecionados tbody tr").length + 1) + '</b></td>'
+      + ' <td class="text-center">' + id_produto + '</td>'
+      + ' <td class="text-left">' + descricao_produto + '</td>'
+      + ' <td class="text-center">' + quantidade_produto + '</td>'
+      + ' <td class="text-center">R$ ' + valor_unitario_produto.replace(".", ",") + '</td>'
+      + ' <td class="text-center">R$ ' + subTotalTabela.replace(".", ",") + '</td>'
+      + ' <td class="text-center">R$ ' + desconto.replace(".", ",") + '</td>'
+      + ' <td class="text-center">R$ ' + preco_final_produto.replace(".", ",") + '</td>'
+      + ' <td class="text-center"><button type="button" class="btn btn-danger btn-xs" onclick="deletaLinha(this)"> <i class="fa fa-trash mr-sm"></i>Excluir</button></td>'
+      + ' <input type="hidden" id="id_produto" name="id_produto[]" value="' + id_produto + '">'
+      + ' <input type="hidden" id="quantidade_produto" name="quantidade_produto[]" value="' + quantidade_produto + '">'
+      + ' <input type="hidden" id="pontos_resgate" name="pontos_resgate[]" value="' + pontos_resgate + '">'
+      + ' <input type="hidden" id="precoFinal" name="precoFinal[]" value="' + preco_final + '">'
+      + '</tr>';
+
+    $("#tabela_produtos").append(linha);
+
+    // Atualizando Saldo de pontos
+    var saldoFinalPontos = $("#pontosModalProduto").val();
+    $("#saldoPontosCliente").val(saldoFinalPontos);
+    $(".ponto_do_cliente").html('<b>' + saldoFinalPontos + '</b>');
+
+    limparModalProduto();
+    $("#modal-produto").modal('hide');
+
+    CalcularPontosSubTotal();
+    valoresFinais();
+  }
+
+  function deletaLinha(linha) {
+
+    var i = linha.parentNode.parentNode.rowIndex;
+
+    $('#produtosSelecionados > tbody  > tr > input#pontos_resgate').each(function () {
+      if (this.parentNode.rowIndex == i) {
+        var saldo_pontos = (parseInt(this.value) + parseInt($("#saldoPontosCliente").val()));
+        $("#saldoPontosCliente").val(saldo_pontos);
+        $(".ponto_do_cliente").html('<b>' + saldo_pontos + '</b>');
+      }
+    });
+
+    document.getElementById("produtosSelecionados").deleteRow(i);
+
+    $('#produtosSelecionados > tbody  > tr > td').each(function () {
+      if (this.cellIndex == 0) {
+        console.log(this);
+      }
+    });
+
+    if (document.getElementById("produtosSelecionados").rows.length == 1) {
+      $("#itens-vendas").removeClass("enable");
+      $("#itens-vendas").addClass("disable");
+
+      $("#step3").removeClass("enable");
+      $("#step3").addClass("disable");
+
+      $("#selCliente").removeAttr("disabled");
+    }
+
+    CalcularPontosSubTotal();
+  }
+
+  function CalcularPontosSubTotal() {
+
+    var somaPrecosTabela = 0;
+    var somaPontosTabela = 0;
+
+    $('#produtosSelecionados > tbody  > tr > input').each(function () {
+      if (this.id == "precoFinal") {
+        var preco = parseFloat(this.value);
+        somaPrecosTabela += preco;
+      }
+      if (this.id == "pontos_resgate") {
+        somaPontosTabela += parseInt(this.value);
+      }
+    });
+
+    $("#subtotal").html('<b> R$ ' + somaPrecosTabela.toFixed(2).replace(".", ",") + '</b>');
+    $("#inputSubtotal").val(somaPrecosTabela);
+
+    valoresFinais();
+  }
+
+  function convertData(data) {
+
+    var novaData = new Date(data);
+    var dia = novaData.getDate() + 1;
+    var mes = novaData.getMonth() + 1;
+    var ano = novaData.getFullYear();
+    data = dia + '/' + mes + '/' + ano;
+
+    var data = data.toLocaleString('pt-br');
+    return data;
+  }
+
+  function valoresFinais() {
+
+    var subtotal = parseFloat($("#inputSubtotal").val());
+
+    if (parseFloat($("#inputDesconto").val()) >= 100) {
+      $("#inputDesconto").val(100);
+    }
+    if (parseFloat($("#inputDesconto").val()) > 0) {
+      var desconto = subtotal * parseFloat($("#inputDesconto").val()) / 100;
+    }
+    else {
+
+      if ($("#inputDesconto").val() == "") {
+        $("#inputDesconto").val(0);
+      }
+
+      desconto = 0
+    }
+
+    $("#desconto").html('<b>R$ ' + (desconto.toFixed(2)).replace(".", ",") + '</b>');
+    $("#total").html('<b>R$ ' + ((subtotal - desconto).toFixed(2)).replace(".", ",") + '</b>');
+    $("#inputTotal").val(subtotal - desconto);
+
+    // Extra
+    // $("#DataVenda").html('<b>' + convertData($("#inputDataVenda").val()) + '</b>');
+  }
+
+  // $("#inputOperador").on('load change mouseup mousedown mouseout keydown', function() {
+  //   $("#Operador").html('<b>' + $("#inputOperador").val() + '</b>');
+  // });
+
+  // $("#inputDataVenda").on('load change mouseup mousedown mouseout keydown', function() {
+  //   $("#DataVenda").html('<b>' + convertData($("#inputDataVenda").val()) + '</b>');
+  // });
+
+  $("#inputPagamento").on('load change mouseup mousedown mouseout keydown', function () {
+    $("#Pagamento").html('<b>' + $("#inputPagamento option:selected").text() + '</b>');
+  });
+
+  $("#inputDesconto").on('load change mouseup mousedown mouseout keydown keyup', function () {
+    valoresFinais();
+  });
+
+  /*************************************************
+   :: FINALIZAR VENDA
+  *************************************************/
+  function finalizarVenda() {
+
+    // Recebe os dados do form
+    // var data =  $("#inputDataVenda").val();
+    var pagamento = $("#inputPagamento").val();
+
+    // if(data == '') {
+    //   $("#rData").removeClass("disable");
+    //   $("#rData").addClass("enable");
+    //   $("#inputDataVenda").addClass('animated shake');
+
+    //   setTimeout(function(){
+    //     $("#rData").removeClass("enable");
+    //     $("#rData").addClass("disable");
+    //     $("#inputDataVenda").removeClass('animated shake');
+    //   }, 2800);
+    // }
+    // else
+    if (pagamento == null) {
+
+      $("#rPagamento").removeClass("disable");
+      $("#rPagamento").addClass("enable");
+      $("#inputPagamento").addClass('animated shake');
+
+      setTimeout(function () {
+        $("#rPagamento").removeClass("enable");
+        $("#rPagamento").addClass("disable");
+        $("#inputPagamento").removeClass('animated shake');
+      }, 2800);
+
+    }
+    else {
+
+      // Barra de progresso e submit
+      $('#progress').css('display', 'block');
+      $('#finaliza_venda').prop('disabled', true);
+
+      $("#rData").removeClass("enable");
+      $("#rData").addClass("disable");
+      $("#rPagamento").removeClass("enable");
+      $("#rPagamento").addClass("disable");
+
+      $.ajax({
+        url: "./put/cadastra_venda.php",
+        type: "POST",
+        data: $('#formCadVenda').serialize(),
+        success: function (response) {
+          console.log(response);
+          mensagens_resposta(response);
+
+          var JSONArray = $.parseJSON(response);
+          if (JSONArray['result'] == 'success') {
+            $('#progress').css('display', 'none');
+            setTimeout(function () {
+              location.reload();
+            }, 2000);
+          }
+          else {
+            // Barra de progresso e submit
+            $('#progress').css('display', 'none');
+            $('#finaliza_venda').prop('disabled', false);
+          }
+        },
+        error: function () {
+          mensagens_erro("Não foi possível enviar o seu cadastro neste momento!");
+
+          // Barra de progresso e submit
+          $('#progress').css('display', 'none');
+          $('#finaliza_venda').prop('disabled', false);
+        }
+
+      });// AJAX
+    }
+  }
+
+  // Move a tela para o topo
+  $(document).ready(function () {
+    $('html, body').animate({ scrollTop: 0 }, 'slow');
+  });
+</script>

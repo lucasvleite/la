@@ -40,14 +40,14 @@
     <div class="col col-sm-3">
       <div class="form-group">
         <label class="control-label" for="inputPagamento">Forma de Pagamento (*)</label>
-        <select id="inputPagamento" name="inputPagamento" class="form-control" required>
+        <select id="inputPagamento" name="inputPagamento" class="form-control selectpicker" required>
           <option disabled selected>Selecione forma de pagamento</option>
-          <option value="1"><i class="fa fa-money mr-md"></i>Dinheiro</option>
-          <option value="2"><i class="fa fa-credit-card-alt mr-md"></i>Cartão de Crédito</option>
-          <option value="3"><i class="fa fa-credit-card mr-md"></i>Cartão de Débito</option>
-          <option value="4"><i class="fa fa-barcode mr-md"></i>Boleto Bancário</option>
-          <option value="5"><i class="fa fa-cc mr-md"></i>Cheque</option>
-          <option value="6"><i class="fa fa-money mr-md"></i>Outro</option>
+          <option value="1" data-icon="fa fa-money mr-md"> Dinheiro</option>
+          <option value="2" data-icon="fa fa-credit-card-alt mr-md"> Cartão de Crédito</option>
+          <option value="3" data-icon="fa fa-credit-card mr-md"> Cartão de Débito</option>
+          <option value="4" data-icon="fa fa-barcode mr-md"> Boleto Bancário</option>
+          <option value="5" data-icon="fa fa-cc mr-md"> Cheque</option>
+          <option value="6" data-icon="fa fa-money mr-md"> Outro</option>
         </select>
         <small id="rPagamento" class="disable text-danger">Campo Obrigatório!</small>
       </div>

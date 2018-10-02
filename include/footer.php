@@ -27,7 +27,7 @@
 <script src="assets/plugins/input-mask/jquery.inputmask.js"></script>
 <script src="assets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="assets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
-<!-- Morris.js charts --
+<!-- Morris.js charts -->
 <script src="assets/bower_components/raphael/raphael.min.js"></script>
 <script src="assets/bower_components/morris.js/morris.min.js"></script>
 <!-- daterangepicker -->
@@ -36,7 +36,7 @@
 <!-- datepicker -->
 <script src="assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="assets/bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
-<!-- Bootstrap WYSIHTML5 --
+<!-- Bootstrap WYSIHTML5 -->
 <script src="assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- SlimScroll -->
 <script src="assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
@@ -44,6 +44,8 @@
 <script src="assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- SweetAlert 2 -->
 <script src="assets/js/sweetalert2.min.js"></script>
+<!-- Select bootstrap -->
+<script src="assets/js/bootstrap-select.js"></script>
 <!-- AdminLTE App -->
 <script src="assets/js/adminlte.min.js"></script>
 <!-- Caso exista escript da pagina para adicionar -->

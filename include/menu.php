@@ -56,8 +56,8 @@
           </span>
         </a>
         <ul class="treeview-menu"> -->
-          <li><a href="./home.php?id=cadCliente"><i class="fa fa-user-plus"></i><span> Gerenciar Clientes </span></a></li>
-          <li><a href="./home.php?id=cadFornecedor"><i class="fa fa-truck"></i><span> Gerenciar Fornecedores </span></a></li>
+          <li><a href="./home.php?id=cadCliente"><i class="fa fa-user-plus"></i><span> Clientes </span></a></li>
+          <li><a href="./home.php?id=cadFornecedor"><i class="fa fa-truck"></i><span> Fornecedores </span></a></li>
           <!-- <li><a href="./home.php?id=cadCategorias"><i class="fa fa-th"></i><span> Gerenciar Categorias </span></a></li> -->
         <!-- </ul>
       </li> -->

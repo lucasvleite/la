@@ -17,20 +17,22 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="assets/css/skins/_all-skins.min.css">
-  <!-- Morris chart --
+  <!-- Morris chart -->
   <link rel="stylesheet" href="assets/bower_components/morris.js/morris.css">
-  <!-- jvectormap --
+  <!-- jvectormap -->
   <link rel="stylesheet" href="assets/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
   <link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <!-- bootstrap wysihtml5 - text editor --
+  <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="assets/css/dataTables.bootstrap.min.css">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="assets/css/bootstrap-select.css">
 
   <!-- My Style -->
   <link rel="stylesheet" href="assets/css/myStyle.css">
@@ -65,7 +67,7 @@
       <div class="navbar-custom-menu">
         <div class="pull-right">
           <!-- <a href="include/logout.php"> <span class="btn btn-lg bg-purple" style="border-color:transparent;">Sair</span> </a> -->
-          <a href="./include/logout.php"> <span class="btn btn-lg bg-purple" style="border-color:transparent;">Sair</span> </a>
+          <!-- <a href="./include/logout.php"> <span class="btn btn-lg bg-purple" style="border-color:transparent;">Sair</span> </a> -->
         </div>
       </div>
     </nav>
