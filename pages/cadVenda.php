@@ -28,8 +28,7 @@
             <th class="text-center">Total da Venda</th>
             <th class="text-center">Forma de Pagamento</th>
             <th class="text-center">Data da Venda</th>
-            <th class="text-center">Produtos</th>
-            <th class="text-center">Excluir</th>
+            <th class="text-center">Ação</th>
           </tr>
         </thead>
       </table>

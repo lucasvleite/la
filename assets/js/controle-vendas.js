@@ -148,6 +148,7 @@ $(document).ready(function () {
     }
   })
 
+  // Submit Form Novo Cliente
   $("#formNovoCliente").submit(function (e) {
     e.preventDefault()
 

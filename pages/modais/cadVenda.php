@@ -9,21 +9,53 @@
       </div>
 
       <!-- form start -->
-      <form method="POST" class="form-horizontal" role="form" id="formVenda">
+      <form method="POST" role="form" id="formVenda">
       <div class="modal-body">
-        <div class="form-group">
-          <label for="clientes" class="col-sm-3 col-lg-2 control-label">Cliente</label>
-          <div class="col-sm-9">
-            <div class="input-group">
-              <select name="clientes" id="clientes" class="form-control">
-                <option value="">Selecione um cliente</option>
-              </select>
-              <a class="input-group-addon" href="#" data-toggle="modal" data-target="#modal-cliente" role="button">
-                <i class="fa fa-plus"></i>
-              </a>
+
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label for="clientes" class="col-sm-3 col-lg-2 control-label">Cliente</label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <select name="clientes" id="clientes" class="form-control">
+                  <option value="">Selecione um cliente</option>
+                </select>
+                <a class="input-group-addon" href="#" data-toggle="modal" data-target="#modal-cliente" role="button">
+                  <i class="fa fa-plus"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
+        <div class="col-sm-12 table-responsive">
+          <table id="produtosSelecionados" class="table table-bordered table-striped table-hover ">
+            <thead>
+              <tr>
+                <th class="text-center"><b>#</b></th>
+                <th class="text-center">Código</th>
+                <th class="text-left">Nome Produto</th>
+                <th class="text-center">Quantidade</th>
+                <th class="text-center">Preço Unitário</th>
+                <th class="text-center">Subtotal</th>
+                <th class="text-center">Desconto</th>
+                <th class="text-center">Preço Final</th>
+                <th class="text-center">Excluir</th>
+              </tr>
+            </thead>
+            <tbody id="tabela_produtos"></tbody>
+          </table>
+        </div>
+
+        <!-- Subtotal -->
+        <!-- <div class="col-sm-12"> -->
+        <div class="col-sm-8">
+          <h4 class="text-right pull-right nmt"> Subtotal:</h4>
+        </div>
+        <div class="col-sm-4">
+          <h3 class="text-center font-weight-bold nmt" id="subtotal"></h3>
+          <input type="hidden" value="" id="inputSubtotal" name="inputSubtotal" />
+        </div>
+
       </div>
 
 
@@ -31,7 +63,7 @@
 
       <br><br><br><br><br>
 
-      <?php include"cadVenda2.php"; ?>
+      <?php // include"cadVenda2.php"; ?>
 
       <div class="modal-footer bg-success">
         <div class="text-center">

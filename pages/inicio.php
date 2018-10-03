@@ -11,53 +11,55 @@
 
 <section class="content">
   <div class="row">
-    <div class=" col-md-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-green">
-        <div class="inner">
-          <h3><small class="bg-green">R$ </small><span id="totalVendas"></span></h3>
+    <div class="col-md-3 col-xs-6">
+      <a href="./home.php?id=vendas">
+        <div class="small-box bg-green">
+          <div class="inner">
+            <h3><small class="bg-green">R$ </small><span id="totalVendas"></span></h3>
 
-          <p><span id="quantidadeVendas"></span> </p>
+            <p><span id="quantidadeVendas"></span> </p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-shopping-cart"></i>
+          </div>
+          <div class="small-box-footer">Total de Vendas <i class="fa fa-arrow-circle-right"></i></div>
         </div>
-        <div class="icon">
-          <i class="fa fa-shopping-cart"></i>
-        </div>
-        <a href="./home.php?id=vendas" class="small-box-footer">Total de Vendas <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
+      </a>
     </div>
 
-    <div class=" col-md-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-purple">
-        <div class="inner">
-          <h3><span id="totalProdutos"></span></h3>
+    <div class="col-md-3 col-xs-6">
+      <a href="./home.php?id=addEstoque">
+        <div class="small-box bg-purple">
+          <div class="inner">
+            <h3><span id="totalProdutos"></span></h3>
 
-          <p>Produtos</p>
+            <p>Produtos</p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-cubes"></i>
+          </div>
+          <div class="small-box-footer">Total de Produtos <i class="fa fa-arrow-circle-right"></i></div>
         </div>
-        <div class="icon">
-          <i class="fa fa-cubes"></i>
-        </div>
-        <a href="./home.php?id=addEstoque" class="small-box-footer">Total de Produtos <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
+      </a>
     </div>
 
-    <div class=" col-md-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-yellow">
-        <div class="inner">
-          <h3><span id="totalClientes"></span></h3>
+    <div class="col-md-3 col-xs-6">
+      <a href="./home.php?id=cadCliente">
+        <div class="small-box bg-yellow">
+          <div class="inner">
+            <h3><span id="totalClientes"></span></h3>
 
-          <p>Clientes</p>
+            <p>Clientes</p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-users"></i>
+          </div>
+          <div class="small-box-footer">Total de Clientes <i class="fa fa-arrow-circle-right"></i></div>
         </div>
-        <div class="icon">
-          <i class="fa fa-users"></i>
-        </div>
-        <a href="./home.php?id=cadCliente" class="small-box-footer">Total de Clientes <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
+      </a>
     </div>
 
-    <div class=" col-md-3 col-xs-6">
-      <!-- small box -->
+    <div class="col-md-3 col-xs-6">
       <a href="./home.php?id=cadFornecedor">
         <div class="small-box bg-primary">
           <div class="inner">

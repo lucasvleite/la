@@ -124,6 +124,7 @@ $(document).ready(function () {
     }
   })
 
+  // Submit form Novo Cliente
   $("#formNovoCliente").submit(function (e) {
     e.preventDefault()
 
