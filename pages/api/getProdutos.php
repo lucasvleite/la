@@ -24,6 +24,7 @@ foreach( $resultado as $linha ){
       "id"            => $linha['idProduto'],
       "codigo"        => $linha['codigoProduto'],
       "descricao"     => "<button class=\"btn-link\" data-id='$linha[idProduto]' data-target=\"#modal-editProduto\" data-toggle=\"modal\">$linha[descricaoProduto]</button></td>",
+      "descProduto"   => "$linha[descricaoProduto]",
       "categoria"     => $linha['categoria'],
       "descCategoria" => $linha['descricaoCategoria'],
       "precoVenda"    => $linha['precoVenda'],

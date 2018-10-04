@@ -76,6 +76,27 @@ function preencherClientes(selected) {
 }
 
 
+function preencherProdutos() {
+  $.ajax({
+    type: "POST",
+    url: "pages/api/getProdutos.php",
+    dataType: 'json',
+    contentType: "application/json; charset=utf-8",
+    success: function (obj) {
+      if (obj != null) {
+        var data = obj.data
+        $('#produtos').find('option').remove()
+        $('<option>').val("").text("Selecione um Produto").appendTo($('#produtos'))
+
+        $.each(data, function (i, d) {
+          $('<option>').val(d.id).text(d.descProduto).appendTo($('#produtos'))
+        })
+      }
+      $('#produtos').val(selected)
+    }
+  })
+}
+
 // Preencher modal Cliente
 $('#modal-cliente').on('shown.bs.modal', function (e) {
   var idCliente = $(e.relatedTarget).data('id')
@@ -115,6 +136,8 @@ $(document).ready(function () {
   // gerarDataTable("tabela-vendas")
 
   preencherClientes("")
+
+  preencherProdutos()
 
   $("#cep").inputmask('99999-999', { 'placeholder': '00000-000' })
 

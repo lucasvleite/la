@@ -145,6 +145,7 @@ CREATE TABLE `itensVenda` (
   `idVenda` int(11) NOT NULL,
   `idProduto` int(11) NOT NULL,
   `precoUnitario` decimal(10,2) NOT NULL,
+  `desconto` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'Valor total do desconto (já calculando quantidade * descontoUnitario)',
   `quantidade` int(11) NOT NULL,
   `DATE_CREATED` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `DATE_MODIFIED` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
