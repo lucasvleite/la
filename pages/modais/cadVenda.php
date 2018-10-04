@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade modal-default" id="modal-venda">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xlg">
     <div class="modal-content">
       <div class="modal-header bg-purple">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -14,7 +14,7 @@
 
         <div class="form-horizontal">
           <div class="form-group">
-            <label for="clientes" class="col-sm-3 col-lg-2 control-label">Cliente</label>
+            <label for="clientes" class="col-sm-2 control-label">Cliente</label>
             <div class="col-sm-9">
               <div class="input-group">
                 <select name="clientes" id="clientes" class="form-control">
@@ -27,41 +27,63 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-12 table-responsive">
-          <table id="produtosSelecionados" class="table table-bordered table-striped table-hover ">
-            <thead>
-              <tr>
-                <th class="text-center"><b>#</b></th>
-                <th class="text-center">Código</th>
-                <th class="text-left">Nome Produto</th>
-                <th class="text-center">Quantidade</th>
-                <th class="text-center">Preço Unitário</th>
-                <th class="text-center">Subtotal</th>
-                <th class="text-center">Desconto</th>
-                <th class="text-center">Preço Final</th>
-                <th class="text-center">Excluir</th>
-              </tr>
-            </thead>
-            <tbody id="tabela_produtos"></tbody>
-          </table>
+
+        <hr>
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <button class="btn btn-info pull-right"><i class="fa fa-plus mr-sm"></i> Adicionar Produto</button>
+          </div>
         </div>
 
-        <!-- Subtotal -->
-        <!-- <div class="col-sm-12"> -->
-        <div class="col-sm-8">
-          <h4 class="text-right pull-right nmt"> Subtotal:</h4>
+        <div class="row">
+          <div class="col-sm-12">
+            <table id="produtosSelecionados" class="table table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center"><b>#</b></th>
+                  <th class="text-center">Código</th>
+                  <th class="text-left">Nome Produto</th>
+                  <th class="text-center">Quantidade</th>
+                  <th class="text-center">Preço Unitário</th>
+                  <th class="text-center">Subtotal</th>
+                  <th class="text-center">Desconto</th>
+                  <th class="text-center">Preço Final</th>
+                  <th class="text-center">Excluir</th>
+                </tr>
+              </thead>
+              <tbody id="tabela_produtos">
+                <tr>
+                  <th class="text-center"><b>1</b></th>
+                  <th class="text-center"></th>
+                  <th class="text-left"><select name="produtos" id="produtos" class="select2 form-control"></select></th>
+                  <th class="text-center"></th>
+                  <th class="text-center"></th>
+                  <th class="text-center"></th>
+                  <th class="text-center"></th>
+                  <th class="text-center"></th>
+                  <th class="text-center"></th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="col-sm-4">
-          <h3 class="text-center font-weight-bold nmt" id="subtotal"></h3>
-          <input type="hidden" value="" id="inputSubtotal" name="inputSubtotal" />
+
+        <hr>
+        <!-- Subtotal -->
+        <div class="row">
+          <div class="col-sm-8">
+            <h4 class="text-right pull-right nmt"> Subtotal:</h4>
+          </div>
+          <div class="col-sm-4">
+            <h3 class="text-center font-weight-bold nmt" id="subtotal"></h3>
+            <input type="hidden" value="" id="inputSubtotal" name="inputSubtotal" />
+          </div>
         </div>
 
       </div>
 
 
-
-
-      <br><br><br><br><br>
 
       <?php // include"cadVenda2.php"; ?>
 
@@ -79,15 +101,3 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-
-
-<tr id="novaLinha" class="hidden">
-  <td class="text-center"></td>
-  <td class="text-center"></td>
-  <td class="text-left"><select name="produtos" id="produtos" class="form-control"></select></td>
-  <td class="text-center"></td>
-  <td class="text-center"></td>
-  <td class="text-center"></td>
-  <td class="text-center"></td>
-  <td class="text-center"></td>
-</tr>

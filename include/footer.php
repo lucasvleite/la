@@ -44,7 +44,9 @@
 <script src="assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- SweetAlert 2 -->
 <script src="assets/js/sweetalert2.min.js"></script>
-<!-- Select bootstrap -->
+<!-- Select 2 -->
+<script src="assets/js/select2.min.js"></script>
+<!-- Select bootstrap --
 <script src="assets/js/bootstrap-select.min.js"></script>
 <!-- AdminLTE App -->
 <script src="assets/js/adminlte.min.js"></script>

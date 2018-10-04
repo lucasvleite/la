@@ -92,7 +92,7 @@ function preencherProdutos() {
           $('<option>').val(d.id).text(d.descProduto).appendTo($('#produtos'))
         })
       }
-      $('#produtos').val(selected)
+      $('#produtos').val()
     }
   })
 }
@@ -138,6 +138,8 @@ $(document).ready(function () {
   preencherClientes("")
 
   preencherProdutos()
+
+  $(".select2").select2()
 
   $("#cep").inputmask('99999-999', { 'placeholder': '00000-000' })
 
@@ -210,4 +212,5 @@ $(document).ready(function () {
 
    
 
+   $("#modal-venda").modal("show")
 })
