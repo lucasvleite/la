@@ -14,15 +14,14 @@ $query =
 $resultado = $database->getQuery($query);
 
 foreach( $resultado as $linha ){
-  $contador++;
 
   $retorno =
   [
-    "totalProdutos" => $linha[ totalProdutos ],
-    "totalClientes" => $linha[ totalClientes ],
-    "totalFornecedores" => $linha[ totalFornecedores ],
-    "quantidadeVendas" => $linha[ quantidadeVendas ],
-    "totalVendas" => isset($linha[totalVendas]) ? $linha[totalVendas] : 0
+    "totalProdutos" => $linha[ "totalProdutos" ],
+    "totalClientes" => $linha[ "totalClientes" ],
+    "totalFornecedores" => $linha[ "totalFornecedores" ],
+    "quantidadeVendas" => $linha[ "quantidadeVendas" ],
+    "totalVendas" => isset($linha["totalVendas"]) ? $linha["totalVendas"] : 0
   ];
 }
 echo json_encode($retorno);

@@ -5,7 +5,7 @@ function gerarDataTable(idTable) {
     columns: [
       { "data": "contador" },
       { "data": "descricao" },
-      { "data": "precoVenda" },
+      { "data": "precoVendaDesc" },
       { "data": "estoque" },
       // { "data": "descCategoria" },
       { "data": "estoqueM" },

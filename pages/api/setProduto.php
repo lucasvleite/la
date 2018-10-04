@@ -3,14 +3,14 @@
 include ("../../config/config.php");
 
 // $codigo       = $_POST["codigoProduto"];
-$descricao    = $_POST["descricaoProduto"];
-$quantidade   = $_POST["estoque"];
-$precoCompra  = $_POST["precoUnitario"];
-$precoVenda   = $_POST["precoVenda"];
-$dataCompra   = $_POST["dataCompra"];
-$fornecedor   = $_POST["fornecedor"];
-$estoqueM     = $_POST["estoqueMinimo"];
-$categoria    = $_POST["categoriaProduto"];
+$descricao    = (isset($_POST["descricaoProduto"])) ? $_POST["descricaoProduto"] : NULL;
+$quantidade   = (isset($_POST["estoque"])) ? $_POST["estoque"] : NULL;
+$precoCompra  = (isset($_POST["precoUnitario"])) ? $_POST["precoUnitario"] : NULL;
+$precoVenda   = (isset($_POST["precoVenda"])) ? $_POST["precoVenda"] : NULL;
+$dataCompra   = (isset($_POST["dataCompra"])) ? $_POST["dataCompra"] : NULL;
+$fornecedor   = (isset($_POST["fornecedor"])) ? $_POST["fornecedor"] : NULL;
+$estoqueM     = (isset($_POST["estoqueMinimo"])) ? $_POST["estoqueMinimo"] : NULL;
+$categoria    = (isset($_POST["categoriaProduto"])) ? $_POST["categoriaProduto"] : NULL;
 
 $idProduto = (isset($_POST["idProduto"])) ? $_POST["idProduto"] : 0;
 
@@ -23,6 +23,22 @@ if( $idProduto == 0 ){
     echo json_encode(array("error","Campos obrigatórios não preenchidos!"));
     exit;
   }
+
+  /**********************************************************************************
+   * Gera novo código ////caso não digitou nenhum código
+   **********************************************************************************/
+  // if($codigo == "ALEATÓRIO"){
+
+    $query = "SELECT count(*) as contador FROM `produtos` WHERE 1";
+
+    $resultado = $database->getQuery($query);
+
+    foreach( $resultado as $linha ){
+      $codigo = (int)$linha['contador'] + 1;
+    }
+  // }
+  /*===============================================================================*/
+
 
   /**********************************************************************************
    * Verifica se há algum nome ou código cadastrado
@@ -45,21 +61,6 @@ if( $idProduto == 0 ){
   }
   /*===============================================================================*/
 
-
-  /**********************************************************************************
-   * Gera novo código ////caso não digitou nenhum código
-   **********************************************************************************/
-  // if($codigo == "ALEATÓRIO"){
-
-    $query = "SELECT count(*) as contador FROM `produtos` WHERE 1";
-
-    $resultado = $database->getQuery($query);
-
-    foreach( $resultado as $linha ){
-      $codigo = (int)$linha['contador'] + 1;
-    }
-  // }
-  /*===============================================================================*/
 
   $insertP = "codigoProduto = '$codigo', descricaoProduto = '$descricao', precoVenda = '" .
       (float)str_replace(",",".",$precoVenda) . "', estoque = '$quantidade', disponivel = 1";
@@ -136,7 +137,7 @@ else
   if( $resultado > 0 ){
     echo json_encode(array("success","Alteração de $descricao foi efetuado com sucesso!"));
   } else {
-    echo json_encode(array("error","Não foi possível alterar $descricao neste momento! Erro: ".$retorno));
+    echo json_encode(array("error","Não foi possível alterar $descricao neste momento!"));
   }
 }
 

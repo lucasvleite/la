@@ -15,7 +15,7 @@ $estado      = $_POST["estado"];
 $cep         = $_POST["cep"];
 $inf_adicionais = $_POST["inf_adicionais"];
 
-$idCliente = (isset($_POST["id"])) ? $_POST["id"] : 0;
+$idCliente = (isset($_POST["idCliente"])) ? $_POST["idCliente"] : 0;
 
 if($nome == ""){
   echo json_encode(array("error","Campo nome obrigatório!"));

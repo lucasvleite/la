@@ -8,7 +8,7 @@ $query = "SELECT descricaoProduto FROM produtos WHERE idProduto = $idProduto";
 $resultado = $database->getQuery($query);
 
 foreach( $resultado as $linha ){
-  $descricao = $linha[descricaoProduto];
+  $descricao = $linha["descricaoProduto"];
 }
 
 
@@ -38,12 +38,12 @@ $retorno = "";
 foreach( $resultado as $linha ){
   $count++;
 
-  $tipo       = $linha[tipo];
-  $quantidade = $linha[quantidade];
-  $preco      = str_replace(".",",",$linha[preco]);
-  $pessoa     = $linha[nome];
+  $tipo       = $linha["tipo"];
+  $quantidade = $linha["quantidade"];
+  $preco      = str_replace(".",",",$linha["preco"]);
+  $pessoa     = $linha["nome"];
 
-  $aux        = explode(" ",$linha[data]);
+  $aux        = explode(" ",$linha["data"]);
   $data       = implode("/",array_reverse(explode("-",$aux[0])));
 
   if ($tipo == 1)

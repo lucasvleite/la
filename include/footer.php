@@ -45,7 +45,7 @@
 <!-- SweetAlert 2 -->
 <script src="assets/js/sweetalert2.min.js"></script>
 <!-- Select bootstrap -->
-<script src="assets/js/bootstrap-select.js"></script>
+<script src="assets/js/bootstrap-select.min.js"></script>
 <!-- AdminLTE App -->
 <script src="assets/js/adminlte.min.js"></script>
 <!-- Caso exista escript da pagina para adicionar -->

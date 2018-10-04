@@ -79,3 +79,15 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+
+<tr id="novaLinha" class="hidden">
+  <td class="text-center"></td>
+  <td class="text-center"></td>
+  <td class="text-left"><select name="produtos" id="produtos" class="form-control"></select></td>
+  <td class="text-center"></td>
+  <td class="text-center"></td>
+  <td class="text-center"></td>
+  <td class="text-center"></td>
+  <td class="text-center"></td>
+</tr>

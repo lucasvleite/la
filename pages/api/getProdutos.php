@@ -13,7 +13,7 @@ $query =
 $resultado = $database->getQuery($query);
 
 $retorno["data"] = array();
-
+$contador = 0;
 
 foreach( $resultado as $linha ){
   $contador++;
@@ -28,6 +28,7 @@ foreach( $resultado as $linha ){
       "categoria"     => $linha['categoria'],
       "descCategoria" => $linha['descricaoCategoria'],
       "precoVenda"    => $linha['precoVenda'],
+      "precoVendaDesc"=> "R$ " . str_replace('.',',',$linha['precoVenda']),
       "estoqueM"      => $linha['estoqueMinimo'],
       "estoque"       => $linha['estoque'],
       "historico"     => "<td class=\"text-center\"><button class=\"btn btn-xs btn-primary pl-sm pr-sm\" data-id='$linha[idProduto]' data-target=\"#modal-historico\" data-toggle=\"modal\"><i class=\"fa fa-history\"> Histórico</i></button></td>",

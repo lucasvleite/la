@@ -21,6 +21,21 @@ if($nome == ""){ echo json_encode(array("error","Campo nome obrigatório!")); ex
 if( $idFornecedor == 0 ){
 
   /**********************************************************************************
+   * Gera novo código caso não digitou nenhum código
+   **********************************************************************************/
+  // if($codigo == "ALEATÓRIO"){
+
+    $query = "SELECT count(*) as contador FROM fornecedores WHERE 1";
+
+    $resultado = $database->getQuery($query);
+
+    foreach( $resultado as $linha ){
+      $codigo = (int)$linha['contador'] + 1;
+    }
+  // }
+  /*===============================================================================*/
+
+  /**********************************************************************************
    * Verifica se há algum nome ou código cadastrado
    **********************************************************************************/
   $query = "SELECT * FROM fornecedores WHERE codigoFornecedor = '$codigo' OR nomeFornecedor like '%$nome%'";
@@ -39,22 +54,6 @@ if( $idFornecedor == 0 ){
       exit;
     }
   }
-  /*===============================================================================*/
-
-
-  /**********************************************************************************
-   * Gera novo código caso não digitou nenhum código
-   **********************************************************************************/
-  // if($codigo == "ALEATÓRIO"){
-
-    $query = "SELECT count(*) as contador FROM fornecedores WHERE 1";
-
-    $resultado = $database->getQuery($query);
-
-    foreach( $resultado as $linha ){
-      $codigo = (int)$linha['contador'] + 1;
-    }
-  // }
   /*===============================================================================*/
 
   $insert = "codigoFornecedor = '$codigo', nomeFornecedor = '$nome'";
