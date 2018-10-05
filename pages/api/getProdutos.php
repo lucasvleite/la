@@ -6,7 +6,7 @@ $query =
 " SELECT P.idProduto, P.codigoProduto, descricaoProduto, categoria, descricaoCategoria, precoVenda, estoque, estoqueMinimo
   FROM produtos P
   LEFT JOIN categorias C ON P.categoria = C.idCategoria
-  ORDER BY P.DATE_CREATED DESC
+  ORDER BY P.idProduto DESC
   LIMIT 1000
 ";
 

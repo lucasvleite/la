@@ -97,30 +97,7 @@ function preencherProdutos(idTable) {
 }
 
 
-// Funções das tabelas
-function CalcularPontosSubTotal() {
-
-  // var somaPrecosTabela = 0;
-  // var somaPontosTabela = 0;
-
-  // $('#produtosSelecionados > tbody  > tr > input').each(function () {
-  //   if (this.id == "precoFinal") {
-  //     var preco = parseFloat(this.value);
-  //     somaPrecosTabela += preco;
-  //   }
-  //   if (this.id == "pontos_resgate") {
-  //     somaPontosTabela += parseInt(this.value);
-  //   }
-  // });
-
-  // $("#subtotal").html('<b> R$ ' + somaPrecosTabela.toFixed(2).replace(".", ",") + '</b>');
-  // $("#inputSubtotal").val(somaPrecosTabela);
-
-  // valoresFinais();
-}
-
-
-function valoresFinais() {
+function calcularValoresFinais() {
 
   // var subtotal = parseFloat($("#inputSubtotal").val());
 
@@ -147,6 +124,18 @@ function valoresFinais() {
   // // $("#DataVenda").html('<b>' + convertData($("#inputDataVenda").val()) + '</b>');
 }
 
+
+$("#formaPagamento").on('load change', function () {
+  $("#spanPagamento").html('<b>' + $("#formaPagamento option:selected").text() + '</b>');
+});
+
+$("#dataVenda").on('load change', function () {
+  $("#spanData").html('<b>' + $("#dataVenda").val() + '</b>');
+});
+
+$("#inputDesconto").on('load change', function () {
+  calcularValoresFinais();
+});
 
 
 // Preencher modal Cliente
@@ -190,6 +179,13 @@ $(document).ready(function () {
   preencherClientes("")
 
   preencherProdutos("selectProdutos")
+
+  $('#dataVenda').datepicker({
+    autoclose: true,
+    language: "pt-BR",
+    format: "dd/mm/yyyy",
+    endDate: "1d"
+  })
 
   $("#cep").inputmask('99999-999', { 'placeholder': '00000-000' })
 
@@ -267,10 +263,12 @@ $(document).ready(function () {
   $("#addProduto").click(function (e) {
     e.preventDefault()
 
+    $("#parteFinal").removeClass("hidden");
+
     var contador = parseInt($("#contador").val()) + 1
     $("#contador").val(contador)
 
-    var linha = "<tr id=\"" + contador + "\" class=\"animated bounceIn\">"
+    var linha = "<tr id=\"" + contador + "\" class=\"animated bounceIn active\">"
       + "  <td class=\"text-center\"><b>" + contador + "</b></td>"
       + "  <td class=\"text-center\"></td>"
       + "  <td class=\"text-left\"><select name=\"produtos[]\" id=\"produtos" + contador + "\" class=\"form-control select2\"></select></td>"
@@ -278,7 +276,7 @@ $(document).ready(function () {
       + "  <td class=\"text-center\">R$ 0,00</td>"
       + "  <td class=\"hidden\"><input type=\"hidden\" name=\"precoUnitario[]\" id=\"precoUnitario\" value=0></td>"
       + "  <td class=\"text-center\">R$ 0,00</td>"
-      + "  <td class=\"text-center\"><div class=\"input-group\"><span class=\"input-group-addon\">- R$</span><input type=\"number\" name=\"desconto[]\" id=\"desconto\" min=0 step=.01 class=\"form-control desconto\" value=0></div></td>"
+      + "  <td class=\"text-center\"><div class=\"input-group\"><span class=\"input-group-addon\">- R$</span><input type=\"number\" name=\"desconto[]\" id=\"desconto\" min=0 step=.10 class=\"form-control desconto\" value=0></div></td>"
       + "  <td class=\"text-center\">R$ 0,00</td>"
       + "  <td class=\"text-center\"><button type=\"button\" class=\"btn btn-danger btn-xs excluir\"> <i class=\"fa fa-trash mr-sm\"></i>Excluir</button></td>"
       + "</tr>"
@@ -299,13 +297,16 @@ $(document).ready(function () {
     count = 0
     $('#produtosSelecionados > tbody  > tr > td').each(function () {
       if (this.cellIndex == 0) {
-        // console.log(this)
         count++
         $(this).html("<td class\"text-center\"><b>" + count + "</b></td>")
       }
-    });
+    })
 
-    CalcularPontosSubTotal()
+    if (document.getElementById("produtosSelecionados").rows.length == 1) {
+      $("#parteFinal").addClass("hidden")
+    }
+
+    calcularValoresFinais()
 
   })
 
@@ -349,8 +350,9 @@ $(document).ready(function () {
 
   })
 
+
   // Preencher ao mudar quantidade
-  $("#produtosSelecionados").on("change", ".quantidade", function (e) {
+  $("#produtosSelecionados").on("load change blur focusout keypress keydown keyup", ".quantidade", function (e) {
     var quant = $(this).val()
     var preco = 0
     var desconto = 0
@@ -359,24 +361,26 @@ $(document).ready(function () {
     $(linha).find('td').each(function () {
       if (this.cellIndex == 5) {
         preco = $(this).val()
-        console.log(preco)
       }
       if (this.cellIndex == 6) {
         $(this).html("R$ " + (parseFloat(quant * preco).toFixed(2)).replace(".", ","))
       }
       if (this.cellIndex == 7) {
-        desconto = $(this).val()
-        console.log(this)
+        desconto = $(this).children().children().next().val()
       }
       if (this.cellIndex == 8) {
-        $(this).html("R$ " + (parseFloat(quant * preco - desconto).toFixed(2)).replace(".", ","))
+        var precoFinal = parseFloat(quant * preco - desconto)
+        $(this).html("R$ " + (precoFinal.toFixed(2)).replace(".", ","))
       }
     })
 
+    calcularValoresFinais()
+
   })
 
+
   // Preencher ao mudar desconto
-  $("#produtosSelecionados").on("change", ".desconto", function (e) {
+  $("#produtosSelecionados").on("load change blur focusout keypress keydown keyup", ".desconto", function (e) {
     var quant = 0
     var preco = 0
     var desconto = $(this).val()
@@ -384,20 +388,21 @@ $(document).ready(function () {
     var linha = (this).closest('tr')
     $(linha).find('td').each(function () {
       if (this.cellIndex == 3) {
-        quant = $(this).val()
-        console.log(quant)
+        quant = $(this).children().val()
       }
       if (this.cellIndex == 5) {
         preco = $(this).val()
-        console.log(preco)
       }
       if (this.cellIndex == 6) {
         $(this).html("R$ " + (parseFloat(quant * preco).toFixed(2)).replace(".", ","))
       }
       if (this.cellIndex == 8) {
-        $(this).html("R$ " + (parseFloat(quant * preco - desconto).toFixed(2)).replace(".", ","))
+        var precoFinal = parseFloat(quant * preco - desconto)
+        $(this).html("R$ " + (precoFinal.toFixed(2)).replace(".", ","))
       }
     })
+
+    calcularValoresFinais()
 
   })
 
