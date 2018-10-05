@@ -76,7 +76,7 @@ function preencherClientes(selected) {
 }
 
 
-function preencherProdutos() {
+function preencherProdutos(idTable) {
   $.ajax({
     type: "POST",
     url: "pages/api/getProdutos.php",
@@ -85,17 +85,69 @@ function preencherProdutos() {
     success: function (obj) {
       if (obj != null) {
         var data = obj.data
-        $('#produtos').find('option').remove()
-        $('<option>').val("").text("Selecione um Produto").appendTo($('#produtos'))
+        $('#' + idTable).find('option').remove()
+        $('<option>').val("").text("Selecione um Produto").appendTo($('#' + idTable))
 
         $.each(data, function (i, d) {
-          $('<option>').val(d.id).text(d.descProduto).appendTo($('#produtos'))
+          $('<option>').val(d.id).text(d.descProduto).appendTo($('#' + idTable))
         })
       }
-      $('#produtos').val()
     }
   })
 }
+
+
+// Funções das tabelas
+function CalcularPontosSubTotal() {
+
+  // var somaPrecosTabela = 0;
+  // var somaPontosTabela = 0;
+
+  // $('#produtosSelecionados > tbody  > tr > input').each(function () {
+  //   if (this.id == "precoFinal") {
+  //     var preco = parseFloat(this.value);
+  //     somaPrecosTabela += preco;
+  //   }
+  //   if (this.id == "pontos_resgate") {
+  //     somaPontosTabela += parseInt(this.value);
+  //   }
+  // });
+
+  // $("#subtotal").html('<b> R$ ' + somaPrecosTabela.toFixed(2).replace(".", ",") + '</b>');
+  // $("#inputSubtotal").val(somaPrecosTabela);
+
+  // valoresFinais();
+}
+
+
+function valoresFinais() {
+
+  // var subtotal = parseFloat($("#inputSubtotal").val());
+
+  // if (parseFloat($("#inputDesconto").val()) >= 100) {
+  //   $("#inputDesconto").val(100);
+  // }
+  // if (parseFloat($("#inputDesconto").val()) > 0) {
+  //   var desconto = subtotal * parseFloat($("#inputDesconto").val()) / 100;
+  // }
+  // else {
+
+  //   if ($("#inputDesconto").val() == "") {
+  //     $("#inputDesconto").val(0);
+  //   }
+
+  //   desconto = 0
+  // }
+
+  // $("#desconto").html('<b>R$ ' + (desconto.toFixed(2)).replace(".", ",") + '</b>');
+  // $("#total").html('<b>R$ ' + ((subtotal - desconto).toFixed(2)).replace(".", ",") + '</b>');
+  // $("#inputTotal").val(subtotal - desconto);
+
+  // // Extra
+  // // $("#DataVenda").html('<b>' + convertData($("#inputDataVenda").val()) + '</b>');
+}
+
+
 
 // Preencher modal Cliente
 $('#modal-cliente').on('shown.bs.modal', function (e) {
@@ -137,9 +189,7 @@ $(document).ready(function () {
 
   preencherClientes("")
 
-  preencherProdutos()
-
-  $(".select2").select2()
+  preencherProdutos("selectProdutos")
 
   $("#cep").inputmask('99999-999', { 'placeholder': '00000-000' })
 
@@ -206,11 +256,152 @@ $(document).ready(function () {
   })
 
 
+  // Submit Form Venda
+  $("#formVenda").submit(function (e) {
+    e.preventDefault()
+  })
+
   /**************************************************************************************
    * TABELA DE VENDAS
    **************************************************************************************/
+  $("#addProduto").click(function (e) {
+    e.preventDefault()
 
-   
+    var contador = parseInt($("#contador").val()) + 1
+    $("#contador").val(contador)
 
-   $("#modal-venda").modal("show")
+    var linha = "<tr id=\"" + contador + "\" class=\"animated bounceIn\">"
+      + "  <td class=\"text-center\"><b>" + contador + "</b></td>"
+      + "  <td class=\"text-center\"></td>"
+      + "  <td class=\"text-left\"><select name=\"produtos[]\" id=\"produtos" + contador + "\" class=\"form-control select2\"></select></td>"
+      + "  <td class=\"text-center\"><input type=\"number\" name=\"quantidade[]\" id=\"quantidade\" min=0 class=\"form-control quantidade\" value=0></td>"
+      + "  <td class=\"text-center\">R$ 0,00</td>"
+      + "  <td class=\"hidden\"><input type=\"hidden\" name=\"precoUnitario[]\" id=\"precoUnitario\" value=0></td>"
+      + "  <td class=\"text-center\">R$ 0,00</td>"
+      + "  <td class=\"text-center\"><div class=\"input-group\"><span class=\"input-group-addon\">- R$</span><input type=\"number\" name=\"desconto[]\" id=\"desconto\" min=0 step=.01 class=\"form-control desconto\" value=0></div></td>"
+      + "  <td class=\"text-center\">R$ 0,00</td>"
+      + "  <td class=\"text-center\"><button type=\"button\" class=\"btn btn-danger btn-xs excluir\"> <i class=\"fa fa-trash mr-sm\"></i>Excluir</button></td>"
+      + "</tr>"
+    $("#bodyProdutos").append(linha)
+
+    var produtos = $("#selectProdutos").html()
+    $("#produtos" + contador).html(produtos)
+    $(".select2").select2()
+  })
+
+
+  // Botão de Excluir
+  $("#produtosSelecionados").on("click", ".excluir", function (e) {
+    $(this).closest('tr').remove()
+
+    $("#contador").val(parseInt($("#contador").val()) - 1)
+
+    count = 0
+    $('#produtosSelecionados > tbody  > tr > td').each(function () {
+      if (this.cellIndex == 0) {
+        // console.log(this)
+        count++
+        $(this).html("<td class\"text-center\"><b>" + count + "</b></td>")
+      }
+    });
+
+    CalcularPontosSubTotal()
+
+  })
+
+
+  // Preencher ao selecionar um produto
+  $("#produtosSelecionados").on("change", ".select2", function (e) {
+    var idProduto = $(this).val()
+    var linha = (this).closest('tr')
+
+    // console.log($(linha).find('td'))
+
+    $.ajax({
+      type: 'post',
+      url: 'pages/api/getProduto.php',
+      data: 'id=' + idProduto,
+      dataType: 'json',
+      success: function (data) {
+        $(linha).find('td').each(function () {
+          if (this.cellIndex == 1) {
+            $(this).html(data["codigo"])
+          }
+
+          if (this.cellIndex == 3) {
+            $(this).html("<input type=\"number\" name=\"quantidade[]\" id=\"quantidade\" min=0 max=" + data["estoque"] + " class=\"form-control quantidade\" value=0>")
+          }
+
+          if (this.cellIndex == 4) {
+            $(this).html("R$ " + (parseFloat(data["precoVenda"]).toFixed(2)).replace(".", ","))
+          }
+
+          if (this.cellIndex == 5) {
+            $(this).val(data["precoVenda"])
+          }
+        })
+
+      },
+      error: function (err) {
+        console.log("Error" + err)
+      }
+    })
+
+  })
+
+  // Preencher ao mudar quantidade
+  $("#produtosSelecionados").on("change", ".quantidade", function (e) {
+    var quant = $(this).val()
+    var preco = 0
+    var desconto = 0
+
+    var linha = (this).closest('tr')
+    $(linha).find('td').each(function () {
+      if (this.cellIndex == 5) {
+        preco = $(this).val()
+        console.log(preco)
+      }
+      if (this.cellIndex == 6) {
+        $(this).html("R$ " + (parseFloat(quant * preco).toFixed(2)).replace(".", ","))
+      }
+      if (this.cellIndex == 7) {
+        desconto = $(this).val()
+        console.log(this)
+      }
+      if (this.cellIndex == 8) {
+        $(this).html("R$ " + (parseFloat(quant * preco - desconto).toFixed(2)).replace(".", ","))
+      }
+    })
+
+  })
+
+  // Preencher ao mudar desconto
+  $("#produtosSelecionados").on("change", ".desconto", function (e) {
+    var quant = 0
+    var preco = 0
+    var desconto = $(this).val()
+
+    var linha = (this).closest('tr')
+    $(linha).find('td').each(function () {
+      if (this.cellIndex == 3) {
+        quant = $(this).val()
+        console.log(quant)
+      }
+      if (this.cellIndex == 5) {
+        preco = $(this).val()
+        console.log(preco)
+      }
+      if (this.cellIndex == 6) {
+        $(this).html("R$ " + (parseFloat(quant * preco).toFixed(2)).replace(".", ","))
+      }
+      if (this.cellIndex == 8) {
+        $(this).html("R$ " + (parseFloat(quant * preco - desconto).toFixed(2)).replace(".", ","))
+      }
+    })
+
+  })
+
+
+  $("#modal-venda").modal("show")
+
 })

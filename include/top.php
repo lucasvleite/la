@@ -33,6 +33,8 @@
   <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="assets/css/select2.min.css">
+  <!-- Animate  --
+  <link rel="stylesheet" href="assets/css/animations.css">
   <!-- bootstrap Select -->
   <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.min.css"> -->
 

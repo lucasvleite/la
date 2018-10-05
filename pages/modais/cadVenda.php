@@ -32,12 +32,13 @@
         
         <div class="row">
           <div class="col-sm-12">
-            <button class="btn btn-info pull-right"><i class="fa fa-plus mr-sm"></i> Adicionar Produto</button>
+            <button id="addProduto" class="btn btn-info pull-right"><i class="fa fa-plus mr-sm"></i> Adicionar Produto</button>
+            <input type="hidden" id="contador" name="contador" value="0" />
           </div>
         </div>
 
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-12 mt-md">
             <table id="produtosSelecionados" class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
@@ -52,19 +53,7 @@
                   <th class="text-center">Excluir</th>
                 </tr>
               </thead>
-              <tbody id="tabela_produtos">
-                <tr>
-                  <th class="text-center"><b>1</b></th>
-                  <th class="text-center"></th>
-                  <th class="text-left"><select name="produtos" id="produtos" class="select2 form-control"></select></th>
-                  <th class="text-center"></th>
-                  <th class="text-center"></th>
-                  <th class="text-center"></th>
-                  <th class="text-center"></th>
-                  <th class="text-center"></th>
-                  <th class="text-center"></th>
-                </tr>
-              </tbody>
+              <tbody id="bodyProdutos"></tbody>
             </table>
           </div>
         </div>
@@ -101,3 +90,5 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<select name="produtos" id="selectProdutos" class="hidden"></select>
