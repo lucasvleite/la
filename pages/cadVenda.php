@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    <i class="fa fa-cubes mr-md"></i>Vendas <small>Lista de Vendas</small>
+    <i class="fa fa-shopping-cart mr-md"></i>Vendas <small>Lista de Vendas</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="./home.php?id=page1"><i class="fa fa-home"></i> Início</a></li>
@@ -39,5 +39,6 @@
 <?php
   include "modais/cadVenda.php";
   include "modais/cadCliente.php";
-  $arquivosJS = "<script src='assets/js/controle-vendas.js'></script>";
+  $arquivosJS = "<script src='assets/js/controle.js'></script>"
+                ."<script src='assets/js/controle-vendas.js'></script>";
 ?>

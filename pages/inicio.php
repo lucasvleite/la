@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
-    Início
-    <small>Painel de Controle</small>
+    Painel de Controle
+    <!-- <small>Painel de Controle</small> -->
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Início</li>
+    <!-- <li class="active">Início</li> -->
   </ol>
 </section>
 

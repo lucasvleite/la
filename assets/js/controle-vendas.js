@@ -99,29 +99,14 @@ function preencherProdutos(idTable) {
 
 function calcularValoresFinais() {
 
-  // var subtotal = parseFloat($("#inputSubtotal").val());
+  var valorTotal = 0
+  $('#produtosSelecionados > tbody  > tr > td > input#precoTotal').each(function () {
+    valorTotal += parseFloat($(this).val())
+  })
 
-  // if (parseFloat($("#inputDesconto").val()) >= 100) {
-  //   $("#inputDesconto").val(100);
-  // }
-  // if (parseFloat($("#inputDesconto").val()) > 0) {
-  //   var desconto = subtotal * parseFloat($("#inputDesconto").val()) / 100;
-  // }
-  // else {
-
-  //   if ($("#inputDesconto").val() == "") {
-  //     $("#inputDesconto").val(0);
-  //   }
-
-  //   desconto = 0
-  // }
-
-  // $("#desconto").html('<b>R$ ' + (desconto.toFixed(2)).replace(".", ",") + '</b>');
-  // $("#total").html('<b>R$ ' + ((subtotal - desconto).toFixed(2)).replace(".", ",") + '</b>');
-  // $("#inputTotal").val(subtotal - desconto);
-
-  // // Extra
-  // // $("#DataVenda").html('<b>' + convertData($("#inputDataVenda").val()) + '</b>');
+  desconto = $("#inputDesconto").val()
+  $("#spanTotal").html("<b>R$ "+( (valorTotal *(1-desconto/100) ).toFixed(2)).replace(".", ",")+"</b>")
+  $("#inputTotal").val( valorTotal *(1-desconto/100) )
 }
 
 
@@ -133,7 +118,7 @@ $("#dataVenda").on('load change', function () {
   $("#spanData").html('<b>' + $("#dataVenda").val() + '</b>');
 });
 
-$("#inputDesconto").on('load change', function () {
+$("#inputDesconto").on('load change blur click focusout keypress keydown keyup', function () {
   calcularValoresFinais();
 });
 
@@ -279,35 +264,13 @@ $(document).ready(function () {
       + "  <td class=\"text-center\"><div class=\"input-group\"><span class=\"input-group-addon\">- R$</span><input type=\"number\" name=\"desconto[]\" id=\"desconto\" min=0 step=.10 class=\"form-control desconto\" value=0></div></td>"
       + "  <td class=\"text-center\">R$ 0,00</td>"
       + "  <td class=\"text-center\"><button type=\"button\" class=\"btn btn-danger btn-xs excluir\"> <i class=\"fa fa-trash mr-sm\"></i>Excluir</button></td>"
+      + "  <td class=\"hidden\"><input type=\"hidden\" name=\"precoTotal[]\" id=\"precoTotal\" value=0></td>"
       + "</tr>"
     $("#bodyProdutos").append(linha)
 
     var produtos = $("#selectProdutos").html()
     $("#produtos" + contador).html(produtos)
     $(".select2").select2()
-  })
-
-
-  // Botão de Excluir
-  $("#produtosSelecionados").on("click", ".excluir", function (e) {
-    $(this).closest('tr').remove()
-
-    $("#contador").val(parseInt($("#contador").val()) - 1)
-
-    count = 0
-    $('#produtosSelecionados > tbody  > tr > td').each(function () {
-      if (this.cellIndex == 0) {
-        count++
-        $(this).html("<td class\"text-center\"><b>" + count + "</b></td>")
-      }
-    })
-
-    if (document.getElementById("produtosSelecionados").rows.length == 1) {
-      $("#parteFinal").addClass("hidden")
-    }
-
-    calcularValoresFinais()
-
   })
 
 
@@ -352,16 +315,14 @@ $(document).ready(function () {
 
 
   // Preencher ao mudar quantidade
-  $("#produtosSelecionados").on("load change blur focusout keypress keydown keyup", ".quantidade", function (e) {
+  $("#produtosSelecionados").on("load change blur click focusout keypress keydown keyup", ".quantidade", function (e) {
     var quant = $(this).val()
     var preco = 0
     var desconto = 0
 
     var linha = (this).closest('tr')
     $(linha).find('td').each(function () {
-      if (this.cellIndex == 5) {
-        preco = $(this).val()
-      }
+      if (this.cellIndex == 5) { preco = $(this).val() }
       if (this.cellIndex == 6) {
         $(this).html("R$ " + (parseFloat(quant * preco).toFixed(2)).replace(".", ","))
       }
@@ -372,6 +333,10 @@ $(document).ready(function () {
         var precoFinal = parseFloat(quant * preco - desconto)
         $(this).html("R$ " + (precoFinal.toFixed(2)).replace(".", ","))
       }
+      if (this.cellIndex == 10) {
+        var precoFinal = parseFloat(quant * preco - desconto)
+        $(this).children().val(precoFinal.toFixed(2))
+      }
     })
 
     calcularValoresFinais()
@@ -380,19 +345,15 @@ $(document).ready(function () {
 
 
   // Preencher ao mudar desconto
-  $("#produtosSelecionados").on("load change blur focusout keypress keydown keyup", ".desconto", function (e) {
+  $("#produtosSelecionados").on("load change blur click focusout keypress keydown keyup", ".desconto", function (e) {
     var quant = 0
     var preco = 0
     var desconto = $(this).val()
 
     var linha = (this).closest('tr')
     $(linha).find('td').each(function () {
-      if (this.cellIndex == 3) {
-        quant = $(this).children().val()
-      }
-      if (this.cellIndex == 5) {
-        preco = $(this).val()
-      }
+      if (this.cellIndex == 3) { quant = $(this).children().val() }
+      if (this.cellIndex == 5) { preco = $(this).val() }
       if (this.cellIndex == 6) {
         $(this).html("R$ " + (parseFloat(quant * preco).toFixed(2)).replace(".", ","))
       }
@@ -400,7 +361,34 @@ $(document).ready(function () {
         var precoFinal = parseFloat(quant * preco - desconto)
         $(this).html("R$ " + (precoFinal.toFixed(2)).replace(".", ","))
       }
+      if (this.cellIndex == 10) {
+        var precoFinal = parseFloat(quant * preco - desconto)
+        $(this).children().val(precoFinal.toFixed(2))
+      }
     })
+
+    calcularValoresFinais()
+
+  })
+
+  
+  // Botão de Excluir
+  $("#produtosSelecionados").on("click", ".excluir", function (e) {
+    $(this).closest('tr').remove()
+
+    $("#contador").val(parseInt($("#contador").val()) - 1)
+
+    count = 0
+    $('#produtosSelecionados > tbody  > tr > td').each(function () {
+      if (this.cellIndex == 0) {
+        count++
+        $(this).html("<td class\"text-center\"><b>" + count + "</b></td>")
+      }
+    })
+
+    if (document.getElementById("produtosSelecionados").rows.length == 1) {
+      $("#parteFinal").addClass("hidden")
+    }
 
     calcularValoresFinais()
 

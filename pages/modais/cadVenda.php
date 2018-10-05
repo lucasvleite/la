@@ -84,7 +84,7 @@
                 <label class="control-label">Desconto da Loja (%)</label>
 
                 <div class="input-group">
-                  <input type="number" class="col-sm-6 form-control bra-xs" step="0.10" id="inputDesconto" name="inputDesconto" placeholder="Desconto da Loja" max="100" min="0" value="0" maxlength="3" size="3">
+                  <input type="number" class="col-sm-6 form-control bra-xs" step="0.10" id="inputDesconto" name="inputDesconto" placeholder="Desconto da Loja" max="100" min="0" value=0 maxlength="3" size="3">
                   <span class="input-group-btn">
                     <button class="btn btn-secondary" type="button" disabled>%</button>
                   </span>
