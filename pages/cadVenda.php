@@ -19,18 +19,21 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-      <table id="example1" class="table table-bordered table-striped table-hover">
+      <table id="tabela-vendas" class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
             <th class="text-center">*</th>
+            <th class="text-center">Código</th>
             <th>Cliente</th>
             <th class="text-center">Desconto Loja</th>
             <th class="text-center">Total da Venda</th>
             <th class="text-center">Forma de Pagamento</th>
             <th class="text-center">Data da Venda</th>
-            <th class="text-center">Ação</th>
+            <th class="text-center">Imprimir</th>
+            <th class="text-center">Ações</th>
           </tr>
         </thead>
+        <tbody></tbody>
       </table>
     </div>
   </div>
@@ -39,6 +42,7 @@
 <?php
   include "modais/cadVenda.php";
   include "modais/cadCliente.php";
+  include "modais/produtosVenda.php";
   $arquivosJS = "<script src='assets/js/controle.js'></script>"
                 ."<script src='assets/js/controle-vendas.js'></script>";
 ?>

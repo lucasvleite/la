@@ -4,17 +4,17 @@ function gerarDataTable(idTable) {
     ajax: "pages/api/getVendas.php",
     columns: [
       { "data": "contador" },
+      { "data": "codigo" },
       { "data": "nome" },
-      { "data": "cpf" },
-      { "data": "tel1" },
-      { "data": "tel2" },
-      { "data": "email" },
-      // { "data": "endereco" },
-      // { "data": "cep" },
+      { "data": "desconto" },
+      { "data": "total" },
+      { "data": "formaPagamento" },
+      { "data": "dataVenda" },
+      { "data": "romaneio" },
       { "data": "acao" }
     ],
     "columnDefs": [
-      { "className": "text-center", "targets": [0, 2, 3, 4, 5, 6] }
+      { "className": "text-center", "targets": [0, 1, 3, 4, 5, 6, 7, 8] }
     ],
 
     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -105,8 +105,8 @@ function calcularValoresFinais() {
   })
 
   desconto = $("#inputDesconto").val()
-  $("#spanTotal").html("<b>R$ "+( (valorTotal *(1-desconto/100) ).toFixed(2)).replace(".", ",")+"</b>")
-  $("#inputTotal").val( valorTotal *(1-desconto/100) )
+  $("#spanTotal").html("<b>R$ " + ((valorTotal * (1 - desconto / 100)).toFixed(2)).replace(".", ",") + "</b>")
+  $("#inputTotal").val((valorTotal * (1 - desconto / 100)).toFixed(2))
 }
 
 
@@ -157,9 +157,31 @@ $('#modal-cliente').on('shown.bs.modal', function (e) {
   }
 })
 
+// Preencher modal Historico
+$('#modal-produtos').on('shown.bs.modal', function (e) {
+  var idVenda = $(e.relatedTarget).data('id')
+  $.ajax({
+    type: 'post',
+    url: 'pages/api/getProdutosVenda.php',
+    data: 'id=' + idVenda,
+    dataType: 'html',
+    success: function (data) {
+      $("#body-produtosVenda").html(data)
+    },
+    error: function (err) {
+      console.log(err)
+      $("#body-produtosVenda").html("")
+    }
+  })
+})
+//Fechar modal Historico
+$('#modal-produtos').on('hide.bs.modal', function () {
+  $("#body-produtosVenda").html("")
+})
+
 
 $(document).ready(function () {
-  // gerarDataTable("tabela-vendas")
+  gerarDataTable("tabela-vendas")
 
   preencherClientes("")
 
@@ -203,6 +225,7 @@ $(document).ready(function () {
       $("#cpf").parent().parent().removeClass("has-success").addClass("has-error")
     }
   })
+
 
   // Submit Form Novo Cliente
   $("#formNovoCliente").submit(function (e) {
@@ -261,7 +284,7 @@ $(document).ready(function () {
       + "  <td class=\"text-center\">R$ 0,00</td>"
       + "  <td class=\"hidden\"><input type=\"hidden\" name=\"precoUnitario[]\" id=\"precoUnitario\" value=0></td>"
       + "  <td class=\"text-center\">R$ 0,00</td>"
-      + "  <td class=\"text-center\"><div class=\"input-group\"><span class=\"input-group-addon\">- R$</span><input type=\"number\" name=\"desconto[]\" id=\"desconto\" min=0 step=.10 class=\"form-control desconto\" value=0></div></td>"
+      + "  <td class=\"text-center\"><div class=\"input-group\"><input type=\"number\" name=\"desconto[]\" id=\"desconto\" min=0 step=.10 class=\"form-control desconto\" value=0><span class=\"input-group-addon\"> % </span></div></td>"
       + "  <td class=\"text-center\">R$ 0,00</td>"
       + "  <td class=\"text-center\"><button type=\"button\" class=\"btn btn-danger btn-xs excluir\"> <i class=\"fa fa-trash mr-sm\"></i>Excluir</button></td>"
       + "  <td class=\"hidden\"><input type=\"hidden\" name=\"precoTotal[]\" id=\"precoTotal\" value=0></td>"
@@ -301,7 +324,7 @@ $(document).ready(function () {
           }
 
           if (this.cellIndex == 5) {
-            $(this).val(data["precoVenda"])
+            $(this).children().val(data["precoVenda"])
           }
         })
 
@@ -322,19 +345,19 @@ $(document).ready(function () {
 
     var linha = (this).closest('tr')
     $(linha).find('td').each(function () {
-      if (this.cellIndex == 5) { preco = $(this).val() }
+      if (this.cellIndex == 5) { preco = $(this).children().val() }
       if (this.cellIndex == 6) {
         $(this).html("R$ " + (parseFloat(quant * preco).toFixed(2)).replace(".", ","))
       }
       if (this.cellIndex == 7) {
-        desconto = $(this).children().children().next().val()
+        desconto = $(this).children().children().val()
       }
       if (this.cellIndex == 8) {
-        var precoFinal = parseFloat(quant * preco - desconto)
+        var precoFinal = parseFloat(quant * preco * (1 - desconto / 100))
         $(this).html("R$ " + (precoFinal.toFixed(2)).replace(".", ","))
       }
       if (this.cellIndex == 10) {
-        var precoFinal = parseFloat(quant * preco - desconto)
+        var precoFinal = parseFloat(quant * preco * (1 - desconto / 100))
         $(this).children().val(precoFinal.toFixed(2))
       }
     })
@@ -353,16 +376,16 @@ $(document).ready(function () {
     var linha = (this).closest('tr')
     $(linha).find('td').each(function () {
       if (this.cellIndex == 3) { quant = $(this).children().val() }
-      if (this.cellIndex == 5) { preco = $(this).val() }
+      if (this.cellIndex == 5) { preco = $(this).children().val() }
       if (this.cellIndex == 6) {
         $(this).html("R$ " + (parseFloat(quant * preco).toFixed(2)).replace(".", ","))
       }
       if (this.cellIndex == 8) {
-        var precoFinal = parseFloat(quant * preco - desconto)
+        var precoFinal = parseFloat(quant * preco * (1 - desconto / 100))
         $(this).html("R$ " + (precoFinal.toFixed(2)).replace(".", ","))
       }
       if (this.cellIndex == 10) {
-        var precoFinal = parseFloat(quant * preco - desconto)
+        var precoFinal = parseFloat(quant * preco * (1 - desconto / 100))
         $(this).children().val(precoFinal.toFixed(2))
       }
     })
@@ -371,7 +394,7 @@ $(document).ready(function () {
 
   })
 
-  
+
   // Botão de Excluir
   $("#produtosSelecionados").on("click", ".excluir", function (e) {
     $(this).closest('tr').remove()
@@ -386,6 +409,10 @@ $(document).ready(function () {
       }
     })
 
+    count = parseInt($("#contador").val()) - 1
+    $("#contador").val(count)
+
+
     if (document.getElementById("produtosSelecionados").rows.length == 1) {
       $("#parteFinal").addClass("hidden")
     }
@@ -395,6 +422,47 @@ $(document).ready(function () {
   })
 
 
-  $("#modal-venda").modal("show")
+  // Botão Cadastrar Venda
+  $("#cadastrarVenda").click(function (e) {
+    e.preventDefault()
+
+    $.ajax({
+      url: "pages/api/setVenda.php",
+      type: "POST",
+      data: $("#formVenda").serialize(),
+      dataType: 'json',
+      success: function (data) {
+
+        if (data[0] == 'error') {
+          swal('Oops...', data[1], 'error')
+        } else {
+          swal('Yes...', data[1], 'success').then((result) => {
+            gerarDataTable("tabela-vendas")
+            $("#bodyProdutos").html("")
+            $('#bodyProdutos > tbody  > tr').each(function () {
+              $(this).closest('tr').remove()
+            })
+
+            $("#formaPagamento").val('')
+            $("#clientes").val('')
+
+            $("#parteFinal").addClass("hidden")
+            $("#modal-venda").modal("hide")
+          })
+        }
+
+      },
+      error: function (erro, er) {
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: "Houve um erro de conexão. Por favor, tente novamente!"
+        })
+      }
+    })
+  })
+
+
+  // $("#modal-venda").modal("show")
 
 })

@@ -67,12 +67,12 @@
               <div class="col-sm-4 col-md-3">
                 <label class="control-label" for="formaPagamento">Forma de Pagamento</label>
                 <select id="formaPagamento" name="formaPagamento" class="form-control selectpicker" required>
-                  <option disabled selected>Selecione forma de pagamento</option>
+                  <option disabled selected value="">Selecione forma de pagamento</option>
                   <option value="1" data-icon="fa fa-money mr-md"> Dinheiro</option>
                   <option value="2" data-icon="fa fa-credit-card-alt mr-md"> Cartão de Crédito</option>
                   <option value="3" data-icon="fa fa-credit-card mr-md"> Cartão de Débito</option>
-                  <option value="4" data-icon="fa fa-barcode mr-md"> Boleto Bancário</option>
-                  <option value="5" data-icon="fa fa-cc mr-md"> Cheque</option>
+                  <option value="4" data-icon="fa fa-cc mr-md"> Cheque</option>
+                  <option value="5" data-icon="fa fa-barcode mr-md"> Boleto Bancário</option>
                   <option value="6" data-icon="fa fa-money mr-md"> Outro</option>
                 </select>
               </div>
@@ -85,9 +85,7 @@
 
                 <div class="input-group">
                   <input type="number" class="col-sm-6 form-control bra-xs" step="0.10" id="inputDesconto" name="inputDesconto" placeholder="Desconto da Loja" max="100" min="0" value=0 maxlength="3" size="3">
-                  <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="button" disabled>%</button>
-                  </span>
+                  <span class="input-group-addon">%</span>
                 </div>
 
               </div>
@@ -141,7 +139,7 @@
       <div class="modal-footer bg-success">
         <div class="text-center">
           <button type="button" class="btn btn-primary mr-md" data-dismiss="modal"><i class="fa fa-ban mr-xs"></i> Cancelar</button>
-          <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o mr-xs"></i> Cadastrar Venda</button>
+          <button type="submit" id="cadastrarVenda" class="btn btn-success"><i class="fa fa-floppy-o mr-xs"></i> Registrar Venda</button>
         </div>
       </div>
         <!-- /.box-footer -->

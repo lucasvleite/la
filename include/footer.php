@@ -4,7 +4,7 @@
   <footer class="main-footer">
     <div class="pull-left"> Versão 1.0 </div>
     <div class="pull-right hidden-xs"> <b>Webmaster:</b> Lucas Vicente Leite </div>
-    <div class="text-center"><strong> Copyright &copy; 2018</strong></div>
+    <div class="text-center"><strong> Copyright &copy; Loucuras da Arte</strong></div>
   </footer>
 
 </div>

@@ -1,11 +1,11 @@
 <!-- Modal -->
-<div class="modal fade modal-default" id="modal-historico">
+<div class="modal fade modal-default" id="modal-produtos">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-primary">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">HISTÓRICO DE ENTRADA E SAÍDA DO PRODUTO</h4>
+        <h4 class="modal-title">PRODUTOS DA VENDA</h4>
       </div>
 
       <div class="modal-body">
@@ -14,15 +14,15 @@
         <thead>
           <tr class="bg-navy">
             <th class="text-center"><b>*</b></th>
-            <th class="text-center">Produto</th>
-            <th class="text-center">Preço Unitário</th>
+            <th>Produto</th>
+            <th class="text-center">Preço</th>
             <th class="text-center">Quantidade</th>
-            <th>Cliente/Fornecedor</th>
-            <th class="text-center">Data</th>
-            <th class="text-center">Tipo transação</th>
+            <th class="text-center">SubTotal</th>
+            <th class="text-center">Desconto</th>
+            <th class="text-center">Total</th>
           </tr>
         </thead>
-        <tbody id="body-historico"></tbody>
+        <tbody id="body-produtosVenda"></tbody>
       </table>
 
       </div>
