@@ -7,8 +7,33 @@ else{
 
 	$idVenda = base64_decode($_GET["id"]);
 
-	$query = "SELECT "
+	$totalDesconto = 0;
+	$totalFinal    = 0;
 
+	$query =
+	"	SELECT V.idCliente, C.nome, C.cpf_cnpj, C.tel1, V.desconto, V.valorVenda, V.formaPagamento, F.descricao, V.dataVenda
+		FROM vendas V
+		LEFT JOIN clientes C ON V.idCliente = C.idCliente
+		LEFT JOIN formapagamento F ON V.formaPagamento = F.idFormaPagamento
+		WHERE V.idVenda = $idVenda
+	";
+
+	$resultado = $database->getQuery($query);
+
+	foreach( $resultado as $linha ){
+		$aux          = explode(" ",$linha["dataVenda"]);
+		$data         = implode("/",array_reverse(explode("-",$aux[0])));
+
+		$codCliente 	= $linha["idCliente"];
+		$cliente    	= $linha["nome"];
+		$totalDesconto= $linha["desconto"];
+		$totalFinal   = $linha["valorVenda"];
+		$formaPag			= $linha["descricao"];
+		$cpf					= $cpf = ( isset($linha['cpf_cnpj']) ) ? vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($linha['cpf_cnpj'])) : "";
+		$tel					= $linha['tel1'];
+		if( strlen($tel) == 10 ){ $tel = vsprintf("(%s%s) %s%s%s%s-%s%s%s%s", str_split($tel)); }
+		if( strlen($tel) == 11 ){ $tel = vsprintf("(%s%s) %s%s%s%s%s-%s%s%s%s", str_split($tel)); }
+	}
 
 ?>
 <xml version="1.0" encoding="UTF-8" ?>
@@ -532,39 +557,6 @@ else{
 </head>
 
 <body dir="ltr" style="max-width:21.001cm;margin-top:1cm; margin-bottom:1cm; margin-left:0.499cm; margin-right:0.499cm; background-color:transparent; ">
-
-<?php
-
-$totalDesconto = 0;
-$totalFinal    = 0;
-
-$query =
-"	SELECT V.idCliente, C.nome, C.cpf_cnpj, C.tel1, V.desconto, V.valorVenda, V.formaPagamento, F.descricao, V.dataVenda
-	FROM vendas V
-	LEFT JOIN clientes C ON V.idCliente = C.idCliente
-	LEFT JOIN formapagamento F ON V.formaPagamento = F.idFormaPagamento
-	WHERE V.idVenda = $idVenda
-";
-
-$resultado = $database->getQuery($query);
-
-foreach( $resultado as $linha ){
-	$aux          = explode(" ",$linha["dataVenda"]);
-	$data         = implode("/",array_reverse(explode("-",$aux[0])));
-
-	$codCliente 	= $linha["idCliente"];
-	$cliente    	= $linha["nome"];
-	$totalDesconto= $linha["desconto"];
-	$totalFinal   = $linha["valorVenda"];
-	$formaPag			= $linha["descricao"];
-	$cpf					= $cpf = ( isset($linha['cpf_cnpj']) ) ? vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($linha['cpf_cnpj'])) : "";
-	$tel					= $linha['tel1'];
-  if( strlen($tel) == 10 ){ $tel = vsprintf("(%s%s) %s%s%s%s-%s%s%s%s", str_split($tel)); }
-  if( strlen($tel) == 11 ){ $tel = vsprintf("(%s%s) %s%s%s%s%s-%s%s%s%s", str_split($tel)); }
-}
-
-?>
-
 	<table border="0" cellspacing="0" cellpadding="0" class="Tabela1">
 		<colgroup>
 			<col width="22" />

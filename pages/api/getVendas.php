@@ -35,7 +35,7 @@ foreach( $resultado as $linha ){
       "formaPagamento"  => utf8_encode($linha["descricao"]),
       "dataVenda"       => $data,
       "romaneio"        => "<a href=\"gerarRomaneio.php?id=".base64_encode($linha['idVenda'])."\" target=\"_blank\" class=\"btn btn-xs btn-primary pl-sm pr-sm\"><i class=\"fa fa-print\"> Romaneio</i></a>",
-      "acao"            => "<button class=\"btn btn-xs btn-danger pl-sm pr-sm mr-md\" data-id='$linha[idVenda]'><i class=\"fa fa-remove\"> Deletar</i></button>"
+      "acao"            => "<button class=\"btn btn-xs btn-danger pl-sm pr-sm mr-md\" onclick=deletarVenda($linha[idVenda])><i class=\"fa fa-remove\"> Deletar</i></button>"
                           ."<button class=\"btn btn-xs btn-success pl-sm pr-sm \" data-id='$linha[idVenda]' data-target=\"#modal-produtos\" data-toggle=\"modal\"><i class=\"fa fa-cubes\"> Produtos</i></button>",
       "contador"        => $contador
     ]

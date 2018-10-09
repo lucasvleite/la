@@ -157,7 +157,7 @@ $('#modal-cliente').on('shown.bs.modal', function (e) {
   }
 })
 
-// Preencher modal Historico
+// Preencher modal ProdutosVenda
 $('#modal-produtos').on('shown.bs.modal', function (e) {
   var idVenda = $(e.relatedTarget).data('id')
   $.ajax({
@@ -174,7 +174,7 @@ $('#modal-produtos').on('shown.bs.modal', function (e) {
     }
   })
 })
-//Fechar modal Historico
+//Fechar modal ProdutosVenda
 $('#modal-produtos').on('hide.bs.modal', function () {
   $("#body-produtosVenda").html("")
 })
@@ -301,8 +301,6 @@ $(document).ready(function () {
   $("#produtosSelecionados").on("change", ".select2", function (e) {
     var idProduto = $(this).val()
     var linha = (this).closest('tr')
-
-    // console.log($(linha).find('td'))
 
     $.ajax({
       type: 'post',
@@ -466,3 +464,12 @@ $(document).ready(function () {
   // $("#modal-venda").modal("show")
 
 })
+
+
+function deletarVenda(id) {
+  $.ajax({
+    function(params) {
+
+    }
+  })
+}

@@ -84,6 +84,7 @@ CREATE TABLE `entradaprodutos` (
 CREATE TABLE `formapagamento` (
   `idFormaPagamento` int(11) NOT NULL,
   `descricao` varchar(50) NOT NULL,
+  `icone` varchar(20) DEFAULT NULL,
   `DATE_CREATED` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `DATE_MODIFIED` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -345,6 +346,19 @@ ALTER TABLE `vendas`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+--
+-- Fazendo dump de dados para tabela `formapagamento`
+--
+
+INSERT INTO `formapagamento` ( `descricao`, `icone`, `DATE_CREATED`, `DATE_MODIFIED`) VALUES
+('Dinheiro', 'fa-money', '2018-10-09 13:38:32', '2018-10-09 13:38:32'),
+('Cartão de Crédito', 'fa-credit-card-alt', '2018-10-09 13:38:32', '2018-10-09 13:38:32'),
+('Cartão de Débito', 'fa-credit-card', '2018-10-09 13:41:11', '2018-10-09 13:41:11'),
+('Cheque', 'fa-cc', '2018-10-09 13:41:11', '2018-10-09 13:41:11'),
+('Boleto Bancário', 'fa-barcode', '2018-10-09 13:41:11', '2018-10-09 13:41:11'),
+('Outro', 'fa-usd', '2018-10-09 13:41:11', '2018-10-09 13:41:11');
 
 
 --

@@ -18,6 +18,7 @@ if(isset($_GET["id"])){
 
   if ( $pagina == "page1" )         { include("pages/inicio.php"); }
   if ( $pagina == "addEstoque" )    { include("pages/cadProduto.php"); }
+  if ( $pagina == "cadCategoria" )  { include("pages/cadCategoria.php"); }
   if ( $pagina == "cadCliente" )    { include("pages/cadCliente.php"); }
   if ( $pagina == "cadFornecedor" ) { include("pages/cadFornecedor.php"); }
   if ( $pagina == "vendas" )        { include("pages/cadVenda.php"); }

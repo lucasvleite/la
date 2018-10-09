@@ -73,7 +73,7 @@
                   <option value="3" data-icon="fa fa-credit-card mr-md"> Cartão de Débito</option>
                   <option value="4" data-icon="fa fa-cc mr-md"> Cheque</option>
                   <option value="5" data-icon="fa fa-barcode mr-md"> Boleto Bancário</option>
-                  <option value="6" data-icon="fa fa-money mr-md"> Outro</option>
+                  <option value="6" data-icon="fa fa-usd mr-md"> Outro</option>
                 </select>
               </div>
               <div class="col-sm-3">

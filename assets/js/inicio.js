@@ -7,11 +7,15 @@ $(document).ready(function () {
       if (data[0] == 'error') {
         swal('Oops...', data[1], 'error')
       } else {
-        $("#totalVendas").html((data.totalVendas.toFixed(2)).replace(".", ","))
-        $("#quantidadeVendas").html(data.quantidadeVendas + " Vendas")
+        if (data.quantidadeVendas == 1) {
+          $("#quantidadeVendas").html("1 Venda")
+        } else {
+          $("#quantidadeVendas").html(data.quantidadeVendas + " Vendas")
+        }
         $("#totalProdutos").html(data.totalProdutos)
         $("#totalClientes").html(data.totalClientes)
         $("#totalFornecedores").html(data.totalFornecedores)
+        $("#totalVendas").html(data.totalVendas.replace(".", ","))
       }
 
     },

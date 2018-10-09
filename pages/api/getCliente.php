@@ -1,11 +1,11 @@
 <?php
 
-include ("../../config/config.php");
-
 if(($_POST['id']) == ""){
   echo json_encode(array("error","Post Cliente incorreto!"));
   exit;
 }
+
+include ("../../config/config.php");
 
 $idCliente = $_POST['id'];
 
