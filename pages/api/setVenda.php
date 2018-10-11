@@ -20,13 +20,6 @@ if($quantProdutos == NULL) {
 }
 
 
-$query = "SELECT count(*) as contador FROM vendas";
-$resultado = $database->getQuery($query);
-$idVenda = 0;
-foreach( $resultado as $linha ){
-  $idVenda = (int)$linha['contador'] + 1;
-}
-
 $queryVenda = "valorVenda = '$valorFinal'";
 $queryVenda .= ($cliente == "")         ? "" : ", idCliente = '$cliente'";
 $queryVenda .= ($formaPagamento == "")  ? "" : ", formaPagamento = '$formaPagamento'";
@@ -36,6 +29,14 @@ $queryVenda .= ($porcentDesconto == "") ? "" : ", desconto = '" . floatval($porc
 
 $query = "INSERT INTO vendas SET $queryVenda";
 $resultado = $database->runQuery($query);
+
+
+$query = "SELECT idVenda FROM vendas ORDER BY idVenda DESC LIMIT 1";
+$resultado = $database->getQuery($query);
+
+foreach( $resultado as $linha ){
+  $idVenda = (int)$linha['idVenda'];
+}
 
 
 $queryItens = "";

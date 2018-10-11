@@ -121,9 +121,9 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (data) {
         if (data[0] == 'error') {
-          swal('Oops...', data[1], 'error')
+          swal(data[1],'', 'error')
         } else {
-          swal('Yes...', data[1], 'success').then((result) => { location.href = "./home.php?id=cadFornecedor" })
+          swal(data[1],'', 'success').then((result) => { location.href = "./home.php?id=cadFornecedor" })
         }
 
       },

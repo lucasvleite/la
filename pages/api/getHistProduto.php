@@ -22,7 +22,7 @@ $query =
   FROM itensVenda I
   INNER JOIN vendas V ON V.idVenda = I.idVenda
   LEFT JOIN clientes C ON C.idCliente = V.idCliente
-  WHERE I.idProduto = $idProduto
+  WHERE I.idProduto = $idProduto AND V.status = 1
   UNION
   SELECT D.DATE_CREATED, D.quantidade, 'preco' = NULL, 'nome'=NULL, D.dataDescarte as 'data', 3 as tipo
   FROM itensDesconsiderar D

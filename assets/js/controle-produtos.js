@@ -268,9 +268,9 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (data) {
         if (data[0] == 'error') {
-          swal('Oops...', data[1], 'error')
+          swal(data[1],'', 'error')
         } else {
-          swal('Yes...', data[1], 'success').then((result) => {
+          swal(data[1],'', 'success').then((result) => {
             preencherFornecedores(data[2])
             $("#formNovoFornecedor").find('input').val('')
             $("#modal-fornecedor").modal("hide")
@@ -295,9 +295,9 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (data) {
         if (data[0] == 'error') {
-          swal('Oops...', data[1], 'error')
+          swal(data[1],'', 'error')
         } else {
-          swal('Yes...', data[1], 'success').then((result) => {
+          swal(data[1],'', 'success').then((result) => {
             preencherCategorias(data[2])
             $("#descricaoCategoria").val("")
             $("#modal-categoria").modal("hide")
@@ -322,9 +322,9 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (data) {
         if (data[0] == 'error') {
-          swal('Oops...', data[1], 'error')
+          swal(data[1],'', 'error')
         } else {
-          swal('Yes...', data[1], 'success').then((result) => {
+          swal(data[1],'', 'success').then((result) => {
             gerarDataTable("tabela-produtos")
             $("#formDescarte").find('input').val('')
             $("#modal-descarte").modal("hide")
@@ -428,9 +428,9 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (data) {
         if (data[0] == 'error') {
-          swal('Oops...', data[1], 'error')
+          swal(data[1],'', 'error')
         } else {
-          swal('Yes...', data[1], 'success').then((result) => {
+          swal(data[1],'', 'success').then((result) => {
             $("#formNovoProduto").find('input').val('')
             location.href = "./home.php?id=addEstoque"
           })

@@ -1,11 +1,11 @@
 <?php
 
-include ("../../config/config.php");
-
 if(($_POST['id']) == ""){
   echo json_encode(array("error","Post Venda incorreto!"));
   exit;
 }
+
+include ("../../config/config.php");
 
 $idVenda = $_POST['id'];
 
@@ -14,7 +14,7 @@ $query =
   FROM vendas V
   LEFT JOIN clientes C ON V.idCliente = C.idCliente
   LEFT JOIN formapagamento F ON V.formaPagamento = F.idFormaPagamento
-  WHERE V.idVenda = $idVenda
+  WHERE V.idVenda = $idVenda AND V.status = 1
 ";
 
 $resultado = $database->getQuery($query);

@@ -8,7 +8,7 @@ $query =
     ( SELECT COUNT(P.idProduto) AS totalProdutos FROM produtos P WHERE P.estoque > 0 ) Pro,
     ( SELECT COUNT(C.idCliente) AS totalClientes FROM clientes C ) Cli,
     ( SELECT COUNT(F.idFornecedor) AS totalFornecedores FROM fornecedores F ) Forn,
-    ( SELECT COUNT(V.idVenda) AS quantidadeVendas, SUM(V.valorVenda) AS totalVendas FROM vendas V WHERE V.DATE_CREATED >= CURRENT_DATE ) Ven
+    ( SELECT COUNT(V.idVenda) AS quantidadeVendas, SUM(V.valorVenda) AS totalVendas FROM vendas V WHERE V.DATE_CREATED >= CURRENT_DATE AND V.status = 1 ) Ven
 ";
 
 $resultado = $database->getQuery($query);

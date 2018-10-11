@@ -5,17 +5,21 @@ $(document).ready(function () {
     dataType: 'json',
     success: function (data) {
       if (data[0] == 'error') {
-        swal('Oops...', data[1], 'error')
+        swal(data[1],'', 'error')
       } else {
-        if (data.quantidadeVendas == 1) {
-          $("#quantidadeVendas").html("1 Venda")
+        if (data.totalVendas == 0) {
+          $("#totalVendas").html("0,00")
+        } else {
+          $("#totalVendas").html(data.totalVendas.replace(".", ","))
+        }
+        if (data.quantidadeVendas == 0 || data.quantidadeVendas == 1) {
+          $("#quantidadeVendas").html(data.quantidadeVendas + " Venda")
         } else {
           $("#quantidadeVendas").html(data.quantidadeVendas + " Vendas")
         }
         $("#totalProdutos").html(data.totalProdutos)
         $("#totalClientes").html(data.totalClientes)
         $("#totalFornecedores").html(data.totalFornecedores)
-        $("#totalVendas").html(data.totalVendas.replace(".", ","))
       }
 
     },

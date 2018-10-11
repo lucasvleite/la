@@ -43,13 +43,14 @@
 <!-- FastClick -->
 <script src="assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- SweetAlert 2 -->
-<script src="assets/js/sweetalert2.min.js"></script>
+<script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
 <!-- Select 2 -->
 <script src="assets/js/select2.min.js"></script>
 <!-- Animations  --
 <script src="assets/js/css3-animate-it.js"></script>
-<!-- Select bootstrap --
-<script src="assets/js/bootstrap-select.min.js"></script>
+<!-- Select bootstrap -->
+<script src="node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <!-- AdminLTE App -->
 <script src="assets/js/adminlte.min.js"></script>
 <!-- Caso exista escript da pagina para adicionar -->

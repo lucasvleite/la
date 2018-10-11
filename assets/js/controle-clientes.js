@@ -136,9 +136,9 @@ $(document).ready(function () {
       success: function (data) {
         console.log(data)
         if (data[0] == 'error') {
-          swal('Oops...', data[1], 'error')
+          swal(data[1],'', 'error')
         } else {
-          swal('Yes...', data[1], 'success').then((result) => { location.href = "./home.php?id=cadCliente" })
+          swal(data[1],'', 'success').then((result) => { location.href = "./home.php?id=cadCliente" })
         }
 
       },

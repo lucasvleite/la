@@ -34,6 +34,9 @@
           </span> -->
         </a>
       </li>
+    </ul>
+    <ul class="sidebar-menu tree" data-widget="tree">
+      <li class="header">CONTROLES</li>
       <li>
         <a href="./home.php?id=addEstoque">
           <i class="fa fa-cubes"></i> <span> Controle Estoque</span>
@@ -42,6 +45,14 @@
       <li>
         <a href="./home.php?id=vendas">
           <i class="fa fa-shopping-cart"></i> <span> Controle Vendas</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="sidebar-menu tree" data-widget="tree">
+      <li class="header">RELATÓRIOS</li>
+      <li>
+        <a href="./home.php?id=r1">
+          <i class="fa fa-file-text"></i> <span>Vendas do dia</span>
         </a>
       </li>
     </ul>
@@ -61,14 +72,6 @@
           <li><a href="./home.php?id=cadFornecedor"><i class="fa fa-truck"></i><span> Fornecedores </span></a></li>
         <!-- </ul>
       </li> -->
-    </ul>
-    <ul class="sidebar-menu tree" data-widget="tree">
-      <li class="header">RELATÓRIOS</li>
-      <li>
-        <a href="./home.php?id=r1">
-          <i class="fa fa-file-text"></i> <span>Vendas</span>
-        </a>
-      </li>
     </ul>
   </section>
 

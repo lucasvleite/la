@@ -3,19 +3,19 @@ function gerarDataTable(idTable) {
     destroy: true,
     ajax: "pages/api/getVendas.php",
     columns: [
-      { "data": "contador" },
-      { "data": "codigo" },
+      { "data": "contador", "className": "text-center" },
+      { "data": "codigo", "className": "text-center" },
       { "data": "nome" },
-      { "data": "desconto" },
-      { "data": "total" },
-      { "data": "formaPagamento" },
-      { "data": "dataVenda" },
-      { "data": "romaneio" },
-      { "data": "acao" }
+      { "data": "desconto", "className": "text-center" },
+      { "data": "total", "className": "text-center" },
+      { "data": "formaPagamento", "className": "text-center" },
+      { "data": "dataVenda", "className": "text-center" },
+      // { "data": "romaneio" },
+      { "data": "acao", "className": ["acao text-center"] }
     ],
-    "columnDefs": [
-      { "className": "text-center", "targets": [0, 1, 3, 4, 5, 6, 7, 8] }
-    ],
+    // "columnDefs": [
+    //   { "className": "text-center", "targets": [0, 1, 3, 4, 5, 6, 7] }
+    // ],
 
     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
     // dom: 'Bfrtip',
@@ -105,6 +105,7 @@ function calcularValoresFinais() {
   })
 
   desconto = $("#inputDesconto").val()
+  $("#spanDesconto").html("<b>R$ " + ((valorTotal * (desconto / 100)).toFixed(2)).replace(".", ",") + "</b>")
   $("#spanTotal").html("<b>R$ " + ((valorTotal * (1 - desconto / 100)).toFixed(2)).replace(".", ",") + "</b>")
   $("#inputTotal").val((valorTotal * (1 - desconto / 100)).toFixed(2))
 }
@@ -149,11 +150,11 @@ $('#modal-cliente').on('shown.bs.modal', function (e) {
         $("#inf_adicionais").val(data["inf_adicionais"])
       },
       error: function (err) {
-        $("#formNovoCliente").find('input').val('')
+        $("#formNovoCliente").find('input').val("")
       }
     })
   } else {
-    $("#formNovoCliente").find('input').val('')
+    $("#formNovoCliente").find('input').val("")
   }
 })
 
@@ -239,11 +240,11 @@ $(document).ready(function () {
       success: function (data) {
 
         if (data[0] == 'error') {
-          swal('Oops...', data[1], 'error')
+          swal(data[1], '', 'error')
         } else {
-          swal('Yes...', data[1], 'success').then((result) => {
+          swal(data[1], '', 'success').then((result) => {
             preencherClientes(data[2])
-            $("#formNovoCliente").find('input').val('')
+            $("#formNovoCliente").find('input').val("")
             $("#modal-cliente").modal("hide")
           })
         }
@@ -284,7 +285,7 @@ $(document).ready(function () {
       + "  <td class=\"text-center\">R$ 0,00</td>"
       + "  <td class=\"hidden\"><input type=\"hidden\" name=\"precoUnitario[]\" id=\"precoUnitario\" value=0></td>"
       + "  <td class=\"text-center\">R$ 0,00</td>"
-      + "  <td class=\"text-center\"><div class=\"input-group\"><input type=\"number\" name=\"desconto[]\" id=\"desconto\" min=0 step=.10 class=\"form-control desconto\" value=0><span class=\"input-group-addon\"> % </span></div></td>"
+      + "  <td class=\"text-center\"><div class=\"input-group\"><input type=\"number\" name=\"desconto[]\" id=\"desconto\" min=0 class=\"form-control desconto\" value=0><span class=\"input-group-addon\"> % </span></div></td>"
       + "  <td class=\"text-center\">R$ 0,00</td>"
       + "  <td class=\"text-center\"><button type=\"button\" class=\"btn btn-danger btn-xs excluir\"> <i class=\"fa fa-trash mr-sm\"></i>Excluir</button></td>"
       + "  <td class=\"hidden\"><input type=\"hidden\" name=\"precoTotal[]\" id=\"precoTotal\" value=0></td>"
@@ -310,7 +311,7 @@ $(document).ready(function () {
       success: function (data) {
         $(linha).find('td').each(function () {
           if (this.cellIndex == 1) {
-            $(this).html(data["codigo"])
+            $(this).html(("00000" + data["codigo"]).slice(-5))
           }
 
           if (this.cellIndex == 3) {
@@ -432,17 +433,27 @@ $(document).ready(function () {
       success: function (data) {
 
         if (data[0] == 'error') {
-          swal('Oops...', data[1], 'error')
+          swal(data[1], '', 'error')
         } else {
-          swal('Yes...', data[1], 'success').then((result) => {
+          swal(data[1], '', 'success').then((result) => {
             gerarDataTable("tabela-vendas")
             $("#bodyProdutos").html("")
             $('#bodyProdutos > tbody  > tr').each(function () {
               $(this).closest('tr').remove()
             })
 
-            $("#formaPagamento").val('')
-            $("#clientes").val('')
+            var data = new Date();
+            $("#dataVenda").datepicker("setDate", data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear())
+            $("#spanData").html("<b>" + data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear() + "</b>")
+
+            $("#contador").val(0)
+
+            $("#formaPagamento").val("")
+            $("#clientes").val("")
+            $("#inputDesconto").val("")
+            $("#spanTotal").html("")
+            $("#spanDesconto").html("")
+            $("#spanPagamento").html("<b>Selecione forma de pagamento</b>")
 
             $("#parteFinal").addClass("hidden")
             $("#modal-venda").modal("hide")
@@ -463,13 +474,48 @@ $(document).ready(function () {
 
   // $("#modal-venda").modal("show")
 
+  var body = document.body
+  body.classList.add("sidebar-collapse")
 })
 
 
 function deletarVenda(id) {
-  $.ajax({
-    function(params) {
+  swal({
+    title: "Tem certeza que deseja deletar a venda '" + id + "'?",
+    // text: "You won't be able to revert this!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'SIM, pode deletar!'
+  }).then((result) => {
+    if (result.value) {
+      $.ajax({
+        url: "pages/api/deleteVenda.php",
+        type: "POST",
+        data: 'id=' + id,
+        dataType: 'json',
+        success: function (data) {
 
+          if (data[0] == 'error') {
+            swal(data[1], '', 'error')
+          } else {
+            swal(data[1], '', 'success').then((result) => {
+              gerarDataTable("tabela-vendas")
+            })
+          }
+
+        },
+        error: function (erro, er) {
+          swal({
+            type: 'error',
+            title: 'Oops...',
+            text: "Houve um erro de conexão. Por favor, tente novamente!"
+          })
+        }
+      })
     }
   })
+
+
 }

@@ -30,7 +30,7 @@
         </div>
 
         <hr>
-        
+
         <div class="row">
           <div class="col-sm-12">
             <button id="addProduto" class="btn btn-info pull-right"><i class="fa fa-plus mr-sm"></i> Adicionar Produto</button>
@@ -40,18 +40,18 @@
 
         <div class="row">
           <div class="col-sm-12 mt-md">
-            <table id="produtosSelecionados" class="table table-bordered table-striped table-hover">
+            <table id="produtosSelecionados" class="table table-striped table-hover">
               <thead>
                 <tr>
-                  <th class="text-center"><b>#</b></th>
-                  <th class="text-center">Código</th>
-                  <th class="text-left">Nome Produto</th>
-                  <th class="text-center">Quantidade</th>
-                  <th class="text-center">Preço Unitário</th>
-                  <th class="text-center">Subtotal</th>
-                  <th class="text-center">Desconto</th>
-                  <th class="text-center">Preço Final</th>
-                  <th class="text-center">Excluir</th>
+                  <th class="text-center" width="5%"><b>#</b></th>
+                  <th class="text-center" width="5%">Código</th>
+                  <th class="text-left"   width="35%">Nome Produto</th>
+                  <th class="text-center" width="15%">Quantidade</th>
+                  <th class="text-center" width="5%">Preço Unitário</th>
+                  <th class="text-center" width="5%">Subtotal</th>
+                  <th class="text-center" width="15%">Desconto</th>
+                  <th class="text-center" width="5%">Preço Final</th>
+                  <th class="text-center" width="5%">Excluir</th>
                 </tr>
               </thead>
               <tbody id="bodyProdutos"></tbody>
@@ -84,7 +84,7 @@
                 <label class="control-label">Desconto da Loja (%)</label>
 
                 <div class="input-group">
-                  <input type="number" class="col-sm-6 form-control bra-xs" step="0.10" id="inputDesconto" name="inputDesconto" placeholder="Desconto da Loja" max="100" min="0" value=0 maxlength="3" size="3">
+                  <input type="number" class="col-sm-6 form-control bra-xs" id="inputDesconto" name="inputDesconto" placeholder="Desconto da Loja" max="100" min="0" value=0 maxlength="3" size="3">
                   <span class="input-group-addon">%</span>
                 </div>
 

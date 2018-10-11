@@ -22,15 +22,15 @@
       <table id="tabela-vendas" class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
-            <th class="text-center">*</th>
-            <th class="text-center">Código</th>
-            <th>Cliente</th>
-            <th class="text-center">Desconto Loja</th>
-            <th class="text-center">Total da Venda</th>
-            <th class="text-center">Forma de Pagamento</th>
-            <th class="text-center">Data da Venda</th>
-            <th class="text-center">Imprimir</th>
-            <th class="text-center">Ações</th>
+            <th class="text-center" width="3%">*</th>
+            <th class="text-center" width="4%">Código</th>
+            <th width="%37">Cliente</th>
+            <th class="text-center" width="4%">Desconto Loja</th>
+            <th class="text-center" width="4%">Valor Total</th>
+            <th class="text-center" width="12%">Forma Pagamento</th>
+            <th class="text-center" width="4%">Data da Venda</th>
+            <!-- <th class="text-center">Imprimir</th> -->
+            <th class="text-center" width="22%">Ações</th>
           </tr>
         </thead>
         <tbody></tbody>

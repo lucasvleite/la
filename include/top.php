@@ -30,13 +30,13 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="assets/css/dataTables.bootstrap.min.css">
   <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+  <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="assets/css/select2.min.css">
-  <!-- Animate  --
+  <!-- Animate  -->
   <link rel="stylesheet" href="assets/css/animations.css">
   <!-- bootstrap Select -->
-  <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.min.css"> -->
+  <link rel="stylesheet" href="node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
 
   <!-- My Style -->
   <link rel="stylesheet" href="assets/css/myStyle.css">
