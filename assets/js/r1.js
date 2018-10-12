@@ -1,5 +1,5 @@
 function gerarTabela() {
-  console.log()
+
   $.ajax({
     type: 'post',
     url: 'reports/api/getVendasDia.php',

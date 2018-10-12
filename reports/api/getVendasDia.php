@@ -19,14 +19,10 @@ $formaPagamento = $_POST["formaPagamento"];
 if( $formaPagamento == 0 ) {
   $query =
   " SELECT
-        P.idProduto, P.codigoProduto, P.descricaoProduto,
-        I.precoUnitario, I.desconto, I.quantidade,
         V.idVenda, V.dataVenda, V.valorVenda, V.desconto as descontoLoja, 
         F.idFormaPagamento, F.descricao as descricaoPgto, F.icone,
         C.idCliente, C.nome
     FROM vendas V
-    INNER JOIN itensVenda I ON V.idVenda = I.idVenda
-    INNER JOIN produtos P ON P.idProduto = I.idProduto
     LEFT JOIN clientes C ON V.idCliente = C.idCliente
     LEFT JOIN formapagamento F ON V.formaPagamento = F.idFormaPagamento
     WHERE V.status = 1 AND V.dataVenda = DATE('$data')
@@ -35,14 +31,10 @@ if( $formaPagamento == 0 ) {
 } else {
   $query =
   " SELECT
-        P.idProduto, P.codigoProduto, P.descricaoProduto,
-        I.precoUnitario, I.desconto, I.quantidade,
         V.idVenda, V.dataVenda, V.valorVenda, V.desconto as descontoLoja, 
         F.idFormaPagamento, F.descricao as descricaoPgto, F.icone,
         C.idCliente, C.nome
     FROM vendas V
-    INNER JOIN itensVenda I ON V.idVenda = I.idVenda
-    INNER JOIN produtos P ON P.idProduto = I.idProduto
     LEFT JOIN clientes C ON V.idCliente = C.idCliente
     LEFT JOIN formapagamento F ON F.idFormaPagamento = '$formaPagamento'
     WHERE V.status = 1 AND V.dataVenda > DATE('$data') AND V.formaPagamento = '$formaPagamento'
@@ -50,35 +42,41 @@ if( $formaPagamento == 0 ) {
   ";
 }
 
+
 $resultado = $database->getQuery($query);
 
-$retorno    = NULL;
-$contador   = 0;
-$contLinhas = 0;
-$anterior   = "";
-$atual      = "";
+$retorno = "";
 
-$produtos["codigo"]     = "";
-$produtos["descricao"]  = "";
-$produtos["preco"]      = "";
-$produtos["quantidade"] = "";
-$produtos["desconto"]   = "";
-$produtos["subtotal"]   = "";
-$produtos["total"]      = "";
+foreach ($resultado as $linha) {
+  $idVenda = $linha['idVenda'];
 
-foreach( $resultado as $linha ){
+  $produtos["codigo"]     = "";
+  $produtos["descricao"]  = "";
+  $produtos["preco"]      = "";
+  $produtos["quantidade"] = "";
+  $produtos["desconto"]   = "";
+  $produtos["subtotal"]   = "";
+  $produtos["total"]      = "";
 
-  if($anterior == $atual) {
-    $contLinhas++;
+  $query2 =
+  " SELECT P.idProduto, P.codigoProduto, P.descricaoProduto, I.precoUnitario, I.desconto, I.quantidade
+    FROM itensVenda I
+    INNER JOIN produtos P ON P.idProduto = I.idProduto
+    WHERE I.idVenda='$idVenda'
+  ";
 
-    $descricao  = utf8_encode($linha["descricaoProduto"]);
-    $preco      = "R$ ".number_format($linha["precoUnitario"],2,",",".");
-    $quantidade = $linha["quantidade"];
-    $desconto   = str_replace('.',',',$linha["desconto"]) . "%";
-    $subtotal   = "R$ " . number_format( floatval($linha["precoUnitario"]) * floatval($linha["quantidade"]), 2,",","." );
-    $total      = "R$ ". number_format(floatval($linha["precoUnitario"]) * floatval($linha["quantidade"]) * (1-floatval($linha["desconto"])/100),2,",",".");
+  $resultado2 = $database->getQuery($query2);
 
-    $produtos["codigo"]     .= $linha['codigoProduto'] . "<br>";
+  foreach ($resultado2 as $linha2) {
+
+    $descricao    = utf8_encode($linha2["descricaoProduto"]);
+    $preco        = "R$ " . number_format($linha2["precoUnitario"],2,",",".");
+    $quantidade   = $linha2["quantidade"];
+    $desconto     = (isset($linha2["desconto"])) ? number_format(floatval($linha2["desconto"]), 2,",","." ) . "%" : "0%";
+    $subtotal     = "R$ " . number_format(floatval($linha2["precoUnitario"]) * floatval($linha2["quantidade"]), 2,",","." );
+    $total        = "R$ " . number_format( (floatval($linha2["precoUnitario"]) * floatval($linha2["quantidade"]) * (1-floatval($linha2["desconto"])/100)) ,2,",",".");
+
+    $produtos["codigo"]     .= $linha2['codigoProduto'] . "<br>";
     $produtos["descricao"]  .= $descricao . "<br>";
     $produtos["preco"]      .= $preco . "<br>";
     $produtos["quantidade"] .= $quantidade . "<br>";
@@ -87,60 +85,47 @@ foreach( $resultado as $linha ){
     $produtos["total"]      .= $total . "<br>";
 
   }
-  else
-  {
-    $aux        = explode(" ",$linha["dataVenda"]);
-    $dataVenda  = implode("/",array_reverse(explode("-",$aux[0])));
-    $codigo     = str_pad($linha['idVenda'], 5, '0', STR_PAD_LEFT);
-    $icone      = utf8_encode($linha['icone']);
-    $formaPgto  = mb_check_encoding($linha['descricaoPgto']);
-    $cliente    = utf8_encode($linha['nome']);
-    $desconto   = str_replace('.',',',$linha["descontoLoja"]) . "%";
-    $total      = "R$ ". number_format(floatval($linha["valorVenda"]), 2,",","." );
 
-    $retorno .= "<tr>".
-    "<td rowspan=$contLinhas class='text-center vertical-center'>Venda <strong>#$codigo</strong><br><i class='fa $icone'></i> $formaPgto</td>";
+  $aux            = explode(" ",$linha["dataVenda"]);
+  $dataVenda      = implode("/",array_reverse(explode("-",$aux[0])));
+  $idVenda        = $linha['idVenda'];
+  $codigo         = str_pad($linha['idVenda'], 5, '0', STR_PAD_LEFT);
+  $icone          = utf8_encode($linha['icone']);
+  $formaPgto      = utf8_encode($linha['descricaoPgto']);
+  $cliente        = utf8_encode($linha['nome']);
+  $descontoVenda  = number_format(floatval($linha["descontoLoja"]), 2,",","." ) . "%";
+  $totalVenda     = "R$ ". number_format(floatval($linha["valorVenda"]), 2,",","." );
 
-    foreach ($produtos as $produto) {
-      $retorno .=
-      " <td>".substr_replace($produtos["descricao"],-4)."</td>".
-      " <td class='text-center'>".substr_replace($produtos["preco"],-4)."</td>".
-      " <td class='text-center'>".substr_replace($produtos["quantidade"],-4)."</td>".
-      " <td class='text-center'>".substr_replace($produtos["subtotal"],-4)."</td>".
-      " <td class='text-center'>".substr_replace($produtos["desconto"],-4)."</td>".
-      " <td class='text-center'>".substr_replace($produtos["total"],-4)."</td>";
-    }
+  /* *********************************************************************************************
+  * Montando as linhas da tabela
+  ************************************************************************************************/
 
-    $retorno .=
-    " <tr class='info-venda'>".
-    "   <td colspan=2><b>".(($cliente == "") ? ("Cliente: ". $cliente) : "")."</b></td>".
-    "   <td class='text-center' colspan=2><b>".(($dataVenda == "") ? ("Data: ". $dataVenda) : "")."</b></td>".
-    "   <td class='text-center'><b>$desconto</b></td>".
-    "   <td class='text-center'><b>$total</b></td>".
-    " </tr>".
-    " <tr><td colspan=7 class='active'></td></tr>";
-
-      $produtos["codigo"]     = "";
-      $produtos["descricao"]  = "";
-      $produtos["preco"]      = "";
-      $produtos["quantidade"] = "";
-      $produtos["desconto"]   = "";
-      $produtos["subtotal"]   = "";
-      $produtos["total"]      = "";
-
-  }
-
-  $contLinhas = 0;
-
-  $atual = $linha['idVenda'];
-  $anterior = $atual;
+  $retorno .= 
+  " <tr>
+      <td rowspan=2 class='text-center vertical-center'>Venda <b>#$codigo</b><br><i class='fa $icone'></i> $formaPgto</td>
+      <td>".substr($produtos["descricao"],0,-4)."</td>
+      <td class='text-center'>".substr($produtos["preco"],0,-4)."</td>
+      <td class='text-center'>".substr($produtos["quantidade"],0,-4)."</td>
+      <td class='text-center'>".substr($produtos["subtotal"],0,-4)."</td>
+      <td class='text-center'>".substr($produtos["desconto"],0,-4)."</td>
+      <td class='text-center'>".substr($produtos["total"],-0,4)."</td>
+    </tr>
+    <tr class='info-venda'>
+      <td colspan=2><b>".(($cliente == "") ? ("Cliente: ". $cliente) : "")."</b></td>
+      <td class='text-center' colspan=2><b>".(($dataVenda == "") ? ("Data: ". $dataVenda) : "")."</b></td>
+      <td class='text-center'><b>$descontoVenda</b></td>
+      <td class='text-center'><b>$totalVenda</b></td>
+    </tr>
+    <tr><td colspan=7 class='active'></td></tr>
+  ";
 
 }
+
 
 if($retorno == "") {
   echo "<tr><td colspan=7 class='text-center'>NÃO ENCONTRAMOS NENHUM DADO DE VENDAS NO SISTEMA PARA $data</td></tr>";
 } else {
-  echo json_encode($retorno);
+  echo $retorno;
 }
 
 ?>
