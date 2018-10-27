@@ -21,7 +21,7 @@
     <div class="box-body">
 
       <!-- Cliente -->
-      <div class="form-horizontal">
+      <form id="filtro" method="post" class="form-horizontal">
         <div class="form-group">
           <label for="data" class="col-sm-2 control-label">Selecione o dia:</label>
           <div class="col-sm-3 col-md-2">
@@ -49,7 +49,7 @@
             <button class="btn btn-primary pull-right" id="impressao"><i class="fa fa-print mr-sm"></i> Imprimir Relatório</button>
           </div>
         </div>
-      </div>
+      </form>
 
       <hr>
 

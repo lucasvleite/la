@@ -3,7 +3,7 @@ function gerarTabela() {
   $.ajax({
     type: 'post',
     url: 'reports/api/getVendasDia.php',
-    data: { "data": $("#data").val(), "formaPagamento": $("#formaPagamento").val() },
+    data: $("#filtro").serialize(),
     dataType: 'html',
     success: function (data) {
       $("#body-vendas").html(data)
