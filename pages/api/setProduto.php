@@ -85,7 +85,7 @@ if( $idProduto == 0 ){
   $resultado1 = $database->runQuery($query);
 
 
-  $insertEntradaP .= ", idProduto = '$resultado1'";
+  $insertEntradaP .= ", idProduto = '$codigo'";
   $query = "INSERT INTO entradaprodutos SET $insertEntradaP";
   $resultado2 = $database->runQuery($query);
 
