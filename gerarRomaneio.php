@@ -731,7 +731,7 @@ echo
 		</td>
 	</tr>";
 
-	$totalValor    += ( floatval($linha["precoUnitario"]) * floatval($linha["quantidade"]) * (0.97-floatval($linha["desconto"])/100) );
+	$totalValor    += ( floatval($linha["precoUnitario"]) * floatval($linha["quantidade"]) * (1-floatval($linha["desconto"])/100) );
 }
 
 		?>
