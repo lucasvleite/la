@@ -43,7 +43,7 @@ if( $idProduto == 0 ){
   /**********************************************************************************
    * Verifica se há algum nome ou código cadastrado
    **********************************************************************************/
-  $query = "SELECT * FROM produtos WHERE codigoProduto = '$codigo' OR descricaoProduto like '%$descricao'";
+  $query = "SELECT * FROM produtos WHERE codigoProduto = '$codigo' OR idProduto = '$codigo' OR descricaoProduto like '%$descricao'";
 
   $resultado = $database->getQuery($query);
 
@@ -65,7 +65,7 @@ if( $idProduto == 0 ){
   $insertP = "codigoProduto = '$codigo', descricaoProduto = '$descricao', precoVenda = '" .
       (float)str_replace(",",".",$precoVenda) . "', estoque = '$quantidade', disponivel = 1";
 
-  $insertEntradaP = "codigoProduto = '$codigo', quantidade = '$quantidade', precoUnitario = '$precoCompra'";
+  $insertEntradaP = "idProduto = '$codigo', codigoProduto = '$codigo', quantidade = '$quantidade', precoUnitario = '$precoCompra'";
 
   /**********************************************************************************
    * Verificar variáveis, retirar caracteres especiais e convertendo as datas
@@ -85,10 +85,12 @@ if( $idProduto == 0 ){
   $resultado1 = $database->runQuery($query);
 
 
+<<<<<<< HEAD
   $insertEntradaP .= ", idProduto = '$codigo'";
+=======
+>>>>>>> db3849aa74b74f16465680aa8746ddb9033cf0c8
   $query = "INSERT INTO entradaprodutos SET $insertEntradaP";
   $resultado2 = $database->runQuery($query);
-
 
 
   if($resultado1 > 0 && $resultado2 > 0){

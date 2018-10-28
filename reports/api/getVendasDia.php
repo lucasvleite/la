@@ -21,7 +21,7 @@ if( $formaPagamento == 0 ) {
   " SELECT
         V.idVenda, V.dataVenda, V.valorVenda, V.desconto as descontoLoja, 
         F.idFormaPagamento, F.descricao as descricaoPgto, F.icone,
-        C.idCliente, C.nome
+        C.idCliente, C.nome as nome
     FROM vendas V
     LEFT JOIN clientes C ON V.idCliente = C.idCliente
     LEFT JOIN formapagamento F ON V.formaPagamento = F.idFormaPagamento
@@ -33,11 +33,11 @@ if( $formaPagamento == 0 ) {
   " SELECT
         V.idVenda, V.dataVenda, V.valorVenda, V.desconto as descontoLoja, 
         F.idFormaPagamento, F.descricao as descricaoPgto, F.icone,
-        C.idCliente, C.nome
+        C.idCliente, C.nome as nome
     FROM vendas V
     LEFT JOIN clientes C ON V.idCliente = C.idCliente
     LEFT JOIN formapagamento F ON F.idFormaPagamento = '$formaPagamento'
-    WHERE V.status = 1 AND V.dataVenda > DATE('$data') AND V.formaPagamento = '$formaPagamento'
+    WHERE V.status = 1 AND V.dataVenda = DATE('$data') AND V.formaPagamento = '$formaPagamento'
     ORDER BY V.idVenda DESC
   ";
 }
@@ -67,14 +67,17 @@ foreach ($resultado as $linha) {
 
   $resultado2 = $database->getQuery($query2);
 
+  $contador = 0;
+
   foreach ($resultado2 as $linha2) {
+    $contador++;
 
     $descricao    = utf8_encode($linha2["descricaoProduto"]);
     $preco        = "R$ " . number_format($linha2["precoUnitario"],2,",",".");
     $quantidade   = $linha2["quantidade"];
     $desconto     = (isset($linha2["desconto"])) ? number_format(floatval($linha2["desconto"]), 2,",","." ) . "%" : "0%";
     $subtotal     = "R$ " . number_format(floatval($linha2["precoUnitario"]) * floatval($linha2["quantidade"]), 2,",","." );
-    $total        = "R$ " . number_format( (floatval($linha2["precoUnitario"]) * floatval($linha2["quantidade"]) * (1-floatval($linha2["desconto"])/100)) ,2,",",".");
+    $total        = "R$ " . number_format( (floatval($linha2["precoUnitario"]) * floatval($linha2["quantidade"]) * (1-floatval($linha2["desconto"])/100)), 2,",",".");
 
     $produtos["codigo"]     .= $linha2['codigoProduto'] . "<br>";
     $produtos["descricao"]  .= $descricao . "<br>";
@@ -108,11 +111,11 @@ foreach ($resultado as $linha) {
       <td class='text-center'>".substr($produtos["quantidade"],0,-4)."</td>
       <td class='text-center'>".substr($produtos["subtotal"],0,-4)."</td>
       <td class='text-center'>".substr($produtos["desconto"],0,-4)."</td>
-      <td class='text-center'>".substr($produtos["total"],-0,4)."</td>
+      <td class='text-center'>".substr($produtos["total"],0,-4)."</td>
     </tr>
     <tr class='info-venda'>
-      <td colspan=2><b>".(($cliente == "") ? ("Cliente: ". $cliente) : "")."</b></td>
-      <td class='text-center' colspan=2><b>".(($dataVenda == "") ? ("Data: ". $dataVenda) : "")."</b></td>
+      <td colspan=2><b>".(($cliente == "") ? "" : ("Cliente: ". $cliente) )."</b></td>
+      <td class='text-center' colspan=2><b>".(($dataVenda == "") ? "" : ("Data: ". $dataVenda) )."</b></td>
       <td class='text-center'><b>$descontoVenda</b></td>
       <td class='text-center'><b>$totalVenda</b></td>
     </tr>

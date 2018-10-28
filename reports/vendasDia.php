@@ -14,14 +14,14 @@
   <!-- MAP & BOX PANE -->
   <div class="box box-solid">
     <div class="box-header with-border">
-      <h2 class="box-title">Relatório de Vendas diário</h2>
+      <h2 class="box-title">Relatório de Vendas Diário</h2>
       <!-- <button class="btn bg-purple pull-right" data-toggle="modal" data-target="#modal-cliente"><i class="fa fa-plus mr-xs"></i> Imprimir Relatório</button> -->
     </div>
     <!-- /.box-header -->
     <div class="box-body">
 
       <!-- Cliente -->
-      <div class="form-horizontal">
+      <form id="filtro" method="post" class="form-horizontal">
         <div class="form-group">
           <label for="data" class="col-sm-2 control-label">Selecione o dia:</label>
           <div class="col-sm-3 col-md-2">
@@ -49,7 +49,7 @@
             <button class="btn btn-primary pull-right" id="impressao"><i class="fa fa-print mr-sm"></i> Imprimir Relatório</button>
           </div>
         </div>
-      </div>
+      </form>
 
       <hr>
 
@@ -68,7 +68,6 @@
               </tr>
             </thead>
             <tbody id="body-vendas">
-              
             </tbody>
           </table>
         </div>
