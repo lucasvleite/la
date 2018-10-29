@@ -2,7 +2,7 @@ function gerarTabela() {
 
   $.ajax({
     type: 'post',
-    url: 'reports/api/getVendasDia.php',
+    url: 'reports/api/getListaVendasDia.php',
     data: $("#filtro").serialize(),
     dataType: 'html',
     success: function (data) {
@@ -37,8 +37,8 @@ $(document).ready(function () {
   $("#impressao").click(function (e) {
     e.preventDefault()
     data = $("#data").val()
-    formapagamento = "&formaPagamento="+btoa($("#formaPagamento").val())
-    window.open('./reports/api/gerarR1.php?data='+data+formapagamento, '_blank');
+    formapagamento = "&formaPagamento=" + btoa($("#formaPagamento").val())
+    window.open('./reports/api/gerarR1.php?data=' + data + formapagamento, '_blank');
   })
 
 })

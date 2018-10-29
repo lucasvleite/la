@@ -9,6 +9,7 @@ else{
 
 	$totalDesconto = 0;
 	$totalFinal    = 0;
+	$subTotalFinal = 0.00;
 
 	$query =
 	"	SELECT V.idCliente, C.nome, C.cpf_cnpj, C.tel1, V.desconto, V.valorVenda, V.formaPagamento, F.descricao, V.dataVenda
@@ -625,7 +626,7 @@ else{
 			</td>
 			<td colspan="10" style="text-align:left;width:4.009cm;" class="Tabela1_D1">
 				<p class="P1">Documento Emitido</p>
-				<p class="P1">05/10/2018 às 11:23</p>
+				<p class="P1"><?php echo date("d/m/Y")." às ".date("H:m"); ?></p>
 			</td>
 		</tr>
 		<tr>
@@ -703,8 +704,10 @@ foreach( $resultado as $linha ){
   $preco      = "R$ ".number_format($linha["precoUnitario"],2,",",".");
   $quantidade = $linha["quantidade"];
   $desconto   = str_replace('.',',',$linha["desconto"]) . "%";
-  // $subtotal   = "R$ " . number_format( floatval($linha["precoUnitario"]) * floatval($linha["quantidade"]), 2,",","." );
+  // $subtotal   = number_format( floatval($linha["precoUnitario"]) * floatval($linha["quantidade"]), 2,",","." );
   $total = "R$ ". number_format(floatval($linha["precoUnitario"]) * floatval($linha["quantidade"]) * (1-floatval($linha["desconto"])/100),2,",",".");
+
+	$subTotalFinal += floatval($linha["precoUnitario"]) * floatval($linha["quantidade"]) * (1-floatval($linha["desconto"])/100);
 
 echo
 " <tr>
@@ -762,19 +765,23 @@ echo
 	</table>
 	<table border="0" cellspacing="0" cellpadding="0" class="Tabela1">
 		<colgroup>
-				<col width="248" />
-				<col width="248" />
-				<col width="248" />
+				<col width="186" />
+				<col width="186" />
+				<col width="186" />
+				<col width="186" />
 		</colgroup>
 		<tr>
-			<td style="text-align:left;width:5.667cm; " class="Tabela1_A1">
+			<td style="text-align:left;width:4.25cm; " class="Tabela1_A1">
 					<p class="P4">Total de Produtos: <b><?php echo $contador; ?></b> </p>
 			</td>
-			<td style="text-align:left;width:5.667cm; " class="Tabela1_A1">
+			<td style="text-align:left;width:4.25cm; " class="Tabela1_A1">
+					<p class="P6">Sub Total: <b>R$ <?php echo number_format($subTotalFinal,2,",","."); ?></b> </p>
+			</td>
+			<td style="text-align:left;width:4.25cm; " class="Tabela1_A1">
 					<p class="P6">Desconto Final: <b><?php echo str_replace('.',',',$totalDesconto) . "%"; ?></b> </p>
 			</td>
-			<td style="text-align:left;width:5.667cm; " class="Tabela1_D1">
-					<p class="P5">Valor Total: R$ <b><?php echo number_format($totalFinal,2,",",".");?></b> </p>
+			<td style="text-align:left;width:4.25cm; " class="Tabela1_D1">
+					<p class="P5">Valor Total: <b>R$ <?php echo number_format($totalFinal,2,",",".");?></b> </p>
 			</td>
 		</tr>
 	</table>

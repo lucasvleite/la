@@ -14,7 +14,7 @@
   <!-- MAP & BOX PANE -->
   <div class="box box-solid">
     <div class="box-header with-border">
-      <h2 class="box-title">Relatório de Vendas Diário</h2>
+      <h2 class="box-title">Lista de Vendas do Dia</h2>
       <!-- <button class="btn bg-purple pull-right" data-toggle="modal" data-target="#modal-cliente"><i class="fa fa-plus mr-xs"></i> Imprimir Relatório</button> -->
     </div>
     <!-- /.box-header -->

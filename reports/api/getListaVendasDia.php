@@ -16,6 +16,7 @@ $data = implode("-",array_reverse(explode("/",$data)));
 
 $formaPagamento = $_POST["formaPagamento"];
 
+
 if( $formaPagamento == 0 ) {
   $query =
   " SELECT

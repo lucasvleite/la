@@ -23,7 +23,7 @@ if(isset($_GET["id"])){
   if ( $pagina == "cadFornecedor" ) { include("pages/cadFornecedor.php"); }
   if ( $pagina == "vendas" )        { include("pages/cadVenda.php"); }
 
-  if ( $pagina == "r1" )            { include("reports/vendasDia.php"); }
+  if ( $pagina == "r1" )            { include("reports/listaVendasDia.php"); }
 
 }
 else

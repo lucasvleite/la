@@ -1,8 +1,8 @@
 <?php
 
-ini_set('display_errors',1);
-ini_set('display_startup_erros',1);
-error_reporting(E_ALL);
+// ini_set('display_errors',1);
+// ini_set('display_startup_erros',1);
+// error_reporting(E_ALL);
 
 if( !isset($_GET["data"]) ){
   echo json_encode(array("error","Post Data incorreto!"));
@@ -13,6 +13,63 @@ if( !isset($_GET["data"]) ){
   $data = implode("-",array_reverse(explode("/",$dataFormatada)));
 
   $formaPagamento = (isset($_GET["formaPagamento"])) ? base64_decode($_GET["formaPagamento"]) : 0;
+
+
+	if($formaPagamento == 0){
+		$query =
+		"	SELECT * FROM
+			(	SELECT COUNT(V.idVenda) as contDinheiro, SUM(V.valorVenda) as totalDinheiro FROM vendas V
+				WHERE V.status = 1 AND V.dataVenda = DATE('$data') AND V.formaPagamento = 1
+			) V1,
+			(	SELECT COUNT(V.idVenda) as contCredito, SUM(V.valorVenda) as totalCredito FROM vendas V
+				WHERE V.status = 1 AND V.dataVenda = DATE('$data') AND V.formaPagamento = 2
+			) V2,
+			(	SELECT COUNT(V.idVenda) as contDebito, SUM(V.valorVenda) as totalDebito FROM vendas V
+				WHERE V.status = 1 AND V.dataVenda = DATE('$data') AND V.formaPagamento = 3
+			) V3,
+			(	SELECT COUNT(V.idVenda) as contCheque, SUM(V.valorVenda) as totalCheque FROM vendas V
+				WHERE V.status = 1 AND V.dataVenda = DATE('$data') AND V.formaPagamento = 4
+			) V4,
+			(	SELECT COUNT(V.idVenda) as contBoleto, SUM(V.valorVenda) as totalBoleto FROM vendas V
+				WHERE V.status = 1 AND V.dataVenda = DATE('$data') AND V.formaPagamento = 5
+			) V5,
+			(	SELECT COUNT(V.idVenda) as contOutro, SUM(V.valorVenda) as totalOutro FROM vendas V
+				WHERE V.status = 1 AND V.dataVenda = DATE('$data') AND V.formaPagamento = 6
+			) V6
+		";
+	} else {
+		$query =
+		"	SELECT COUNT(V.idVenda) as contador, SUM(V.valorVenda) as total, F.descricao, F.icone
+			FROM vendas V,
+			(	SELECT descricao, icone FROM formapagamento FP WHERE FP.idFormaPagamento = '$formaPagamento' ) F
+			WHERE V.status = 1 AND V.dataVenda = DATE('$data') AND V.formaPagamento = '$formaPagamento'
+		";
+	}
+
+	$resultado = $database->getQuery($query);
+
+	$infPagamentos = "";
+
+		foreach( $resultado as $linha ){
+			if($formaPagamento == 0) {
+				$infPagamentos .= ($linha["totalDinheiro"] == NULL) ? "" : "<i class=\"fa fa-money mr-xs\"></i>Dinheiro: <b>R$ " . number_format($linha["totalDinheiro"], 2,",","." )
+					. "</b> em " . ( $linha["contDinheiro"] == 1 ? "1 venda" : $linha["contDinheiro"]." vendas") .".<br>";
+				$infPagamentos .= ($linha["totalCredito"] == NULL) 	? "" : "<i class=\"fa fa-credit-card-alt mr-xs\"></i>Cartão de Crédito: <b>R$ " . number_format($linha["totalCredito"], 2,",","." )
+					. "</b> em " . ( $linha["contCredito"] == 1 ? "1 venda" : $linha["contCredito"]." vendas") .".<br>";
+				$infPagamentos .= ($linha["totalDebito"] == NULL) ? "" : "<i class=\"fa fa-fa-credit-card mr-xs\"></i>Cartão de Débito: <b>R$ " . number_format($linha["totalDebito"], 2,",","." )
+					. "</b> em " . ( $linha["contDebito"] == 1 ? "1 venda" : $linha["contDebito"]." vendas") .".<br>";
+				$infPagamentos .= ($linha["totalCheque"] == NULL) ? "" : "<i class=\"fa fa-cc mr-xs\"></i>Cheque: <b>R$ " . number_format($linha["totalCheque"], 2,",","." )
+					. "</b> em " . ( $linha["contCheque"] == 1 ? "1 venda" : $linha["contCheque"]." vendas") .".<br>";
+				$infPagamentos .= ($linha["totalBoleto"] == NULL) ? "" : "<i class=\"fa fa-barcode mr-xs\"></i>Boleto Bancário: <b>R$ " . number_format($linha["totalBoleto"], 2,",","." )
+					. "</b> em " . ( $linha["contBoleto"] == 1 ? "1 venda" : $linha["contBoleto"]." vendas") .".<br>";
+				$infPagamentos .= ($linha["totalOutro"] == NULL) ? "" : "<i class=\"fa fa-usd mr-xs\"></i>Outro: <b>R$ " . number_format($linha["totalOutro"], 2,",","." )
+					. "</b> em " . ( $linha["contOutro"] == 1 ? "1 venda" : $linha["contOutro"]." vendas") .".<br>";
+
+			} else {
+				$infPagamentos .= ($linha["total"] == NULL) ? "" : "<i class=\"fa ".$linha["icone"]." mr-xs\"></i>".$linha["descricao"].": <b>R$ " . number_format($linha["total"], 2,",","." )
+					. "</b> em " . ( $linha["contador"] == 1 ? "1 venda" : $linha["contador"]." vendas") .".<br>";
+			}
+		}
 
 ?>
 
@@ -35,7 +92,9 @@ if( !isset($_GET["data"]) ){
 	<link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" hreflang="en" />
 	<link rel="schema.DCTYPE" href="http://purl.org/dc/dcmitype/" hreflang="en" />
   <link rel="schema.DCAM" href="http://purl.org/dc/dcam/" hreflang="en" />
-  <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../assets/css/myStyle.css">
+
 	<style type="text/css">
 		@page {}
 
@@ -602,17 +661,16 @@ if( !isset($_GET["data"]) ){
 		</tr>
 		<tr>
 			<td colspan="10" style="text-align:left;width:0.497cm; " class="Tabela1_A3">
-				<p class="P3">Romaneio de Vendas - <b><?php echo $dataFormatada; ?></b></p>
+				<p class="P3">Romaneio de Vendas - <b><?php echo $dataFormatada . ( $formaPagamento==0 ?"":" - <i class=\"fa ".$linha["icone"]." mr-xs\"></i>".$linha["descricao"]); ?></b></p>
 			</td>
 		</tr>
     <tr>
 			<td colspan="8" style="text-align:left;width:0.497cm; " class="Tabela1_A1">
-				<p class="Text_20_body">Cliente: </p>
-        <p class="Text_20_body"></p>
+				<p class="Text_20_body"><?php echo $infPagamentos; ?></p>
 			</td>
 			<td colspan="10" style="text-align:left;width:4.009cm;" class="Tabela1_D1">
 				<p class="P1">Documento Emitido</p>
-				<p class="P1">05/10/2018 às 11:23</p>
+				<p class="P1"><?php echo date("d/m/Y")." às ".date("H:m"); ?></p>
 			</td>
 		</tr>
 		<tr>
@@ -622,27 +680,20 @@ if( !isset($_GET["data"]) ){
 		</tr>
 	</table>
 
-	<table id="tabela-vendas" class="table table-hover border-black">
+	<table border=0 cellspacing="0" cellpadding="0" class="Tabela1"">
     <thead>
       <tr class="active">
-        <th class="text-center" width="15%">Venda</th>
-        <th width="35%">Produto</th>
-        <th class="text-center" width="10%">Preço</th>
-        <th class="text-center" width="10%">Quantidade</th>
-        <th class="text-center" width="10%">Subtotal</th>
-        <th class="text-center" width="10%">Desconto</th>
-        <th class="text-center" width="10%">Total</th>
+        <th class="text-center Tabela1_A1" width="20%">Venda</th>
+        <th width="30%" class="Tabela1_A1">Produto</th>
+        <th class="text-center Tabela1_A1" width="10%">Preço</th>
+        <th class="text-center Tabela1_A1" width="10%">Quantidade</th>
+        <th class="text-center Tabela1_A1" width="10%">Subtotal</th>
+        <th class="text-center Tabela1_A1" width="10%">Desconto</th>
+        <th class="text-center Tabela1_D1" width="10%">Total</th>
       </tr>
     </thead>
 
-    <tfoot>
-      <tr>
-        <td>
-          <p class="P9"> </p>
-        </td>
-      </tr>
-    </tfoot>
-    <tbody id="body-vendas">
+    <tbody>
 
 		<?php
 
@@ -656,7 +707,7 @@ if( $formaPagamento == 0 ) {
     LEFT JOIN clientes C ON V.idCliente = C.idCliente
     LEFT JOIN formapagamento F ON V.formaPagamento = F.idFormaPagamento
     WHERE V.status = 1 AND V.dataVenda = DATE('$data')
-    ORDER BY V.idVenda DESC
+    ORDER BY V.idVenda ASC
   ";
 } else {
   $query =
@@ -668,7 +719,7 @@ if( $formaPagamento == 0 ) {
     LEFT JOIN clientes C ON V.idCliente = C.idCliente
     LEFT JOIN formapagamento F ON F.idFormaPagamento = '$formaPagamento'
     WHERE V.status = 1 AND V.dataVenda = DATE('$data') AND V.formaPagamento = '$formaPagamento'
-    ORDER BY V.idVenda DESC
+    ORDER BY V.idVenda ASC
   ";
 }  
 
@@ -694,7 +745,8 @@ foreach ($resultado as $linha) {
 
   $resultado2 = $database->getQuery($query2);
 
-  $contador = 0;
+	$contador = 0;
+	$totalSubTotal=0;
 
   foreach ($resultado2 as $linha2) {
     $contador++;
@@ -705,6 +757,8 @@ foreach ($resultado as $linha) {
     $desconto     = (isset($linha2["desconto"])) ? number_format(floatval($linha2["desconto"]), 2,",","." ) . "%" : "0%";
     $subtotal     = "R$ " . number_format(floatval($linha2["precoUnitario"]) * floatval($linha2["quantidade"]), 2,",","." );
     $total        = "R$ " . number_format( (floatval($linha2["precoUnitario"]) * floatval($linha2["quantidade"]) * (1-floatval($linha2["desconto"])/100)), 2,",",".");
+
+		$totalSubTotal += floatval($linha2["precoUnitario"]) * floatval($linha2["quantidade"]) * (1-floatval($linha2["desconto"])/100);
 
     $produtos["codigo"]     .= $linha2['codigoProduto'] . "<br>";
     $produtos["descricao"]  .= $descricao . "<br>";
@@ -732,21 +786,21 @@ foreach ($resultado as $linha) {
 
   echo
   " <tr>
-      <td rowspan=2 class='text-center vertical-center P1'>Venda <b>#$codigo</b><br><i class='fa $icone'></i> $formaPgto</td>
-      <td class='P1'>".substr($produtos["descricao"],0,-4)."</td>
-      <td class='text-center P1'>".substr($produtos["preco"],0,-4)."</td>
-      <td class='text-center P1'>".substr($produtos["quantidade"],0,-4)."</td>
-      <td class='text-center P1'>".substr($produtos["subtotal"],0,-4)."</td>
-      <td class='text-center P1'>".substr($produtos["desconto"],0,-4)."</td>
-      <td class='text-center P1'>".substr($produtos["total"],0,-4)."</td>
+      <td rowspan=2 class='text-center vertical-center Tabela1_A1'>Venda <b>#$codigo</b><br><i class='fa $icone'></i> $formaPgto</td>
+      <td class='Tabela1_A1'>".substr($produtos["descricao"],0,-4)."</td>
+      <td class='text-center Tabela1_A1'><p class=\"P1\">".substr($produtos["preco"],0,-4)."</p></td>
+      <td class='text-center Tabela1_A1'><p class=\"P1\">".substr($produtos["quantidade"],0,-4)."</p></td>
+      <td class='text-center Tabela1_A1'><p class=\"P1\">".substr($produtos["subtotal"],0,-4)."</p></td>
+      <td class='text-center Tabela1_A1'><p class=\"P1\">".substr($produtos["desconto"],0,-4)."</p></td>
+      <td class='text-center Tabela1_D1'><p class=\"P1\">".substr($produtos["total"],0,-4)."</p></td>
     </tr>
     <tr class='info-venda'>
-      <td colspan=2 class=' P1'><b>".(($cliente == "") ? "" : ("Cliente: ". $cliente) )."</b></td>
-      <td class='text-center P1' colspan=2><b>".(($dataVenda == "") ? "" : ("Data: ". $dataVenda) )."</b></td>
-      <td class='text-center P1'><b>$descontoVenda</b></td>
-      <td class='text-center P1'><b>$totalVenda</b></td>
+      <td colspan=2 class=' Tabela1_A1'><p class=\"P4\">".(($cliente == "") ? "" : ("Cliente: <b>". $cliente) )."</b></p></td>
+      <td class='text-center Tabela1_A1' colspan=2><p class=\"P1\">SubTotal: <b>R$ ".number_format($totalSubTotal, 2,",","." )."</b></p></td>
+      <td class='text-center Tabela1_A1'><p class=\"P1\"><b>$descontoVenda</b></p></td>
+      <td class='text-center Tabela1_D1'><p class=\"P1\"><b>$totalVenda</b></p></td>
     </tr>
-    <tr><td colspan=7 class='active'>-</td></tr>
+    <tr><td colspan=7 class='Tabela1_A5'><p class=\"P9\">&nbsp;</p></td></tr>
   ";
 
 }
@@ -754,7 +808,6 @@ foreach ($resultado as $linha) {
 
     </tbody>
   </table>
-	<p class="P1"> </p>
 </body>
 
 <!-- <script> window.print() </script> -->
